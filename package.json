@@ -1,0 +1,24 @@
+{
+  "name": "group_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Billcodeclan/Week-12-Group-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Billcodeclan/Week-12-Group-Project/issues"
+  },
+  "homepage": "https://github.com/Billcodeclan/Week-12-Group-Project#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongodb": "^2.2.27"
+  }
+}
