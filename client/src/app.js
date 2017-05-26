@@ -1,5 +1,5 @@
 var mapWrapper = require('./mapWrapper.js')
-
+var whereAmIButton = document.querySelector('#geolocate')
 
 
 var app = function() {
@@ -10,6 +10,9 @@ var app = function() {
   var mainMap = new mapWrapper(mapDiv, center, zoom);
   mainMap.addClickEvent();
   
+
+  whereAmIButton.addEventListener('click', geoLocate)
+
 }
 
 window.addEventListener("load", app);
