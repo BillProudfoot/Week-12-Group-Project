@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "webpack" : "cd client && webpack -w"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "mongodb": "^2.2.27"
+  },
+  "devDependencies": {
+    "webpack": "^2.6.1"
   }
 }
