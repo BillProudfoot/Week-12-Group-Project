@@ -1,13 +1,11 @@
-var mapWrapper = require('./mapWrapper.js')
+var MapWrapper = require('./mapWrapper.js');
+
 
 
 var app = function() {
   loadMap();
   // populateStartDropDown()
   // populateFinishDropDown()
-  var whereAmIButton = document.querySelector('#geolocate')
-  console.log(whereAmIButton)
-  whereAmIButton.addEventListener('click', mapWrapper.geoLocate)
 }
 
 
@@ -16,9 +14,11 @@ var loadMap = function(){
   var zoom = 10;
   var mapDiv = document.getElementById("main-map");
 
-  var mainMap = new mapWrapper(mapDiv, center, zoom);
+  var mainMap = new MapWrapper(mapDiv, center, zoom);
   mainMap.addClickEvent();
   
+  var whereAmIButton = document.querySelector('#geolocate')
+  whereAmIButton.addEventListener('click', mainMap.geoLocate.bind(mainMap));
 }
 
 //THIS WILL CALL THE MONGO DB AND POPULATE START DROP DOWN WITH OUR CHOSEN START LOCATION NAMES
