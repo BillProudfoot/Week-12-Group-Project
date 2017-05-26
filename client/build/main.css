@@ -1,10 +1,14 @@
-#main-map{
-  width: 75%;
-  height: 500px;
-}
+
 
 *{
   /*border: solid red 1px;*/
+}
+
+body{
+}
+
+.row{
+  margin: -5px;
 }
 
 .placeholder {
@@ -22,6 +26,11 @@
 .info-section{
   background-color: skyblue;
 
+}
+
+#main-map{
+  width: 75%;
+  height: 500px;
 }
 
 #start-finish-section{
