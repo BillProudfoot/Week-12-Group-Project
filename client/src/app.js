@@ -8,8 +8,8 @@ var app = function() {
   var mapDiv = document.getElementById("main-map");
 
   var mainMap = new mapWrapper(mapDiv, center, zoom);
-
-  console.log('Map is loading')
+  mainMap.addClickEvent();
+  
 }
 
 window.addEventListener("load", app);
