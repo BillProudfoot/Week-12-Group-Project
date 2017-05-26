@@ -14,4 +14,7 @@ db.walks.insert([
     finish: "The Golf Tavern",
     completed: true
   }
+
+
+  
 ]);
