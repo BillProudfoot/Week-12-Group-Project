@@ -3,15 +3,13 @@ db.dropDatabase();
 
 db.walks.insert([
   {
-    name: "Royal Mile",
-    start: "Edinburgh Castle",
-    finish: "Holyrood Palace",
+    name: "Edinburgh Castle",
+    latlng: {lat: 55.9533, lng: -3.1883},
     completed: false
   },
   {
-    name: "Meadows",
-    start: "Hope Park Terrace",
-    finish: "The Golf Tavern",
+    name: "Hope Park Terrace",
+    latlng: {lat: 10, lng: -10},
     completed: true
   }
 ]);
