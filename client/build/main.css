@@ -1,8 +1,27 @@
 #main-map{
-  /*width: 500px;
-  height: 500px;*/
+  width: 500px;
+  height: 500px;
 }
 
 *{
   border: solid red 1px;
+}
+
+.placeholder {
+  height: 200px;
+}
+
+.red {
+  background-color: crimson;
+}
+
+.blue {
+  background-color: dodgerblue;
+}
+
+.info-section{
+  background-color: skyblue;
+  margin-left: 5px;
+  padding: 10px;
+  box-shadow: 1px 1px 1px 1px;
 }

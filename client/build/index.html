@@ -2,34 +2,47 @@
   <html>
   <head>
     <title>Route Tracker</title>
-    <!--link for pure CSS framework-->
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
-    <!--link for normalize.css-->
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/base-min.css">
+    <!--link for bootstrap framework-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
     <script src="bundle.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDDzJPPcQuw_HAopGmYnkGYO-pK4pxw_U"></script>
   </head>
   <body>
-    <div class="pure-g">
+    <div class="row">
+
+        <div class="col-md-3">
 
 
-        <div id='main-map'></div>
-        <select id="start"></select>
-        <select id="finish"></select>
-        <div id="currently-selected"></div>
-
-        <div class="pure-g">
-
-
-          <div class="pure-u-11-24" id="wishlist"></div>
-
-          <div class="pure-u-2-24"></div>
-
-          <div class="pure-u-11-24" id="completed-walks"></div>
+        <div id="info" class="">
+          information section
         </div>
 
+        <div class="" id="start-finish-section">
+          <select id="start"></select>
+          <select id="finish"></select>
+          <div id="currently-selected"></div>
+        </div>
       </div>
+
+
+        <div class="col-md-9" id='main-map'></div>
+
+    </div>
+
+        <div class="row">
+
+          <div class="col-md-5 info-section placeholder" id="wishlist">WishList</div>
+
+          <div class="col-md-1">
+
+          </div>
+
+          <div class="col-md-5 info-section placeholder" id="completed-walks">Completed Walks</div>
+
+        </div>
+
+
   </body>
   </html>
