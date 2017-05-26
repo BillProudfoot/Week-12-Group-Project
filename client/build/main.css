@@ -1,5 +1,5 @@
 #main-map{
-  width: 500px;
+  width: 75%;
   height: 500px;
 }
 
@@ -21,7 +21,15 @@
 
 .info-section{
   background-color: skyblue;
-  margin-left: 5px;
-  padding: 10px;
-  box-shadow: 1px 1px 1px 1px;
+
+}
+
+#start-finish-section{
+  height:auto;
+}
+
+@media only screen and (max-width: 960px) {
+    #main-map {
+        width:100%
+    }
 }
