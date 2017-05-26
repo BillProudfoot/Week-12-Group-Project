@@ -4,7 +4,7 @@
 }
 
 *{
-  border: solid red 1px;
+  /*border: solid red 1px;*/
 }
 
 .placeholder {
@@ -30,6 +30,7 @@
 
 @media only screen and (max-width: 960px) {
     #main-map {
-        width:100%
+        width:100%;
+        border: 5px white solid;
     }
 }
