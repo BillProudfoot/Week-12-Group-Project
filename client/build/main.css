@@ -1,10 +1,14 @@
-#main-map{
-  width: 75%;
-  height: 500px;
-}
+
 
 *{
-  border: solid red 1px;
+  /*border: solid red 1px;*/
+}
+
+body{
+}
+
+.row{
+  margin: -5px;
 }
 
 .placeholder {
@@ -24,12 +28,18 @@
 
 }
 
+#main-map{
+  width: 75%;
+  height: 500px;
+}
+
 #start-finish-section{
   height:auto;
 }
 
 @media only screen and (max-width: 960px) {
     #main-map {
-        width:100%
+        width:100%;
+        border: 5px white solid;
     }
 }
