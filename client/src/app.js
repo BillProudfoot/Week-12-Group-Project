@@ -5,8 +5,9 @@ var app = function() {
   loadMap();
   // populateStartDropDown()
   // populateFinishDropDown()
-  
-  console.log('Map is loading')
+  var whereAmIButton = document.querySelector('#geolocate')
+  console.log(whereAmIButton)
+  whereAmIButton.addEventListener('click', mapWrapper.geoLocate)
 }
 
 
@@ -16,6 +17,8 @@ var loadMap = function(){
   var mapDiv = document.getElementById("main-map");
 
   var mainMap = new mapWrapper(mapDiv, center, zoom);
+  mainMap.addClickEvent();
+  
 }
 
 //THIS WILL CALL THE MONGO DB AND POPULATE START DROP DOWN WITH OUR CHOSEN START LOCATION NAMES
