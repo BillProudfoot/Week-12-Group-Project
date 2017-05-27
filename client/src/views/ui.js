@@ -5,13 +5,11 @@ var MapWrapper = require('../mapWrapper.js');
 var UI = function() {
   var locations = new Locations();
   locations.all(function (locations) {
-    // console.log(".all locationsLLL ", locations)
-  this.render(locations)
+  this.populateStartDropDown(locations)
+  this.populateFinishDropDown(locations)
   }.bind(this));
 
   this.loadMap();
-  // console.log("Will my locations work here?", locations)
-  // this.populateDropDowns(locations)
   
 }
 
@@ -29,39 +27,30 @@ UI.prototype = {
   whereAmIButton.addEventListener('click', mainMap.geoLocate.bind(mainMap));
 },
 
-render: function(locations) {
-  var storedLocation = localStorage.getItem('selectedLocation');
-    var locationToDisplay = null;
+//THIS CALLS MONGO DB AND POPULATES START AND FINISH DROP DOWNS WITH OUR CHOSEN START LOCATION NAMES AND SETS THE OPTION VALUE TO THEIR CORRESPONDING INDEX
 
-    if (storedLocation) {
-      locationToDisplay = JSON.parse(storedLocation);
-      
-      startSelect.selectedIndex = locationToDisplay.index;
-    }
-    else {
-      locationToDisplay = locations[0];
-    }
-
-    this.populateDropDowns(locations);
-    // container.appendChild(li);
-  },
-
-//THIS WILL CALL THE MONGO DB AND POPULATE START AND FINISH DROP DOWNS WITH OUR CHOSEN START LOCATION NAMES
-
-  populateDropDowns: function(location) {
+  populateStartDropDown: function(location) {
     console.log("7th call: ", location)
-  // var finishSelect = document.querySelector('#finish');
-      var startSelect = document.querySelector('#start');
-  
+    var startSelect = document.querySelector('#start');
 
-  console.log("8th call: ",location)
-  location.forEach(function(location, index){
+    location.forEach(function(location, index){
     location.index = index;
     var option = document.createElement('option');
     option.value = index;
     option.text = location.name;
     startSelect.appendChild(option)
-    // finishSelect.appendChild(option)
+    })
+  },
+
+  populateFinishDropDown: function(location) {
+    var finishSelect = document.querySelector('#finish');
+
+    location.forEach(function(location, index){
+    location.index = index;
+    var option = document.createElement('option');
+    option.value = index;
+    option.text = location.name;
+    finishSelect.appendChild(option)
     })
   }
 }

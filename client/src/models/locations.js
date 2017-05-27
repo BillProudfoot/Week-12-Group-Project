@@ -12,7 +12,7 @@ Locations.prototype = {
       var locations = this.populateLocations(results)
       console.log("6th call: ",locations)
       callback(locations);
-      console.log("9th call: ",locations)
+      console.log("8th call: ",locations)
 
     }.bind(this));
   },
