@@ -18,11 +18,11 @@ Locations.prototype = {
   },
 
   populateLocations: function (results) {
-    console.log("4th call: ",results)
+    // console.log("4th call: ",results)
     var locations = results.map(function (resultObject) {
       return new Location(resultObject)
     });
-    console.log("5th call: ",locations)
+    // console.log("5th call: ",locations)
     return locations;
   },
 
