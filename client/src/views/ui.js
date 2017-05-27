@@ -5,11 +5,13 @@ var MapWrapper = require('../mapWrapper.js');
 var UI = function() {
   var locations = new Locations();
   locations.all(function (locations) {
-    this.render(locations);
+    // console.log(".all locationsLLL ", locations)
+  this.render(locations)
   }.bind(this));
 
   this.loadMap();
-  // populateDropDowns()
+  // console.log("Will my locations work here?", locations)
+  // this.populateDropDowns(locations)
   
 }
 
@@ -27,18 +29,39 @@ UI.prototype = {
   whereAmIButton.addEventListener('click', mainMap.geoLocate.bind(mainMap));
 },
 
+render: function(locations) {
+  var storedLocation = localStorage.getItem('selectedLocation');
+    var locationToDisplay = null;
+
+    if (storedLocation) {
+      locationToDisplay = JSON.parse(storedLocation);
+      
+      startSelect.selectedIndex = locationToDisplay.index;
+    }
+    else {
+      locationToDisplay = locations[0];
+    }
+
+    this.populateDropDowns(locations);
+    // container.appendChild(li);
+  },
+
 //THIS WILL CALL THE MONGO DB AND POPULATE START AND FINISH DROP DOWNS WITH OUR CHOSEN START LOCATION NAMES
 
-  populateDropDowns: function(locations) {
-  var startSelect = document.querySelector('#start');
-  var finishSelect = document.querySelector('#finish');
+  populateDropDowns: function(location) {
+    console.log("7th call: ", location)
+  // var finishSelect = document.querySelector('#finish');
+      var startSelect = document.querySelector('#start');
+  
 
-  locations.forEach(function(location, index){
+  console.log("8th call: ",location)
+  location.forEach(function(location, index){
     location.index = index;
     var option = document.createElement('option');
+    option.value = index;
     option.text = location.name;
     startSelect.appendChild(option)
-    finishSelect.appendChild(option)
+    // finishSelect.appendChild(option)
     })
   }
 }
