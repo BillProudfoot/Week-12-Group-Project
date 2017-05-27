@@ -8,11 +8,8 @@ Locations.prototype = {
 
   all: function (callback) {
     this.makeRequest('http://localhost:3000/api/locations', function (results) {
-      console.log("3rd call: ", results)
       var locations = this.populateLocations(results)
-      console.log("6th call: ",locations)
       callback(locations);
-      console.log("8th call: ",locations)
 
     }.bind(this));
   },
@@ -32,9 +29,7 @@ Locations.prototype = {
     request.addEventListener('load', function () {
       if (request.status !== 200) return;
       var jsonString = request.responseText;
-      console.log("1st call: ",jsonString)
       var resultsObject = JSON.parse(jsonString);
-      console.log("2nd call: ", resultsObject)
       callback(resultsObject);
     });
     request.send();

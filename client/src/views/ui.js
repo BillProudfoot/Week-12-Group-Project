@@ -28,7 +28,6 @@ UI.prototype = {
 },
 
   populateStartDropDown: function(locations) {
-    console.log("7th call: ", locations)
     var startSelect = document.querySelector('#start');
 
     locations.forEach(function(location, index){
@@ -80,34 +79,6 @@ UI.prototype = {
       currentRoute.appendChild(finishTagLatlng);
     });
   },
-
-  // currentRouteDiv: function (location){
-  //   var currentRoute = document.getElementById('currently-selected-route')
-  //   var hTag = document.createElement('h3');
-  //   var pTag = document.createElement('p');
-
-  //   hTag.text = "Your starting Location: " + location.name;
-  //   pTag.text = "latlng of starting location: " + location.latlng;
-
-  //   currentRoute.appendChild(hTag);
-  //   currentRoute.appendChild(pTag);
-  // },
-
-  // var updateStartInfo = function(location){
-  //   
-  //   hTag.text = location.name;
-  //   console.log(location.name)
-  //   currentRoute.appendChild(hTag);
-  // }
-
-
-  // startSelect.addEventListener('change', function (event) {
-  //   var index = this.value;
-  //   var location = locations[index];
-  //   console.log("SOOOOOOOON",location.name)
-  //   currentRouteDiv( location );
-  // });
-
 
 }
 
