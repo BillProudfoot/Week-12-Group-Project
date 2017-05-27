@@ -1,6 +1,6 @@
 var Locations = require('../models/locations');
 var MapWrapper = require('../mapWrapper.js');
-var currentRoute = document.getElementById('currently-selected-route')
+
 
 
 var UI = function() {
@@ -11,7 +11,6 @@ var UI = function() {
   }.bind(this));
 
   this.loadMap();
-  
 }
 
 UI.prototype = {
@@ -28,8 +27,6 @@ UI.prototype = {
   whereAmIButton.addEventListener('click', mainMap.geoLocate.bind(mainMap));
 },
 
-//THIS CALLS MONGO DB AND POPULATES START AND FINISH DROP DOWNS WITH OUR CHOSEN START LOCATION NAMES AND SETS THE OPTION VALUE TO THEIR CORRESPONDING INDEX
-
   populateStartDropDown: function(locations) {
     console.log("7th call: ", locations)
     var startSelect = document.querySelector('#start');
@@ -45,8 +42,16 @@ UI.prototype = {
     startSelect.addEventListener('change', function (event) {
       var index = this.value;
       var location = locations[index];
-        
-      app.updateStartInfo(location);
+      var currentRoute = document.getElementById('currently-selected-route');
+
+      var startTagName = document.createElement('h3');
+      var startTagLatlng = document.createElement('p');
+
+      startTagName.innerText = "Your starting Location: " + location.name;
+      startTagLatlng.innerText = "latlng of starting location: " + location.latlng.lat + " " + location.latlng.lng;
+
+      currentRoute.appendChild(startTagName);
+      currentRoute.appendChild(startTagLatlng);
     });
   },
 
@@ -63,11 +68,45 @@ UI.prototype = {
     finishSelect.addEventListener('change', function (event) {
       var index = this.value;
       var location = locations[index];
-        
-      // updateFinsihInfo(location);
+      var currentRoute = document.getElementById('currently-selected-route');
+
+      var finishTagName = document.createElement('h3');
+      var finishTagLatlng = document.createElement('p');
+
+      finishTagName.innerText = "Your finishing Location: " + location.name;
+      finishTagLatlng.innerText = "latlng of finishing location: " + location.latlng.lat + " " + location.latlng.lng;
+
+      currentRoute.appendChild(finishTagName);
+      currentRoute.appendChild(finishTagLatlng);
     });
   },
 
+  // currentRouteDiv: function (location){
+  //   var currentRoute = document.getElementById('currently-selected-route')
+  //   var hTag = document.createElement('h3');
+  //   var pTag = document.createElement('p');
+
+  //   hTag.text = "Your starting Location: " + location.name;
+  //   pTag.text = "latlng of starting location: " + location.latlng;
+
+  //   currentRoute.appendChild(hTag);
+  //   currentRoute.appendChild(pTag);
+  // },
+
+  // var updateStartInfo = function(location){
+  //   
+  //   hTag.text = location.name;
+  //   console.log(location.name)
+  //   currentRoute.appendChild(hTag);
+  // }
+
+
+  // startSelect.addEventListener('change', function (event) {
+  //   var index = this.value;
+  //   var location = locations[index];
+  //   console.log("SOOOOOOOON",location.name)
+  //   currentRouteDiv( location );
+  // });
 
 
 }
