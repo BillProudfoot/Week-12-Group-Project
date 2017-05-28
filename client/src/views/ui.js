@@ -70,10 +70,16 @@ UI.prototype = {
     var getRouteButton = document.querySelector("#get-route");
     var start = document.querySelector("#start");
     var finish = document.querySelector("#finish");
+    var startPointText = document.querySelector("#start-point-wish-list")
+    var finishPointText = document.querySelector("#finish-point-wish-list")
 
     getRouteButton.addEventListener('click', function(){
       //TODO this function will contain google maps stuff. i'm writing
       //the section that populates the "save to wishlish" form.
+      var startName = start.options[start.selectedIndex].text;
+      var finishName = finish.options[finish.selectedIndex].text;
+      startPointText.innerText = "Start point: " + startName;
+      finishPointText.innerText = "Finish point: " + finishName;
 
     })
   },
