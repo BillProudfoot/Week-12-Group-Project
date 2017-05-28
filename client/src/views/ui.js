@@ -1,9 +1,12 @@
 var Locations = require('../models/locations');
+var Walk = require('../models/walk');
+var Walks = require('../models/walks')
 var MapWrapper = require('../mapWrapper.js');
 
 
 var UI = function() {
   var locations = new Locations();
+  this.walks = new Walks();
   locations.all(function (locations) {
   this.populateStartDropDown(locations)
   this.populateFinishDropDown(locations)
@@ -56,7 +59,6 @@ UI.prototype = {
 
   populateWishList: function(){
     var wishListDiv = document.querySelector("#wishlist");
-    console.log(wishListDiv);
   }
 }
 
