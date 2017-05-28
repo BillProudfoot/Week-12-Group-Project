@@ -8,9 +8,9 @@ var UI = function() {
   this.populateStartDropDown(locations)
   this.populateFinishDropDown(locations)
   }.bind(this));
-
+  this.populateWishList();
   this.loadMap();
-  
+
 }
 
 UI.prototype = {
@@ -22,7 +22,7 @@ UI.prototype = {
 
   var mainMap = new MapWrapper(mapDiv, center, zoom);
   mainMap.addClickEvent();
-  
+
   var whereAmIButton = document.querySelector('#geolocate')
   whereAmIButton.addEventListener('click', mainMap.geoLocate.bind(mainMap));
 },
@@ -52,6 +52,11 @@ UI.prototype = {
     option.text = location.name;
     finishSelect.appendChild(option)
     })
+  },
+
+  populateWishList: function(){
+    var wishListDiv = document.querySelector("#wishlist");
+    console.log(wishListDiv);
   }
 }
 
