@@ -1,5 +1,4 @@
 var MapWrapper = function(mapDiv, coords, zoom) {
-  // console.log(google);
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords, 
     zoom: zoom
@@ -33,7 +32,11 @@ MapWrapper.prototype = {
       this.googleMap.setCenter(center);
       this.addMarker(center);
     }.bind(this));
-  }
+  },
+
+  onGetRouteButtonClicked: function(){
+    console.log("Button clicked!")
+  },
 }
 
 

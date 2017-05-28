@@ -2,7 +2,6 @@ var Locations = require('../models/locations');
 var MapWrapper = require('../mapWrapper.js');
 
 
-
 var UI = function() {
   var locations = new Locations();
   locations.all(function (locations) {
@@ -11,13 +10,14 @@ var UI = function() {
   }.bind(this));
 
   this.loadMap();
+  
 }
 
 UI.prototype = {
 
   loadMap: function(){
   var center = {lat: 55.9533, lng: -3.1883};
-  var zoom = 10;
+  var zoom = 12;
   var mapDiv = document.getElementById("main-map");
 
   var mainMap = new MapWrapper(mapDiv, center, zoom);
@@ -25,6 +25,9 @@ UI.prototype = {
   
   var whereAmIButton = document.querySelector('#geolocate')
   whereAmIButton.addEventListener('click', mainMap.geoLocate.bind(mainMap));
+
+  var getRouteButton = document.querySelector('#getRouteButton');
+  getRouteButton.addEventListener('click', mainMap.onGetRouteButtonClicked)
 },
 
   populateStartDropDown: function(locations) {
@@ -51,6 +54,8 @@ UI.prototype = {
 
       currentRoute.appendChild(startTagName);
       currentRoute.appendChild(startTagLatlng);
+
+      return location;
     });
   },
 
@@ -77,6 +82,8 @@ UI.prototype = {
 
       currentRoute.appendChild(finishTagName);
       currentRoute.appendChild(finishTagLatlng);
+
+      return location;
     });
   },
 
