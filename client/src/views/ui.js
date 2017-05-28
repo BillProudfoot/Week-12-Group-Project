@@ -70,8 +70,9 @@ UI.prototype = {
     var getRouteButton = document.querySelector("#get-route");
     var start = document.querySelector("#start");
     var finish = document.querySelector("#finish");
-    var startPointText = document.querySelector("#start-point-wish-list")
-    var finishPointText = document.querySelector("#finish-point-wish-list")
+    var startPointText = document.querySelector("#start-point-wish-list");
+    var finishPointText = document.querySelector("#finish-point-wish-list");
+    var walkNameText = document.querySelector("#walk-name");
 
     getRouteButton.addEventListener('click', function(){
       //TODO this function will contain google maps stuff. i'm writing
@@ -80,7 +81,8 @@ UI.prototype = {
       var finishName = finish.options[finish.selectedIndex].text;
       startPointText.innerText = "Start point: " + startName;
       finishPointText.innerText = "Finish point: " + finishName;
-
+      var walkName = startName + " to " + finishName;
+      walkNameText.value = walkName;
     })
   },
 
