@@ -8,7 +8,6 @@ Walks.prototype = {
   makeRequest: function(url, callback) {
     var request = new XMLHttpRequest();
     request.open('GET', url);
-    console.log(request);
     request.addEventListener('load', function() {
       if (request.status !== 200) return;
       var jsonString = request.responseText;
@@ -28,7 +27,6 @@ Walks.prototype = {
       var resultsObject = JSON.parse(jsonString);
       callback(resultsObject);
     })
-    console.log(payload);
     request.send(payload);
   },
 
