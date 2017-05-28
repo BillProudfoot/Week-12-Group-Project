@@ -34,7 +34,7 @@ Walks.prototype = {
   all: function (callback) {
     this.makeRequest('http://localhost:3000/api/walks', function(results){
       var walks = this.populateWalks(results);
-      callback(countries);
+      callback(walks);
     }.bind(this))
   },
 
