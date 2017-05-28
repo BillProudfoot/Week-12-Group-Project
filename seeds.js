@@ -1,6 +1,5 @@
 use path_finder;
 db.dropDatabase();
-
 db.walks.insert([
   {
     name: "Royal Mile",
@@ -13,8 +12,9 @@ db.walks.insert([
     start: "Hope Park Terrace",
     finish: "The Golf Tavern",
     completed: true
-  }
+  },
+//trying to seed with this code didn't work until
+//i added in the comma after the curly bracket
+//just there....weird!
 
-
-  
 ]);
