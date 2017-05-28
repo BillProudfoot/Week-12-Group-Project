@@ -40,7 +40,7 @@ Walks.prototype = {
 
   populateWalks: function(results) {
     var walks = results.map(function (resultsObject) {
-      return new Walk(resultObject)
+      return new Walk(resultsObject)
     });
     return walks;
   },
