@@ -7,6 +7,7 @@ var MapWrapper = require('../mapWrapper.js');
 var UI = function() {
   var locations = new Locations();
   this.walks = new Walks();
+  console.log(this.walks.all());
   locations.all(function (locations) {
   this.populateStartDropDown(locations)
   this.populateFinishDropDown(locations)
