@@ -7,13 +7,18 @@ var MapWrapper = require('../mapWrapper.js');
 var UI = function() {
   var locations = new Locations();
   this.walks = new Walks();
+
   this.walks.all(function(walks){
     this.populateWishListAndCompleted(walks);
   }.bind(this))
+
   locations.all(function (locations) {
   this.populateStartDropDown(locations)
   this.populateFinishDropDown(locations)
   }.bind(this));
+
+
+  this.getRouteButtonHandler();
   this.loadMap();
 
 }
@@ -31,6 +36,7 @@ UI.prototype = {
   var whereAmIButton = document.querySelector('#geolocate')
   whereAmIButton.addEventListener('click', mainMap.geoLocate.bind(mainMap));
 },
+
 
 //THIS CALLS MONGO DB AND POPULATES START AND FINISH DROP DOWNS WITH OUR CHOSEN START LOCATION NAMES AND SETS THE OPTION VALUE TO THEIR CORRESPONDING INDEX
 
@@ -58,6 +64,21 @@ UI.prototype = {
     finishSelect.appendChild(option)
     })
   },
+
+
+  getRouteButtonHandler: function() {
+    var getRouteButton = document.querySelector("#get-route");
+    var start = document.querySelector("#start");
+    var finish = document.querySelector("#finish");
+
+    getRouteButton.addEventListener('click', function(){
+      //TODO this function will contain google maps stuff. i'm writing
+      //the section that populates the "save to wishlish" form.
+
+    })
+  },
+
+
 
   populateWishListAndCompleted: function(){
     var wishlistDiv = document.querySelector("#wishlist");
