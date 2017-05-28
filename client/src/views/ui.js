@@ -7,12 +7,13 @@ var MapWrapper = require('../mapWrapper.js');
 var UI = function() {
   var locations = new Locations();
   this.walks = new Walks();
-  console.log(this.walks.all());
+  this.walks.all(function(walks){
+    this.populateWishList(walks);
+  }.bind(this))
   locations.all(function (locations) {
   this.populateStartDropDown(locations)
   this.populateFinishDropDown(locations)
   }.bind(this));
-  this.populateWishList();
   this.loadMap();
 
 }
@@ -59,7 +60,17 @@ UI.prototype = {
   },
 
   populateWishList: function(){
-    var wishListDiv = document.querySelector("#wishlist");
+    var div = document.querySelector("#wishlist");
+    // div.innerText = "";
+    console.log(this)
+    this.walks.all(function(walks){
+      walks.forEach(function(walk){
+        console.log(walk);
+        var p = document.createElement("p");
+        p.innerText = walk;
+        div.appendChild(p);
+      })
+    }.bind(this))
   }
 }
 

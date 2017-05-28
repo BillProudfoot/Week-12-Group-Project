@@ -8,6 +8,7 @@ Walks.prototype = {
   makeRequest: function(url, callback) {
     var request = new XMLHttpRequest();
     request.open('GET', url);
+    console.log(request);
     request.addEventListener('load', function() {
       if (request.status !== 200) return;
       var jsonString = request.responseText;
@@ -32,11 +33,11 @@ Walks.prototype = {
   },
 
   all: function (callback) {
-    this.makeRequest('http://localhost:3000/api/walks', function(results){
-      var walks = this.populateWalks(results);
-      callback(walks);
-    }.bind(this))
-  },
+  this.makeRequest('http://localhost:3000/api/walks', function (results) {
+    var walks = this.populateWalks(results)
+    callback(walks);
+  }.bind(this));
+},
 
   populateWalks: function(results) {
     var walks = results.map(function (resultsObject) {
