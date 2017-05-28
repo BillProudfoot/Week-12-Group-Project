@@ -29,5 +29,27 @@ Walks.prototype = {
     })
     console.log(payload);
     request.send(payload);
+  },
+
+  all: function (callback) {
+    this.makeRequest('http://localhost:3000/api/walks', function(results){
+      var walks = this.populateWalks(results);
+      callback(countries);
+    }.bind(this))
+  },
+
+  populateWalks: function(results) {
+    var walks = results.map(function (resultsObject) {
+      return new Walk(resultObject)
+    });
+    return walks;
+  },
+
+  add: function(newWalk, callback) {
+    var walkData = JSON.stringify(newWalk);
+    this.makePostRequest('http://localhost:3000/api/walks', callback, walkData);
   }
+
 }
+
+module.exports = Walks;
