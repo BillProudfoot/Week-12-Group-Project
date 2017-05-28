@@ -8,7 +8,7 @@ var UI = function() {
   var locations = new Locations();
   this.walks = new Walks();
   this.walks.all(function(walks){
-    this.populateWishList(walks);
+    this.populateWishListAndCompleted(walks);
   }.bind(this))
   locations.all(function (locations) {
   this.populateStartDropDown(locations)
@@ -59,19 +59,35 @@ UI.prototype = {
     })
   },
 
-  populateWishList: function(){
-    var div = document.querySelector("#wishlist");
-    div.innerText = "";
+  populateWishListAndCompleted: function(){
+    var wishlistDiv = document.querySelector("#wishlist");
+    var completedDiv = document.querySelector("#completed-walks")
+    wishlistDiv.innerText = "";
+    completedDiv.innerText ="";
     console.log(this)
     this.walks.all(function(walks){
       walks.forEach(function(walk){
+
+        if (walk.completed === true){
         console.log(walk);
         var p = document.createElement("p");
         //TODO fix this when walk name is in the database;
         var walkTitle = walk.start + " to " + walk.finish;
         p.innerText = walkTitle;
-        div.appendChild(p);
-      })
+        var completedButton = document.createElement("button");
+        completedButton.innerText = "completed!";
+        p.appendChild(completedButton);
+        wishlistDiv.appendChild(p);
+      }
+
+      else if (walk.completed === false) {
+        var p = document.createElement("p");
+        //TODO fix this when walk name is in the database;
+        var walkTitle = walk.start + " to " + walk.finish;
+        p.innerText = walkTitle;
+        completedDiv.appendChild(p);
+      }
+    })
     }.bind(this))
   }
 }
