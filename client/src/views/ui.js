@@ -61,13 +61,15 @@ UI.prototype = {
 
   populateWishList: function(){
     var div = document.querySelector("#wishlist");
-    // div.innerText = "";
+    div.innerText = "";
     console.log(this)
     this.walks.all(function(walks){
       walks.forEach(function(walk){
         console.log(walk);
         var p = document.createElement("p");
-        p.innerText = walk;
+        //TODO fix this when walk name is in the database;
+        var walkTitle = walk.start + " to " + walk.finish;
+        p.innerText = walkTitle;
         div.appendChild(p);
       })
     }.bind(this))
