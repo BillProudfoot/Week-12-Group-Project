@@ -13,6 +13,7 @@ body{
 
 .placeholder {
   height: 200px;
+  margin-top: 5px;
 }
 
 .red {
@@ -21,6 +22,10 @@ body{
 
 .blue {
   background-color: dodgerblue;
+}
+
+.thistle {
+  background-color: thistle;
 }
 
 .info-section{

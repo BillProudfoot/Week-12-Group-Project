@@ -28,42 +28,82 @@
               <p><button class="btn" id="geolocate">where am i</button></p>
               <b>Start: </b>
               <p><select id="start">
+
+                <option disabled selected hidden>Choose your starting Location</option>
+
               </select></p>
               <b>Finish: </b>
               <p><select id="finish">
               </select></p>
               <div id="currently-selected">
               </div>
-              <button class="btn" id="getRouteButton">get route!</button>
+              
+                <option disabled selected hidden>Choose your finishing Location</option>
+
+
+              </select></p>
+              <div id="currently-selected">
+              </div>
+              <button class="btn" id="get-route">get route!</button>
+
 
             </div>
 
           </div>
 
-      </div>
+          <div class="row">
+            <div class="thistle placeholder" id="add-to-wish-list">
+              <form class="" action="index.html" method="post">
+                <label for="walk-name">name your walk</label>
+                <input type="text" name="walk-name" id="walk-name" size="40">
 
+                <div class="" id="start-point-wish-list">
+                  Start point:
+                </div>
 
-        <div class="col-md-9" id='main-map'></div>
+                <div class="" id="finish-point-wish-list">
+                  Finish point:
+                </div>
 
-    </div>
+                <input type="submit" name="" value="save to wishlist">
 
-        <div class="row">
+              </form>
 
-
-          <div class="col-md-6 info-section placeholder" id="currently-selected-route">Currently Selected Route
-            <h3 id='start-name'></h3>
-            <p id='lat-lng-text'></p>
+            </div>
           </div>
-
-          <div class="col-md-6 info-section placeholder" id="wishlist">WishList</div>
-
-
-          <div class="col-md-6 info-section placeholder" id="completed-walks">Completed Walks</div>
-
 
         </div>
 
 
+        <div class="col-md-9" id='main-map'></div>
+
+      </div>
+
+      <div class="row">
+
+
+          
+
+      <div class="col-md-6 info-section placeholder" id="">
+          <h4>wishlist</h4>
+          <div class="" id="wishlist">
+
+
+          </div>
+      </div>
+
+
+      <div class="col-md-6 info-section placeholder" id="">
+        <h4>completed walks</h4>
+        <div class="" id="completed-walks">
+
+        </div>
+      </div>
+
+      </div>
+
+
 
   </body>
+
   </html>
