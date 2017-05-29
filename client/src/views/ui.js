@@ -29,10 +29,19 @@ var UI = function() {
   this.saveToWishListHandler();
   this.getRouteButtonHandler();
   this.loadMap();
+  this.newLocation();
 
 }
 
 UI.prototype = {
+
+  newLocation: function(){
+    var newLocation = document.getElementById('new-location');
+    var submitButton = document.getElementById('submit-new-location')
+    //NEED THE TEXT FROM newLocation
+    console.log("newLocation", newLocation)
+    console.log("submitButton", submitButton)
+  },
 
   loadMap: function(){
   this.mainMap.addClickEvent();
@@ -61,7 +70,8 @@ UI.prototype = {
       startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
       finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
 
-
+      // console.log("Start LatLng", startOption.latlng)
+      // console.log("Finish LatLng", finishOption.latlng)
 
       startSelect.appendChild(startOption)
       finishSelect.appendChild(finishOption)
