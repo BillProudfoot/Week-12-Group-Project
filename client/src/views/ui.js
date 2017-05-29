@@ -103,7 +103,7 @@ UI.prototype = {
         console.log(walk);
         var p = document.createElement("p");
         //TODO fix this when walk name is in the database;
-        var walkTitle = walk.start + " to " + walk.finish;
+        var walkTitle = walk.name + ": " + walk.start + " to " + walk.finish;
         p.innerText = walkTitle;
         var completedButton = document.createElement("button");
         completedButton.innerText = "completed!";
@@ -114,7 +114,7 @@ UI.prototype = {
       else if (walk.completed === true) {
         var p = document.createElement("p");
         //TODO fix this when walk name is in the database;
-        var walkTitle = walk.start + " to " + walk.finish;
+        var walkTitle = walk.name + ": " + walk.start + " to " + walk.finish;
         p.innerText = walkTitle;
         completedDiv.appendChild(p);
       }
