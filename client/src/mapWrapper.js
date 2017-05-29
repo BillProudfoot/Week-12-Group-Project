@@ -1,7 +1,7 @@
 var MapWrapper = function(mapDiv, coords, zoom) {
   // console.log(google);
   this.googleMap = new google.maps.Map(mapDiv, {
-    center: coords, 
+    center: coords,
     zoom: zoom
   });
 }
@@ -28,7 +28,7 @@ MapWrapper.prototype = {
   geoLocate: function(){
     navigator.geolocation.getCurrentPosition(function(position){
       var center = {lat: position.coords.latitude, lng: position.coords.longitude};
-      console.log("button was clicked") 
+      console.log("button was clicked")
       console.log(this);
       this.googleMap.setCenter(center);
       this.addMarker(center);
@@ -41,4 +41,3 @@ MapWrapper.prototype = {
 
 
 module.exports = MapWrapper;
-

@@ -1,16 +1,16 @@
-use path_finder;
-db.dropDatabase();
+// use path_finder;
+// db.dropDatabase();
 
-db.locations.insert([
-  {
-    name: "Edinburgh Castle",
-    latlng: {lat: 55.9533, lng: -3.1883}
-  },
-  {
-    name: "Hope Park Terrace",
-    latlng: {lat: 10, lng: -10}
-  }
-]);
+// db.locations.insert([
+//   {
+//     name: "Edinburgh Castle",
+//     latlng: {lat: 55.9533, lng: -3.1883}
+//   },
+//   {
+//     name: "Hope Park Terrace",
+//     latlng: {lat: 10, lng: -10}
+//   }
+// ]);
 
 
 

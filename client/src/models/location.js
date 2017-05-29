@@ -6,3 +6,6 @@ var Location = function(options) {
 
 
 module.exports = Location;
+
+
+
