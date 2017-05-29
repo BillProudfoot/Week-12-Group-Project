@@ -1,12 +1,16 @@
 var MapWrapper = function(mapDiv, coords, zoom) {
+
   this.directionsService = new google.maps.DirectionsService;
   this.directionsDisplay = new google.maps.DirectionsRenderer;
+
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
     zoom: zoom,
     scrollwheel: false
   });
   this.directionsDisplay.setMap(this.googleMap);
+  
+       
 }
 
 

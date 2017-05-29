@@ -4,42 +4,42 @@ db.dropDatabase();
 //we're not using latlng for anything at the moment
 db.locations.insert([
   {
-    name: "Edinburgh Castle",
-    latlng: {lat: 55.9533, lng: -3.1883}
+    name: "Barras Bridge",
+    latlng: {lat: 54.978528, lng: -1.610805}
   },
   {
-    name: "Holyrood Palace",
-    latlng: {lat: 10, lng: -10}
+    name: "Forth Banks",
+    latlng: {lat: 54.966596, lng: -1.618418}
   },
   {
-    name: "Roseburn",
-    latlng: {lat:10, lng: -10}
+    name: "Ponteland Road",
+    latlng: {lat: 55.001571, lng: -1.667013}
   },
   {
-    name: "Dean Village",
-    latlng: {lat:10, lng: -10}
+    name: "High Street",
+    latlng: {lat: 55.006948, lng: -1.619644}
   },
   {
-    name: "Balerno",
-    latlng: {lat:10, lng: -10}
+    name: "High Street Gateshead",
+    latlng: {lat: 54.962064, lng: -1.600266}
   },
   {
-    name: "Slateford",
-    latlng: {lat:10, lng: -10}
+    name: "St Ann's Street",
+    latlng: {lat: 55.971936, lng: -1.596565}
   }
 ]);
 
 db.walks.insert([
   {
-    name: "Royal Mile",
-    start: "Edinburgh Castle",
-    finish: "Holyrood Palace",
+    name: "High Steet Walk",
+    start: "High Street",
+    finish: "High Street Gateside",
     completed: false
   },
   {
-    name: "Meadows",
-    start: "Hope Park Terrace",
-    finish: "The Golf Tavern",
+    name: "Bridge to Banks",
+    start: "Barras Bridge",
+    finish: "Forth Banks",
     completed: true
   }
 //trying to seed with this code didn't work until
