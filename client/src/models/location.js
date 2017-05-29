@@ -3,6 +3,4 @@ var Location = function(options) {
   this.latlng = options.latlng;
 }
 
-
-
 module.exports = Location;

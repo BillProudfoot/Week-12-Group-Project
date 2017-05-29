@@ -4,9 +4,16 @@ var Walks = require('../models/walks')
 var MapWrapper = require('../mapWrapper.js');
 
 
+
 var UI = function() {
   var locations = new Locations();
   this.walks = new Walks();
+
+  var center = {lat: 55.9533, lng: -3.1883};
+  var zoom = 12;
+  var mapDiv = document.getElementById("main-map");
+
+  this.mainMap = new MapWrapper(mapDiv, center, zoom);
 
   this.walks.all(function(walks){
     this.populateWishListAndCompleted(walks);
@@ -16,7 +23,6 @@ var UI = function() {
   this.populateDropDown(locations)
   }.bind(this));
 
-
   this.getRouteButtonHandler();
   this.loadMap();
 
@@ -25,22 +31,17 @@ var UI = function() {
 UI.prototype = {
 
   loadMap: function(){
-  var center = {lat: 55.9533, lng: -3.1883};
-  var zoom = 12;
-  var mapDiv = document.getElementById("main-map");
+  // var center = {lat: 55.9533, lng: -3.1883};
+  // var zoom = 12;
+  // var mapDiv = document.getElementById("main-map");
 
-  var mainMap = new MapWrapper(mapDiv, center, zoom);
-  mainMap.addClickEvent();
+  // var mainMap = new MapWrapper(mapDiv, center, zoom);
+  this.mainMap.addClickEvent();
 
   var whereAmIButton = document.querySelector('#geolocate')
-  whereAmIButton.addEventListener('click', mainMap.geoLocate.bind(mainMap));
+  whereAmIButton.addEventListener('click', this.mainMap.geoLocate.bind(this.mainMap));
 
-  // var getRouteButton = document.querySelector('#getRouteButton');
-  // getRouteButton.addEventListener('click', mainMap.onGetRouteButtonClicked)
 },
-
-
-//THIS CALLS MONGO DB AND POPULATES START AND FINISH DROP DOWNS WITH OUR CHOSEN START LOCATION NAMES AND SETS THE OPTION VALUE TO THEIR CORRESPONDING INDEX
 
   populateDropDown: function(locations) {
     var startSelect = document.querySelector('#start');
@@ -64,20 +65,6 @@ UI.prototype = {
       finishSelect.appendChild(finishOption)
     });
 
-    startSelect.addEventListener('change', function(location){
-      var index = this.value;
-      var location = locations[index];
-      var currentRoute = document.getElementById('currently-selected-route');
-
-      var startTagName = document.createElement('h3');
-      var startTagLatlng = document.createElement('p');
-
-      startTagName.innerText = "Your starting Location: " + location.name;
-      startTagLatlng.innerText = "latlng of starting location: " + location.latlng.lat + " " + location.latlng.lng;
-
-      currentRoute.appendChild(startTagName);
-      currentRoute.appendChild(startTagLatlng);
-   });
   },
 
   getRouteButtonHandler: function() {
@@ -97,6 +84,7 @@ UI.prototype = {
       finishPointText.innerText = "Finish point: " + finishName;
       var walkName = startName + " to " + finishName;
       walkNameText.value = walkName;
+      
     })
   },
 
