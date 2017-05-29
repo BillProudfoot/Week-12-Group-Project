@@ -26,11 +26,11 @@
           <div class="row">
             <div class="blue" id="start-finish-section">
               <p><button class="btn" id="geolocate">where am i</button></p>
+              <b>Start: </b>
               <p><select id="start">
-                <option disabled selected>Choose your starting Location</option>
               </select></p>
+              <b>Finish: </b>
               <p><select id="finish">
-                <option disabled selected>Choose your finishing Location</option>
               </select></p>
               <div id="currently-selected">
               </div>
@@ -50,8 +50,10 @@
         <div class="row">
 
 
-          <div class="col-md-6 info-section placeholder" id="currently-selected-route">Currently Selected Route</div>
-
+          <div class="col-md-6 info-section placeholder" id="currently-selected-route">Currently Selected Route
+            <h3 id='start-name'></h3>
+            <p id='lat-lng-text'></p>
+          </div>
 
           <div class="col-md-6 info-section placeholder" id="wishlist">WishList</div>
 

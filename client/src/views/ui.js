@@ -7,10 +7,10 @@ var UI = function() {
   locations.all(function (locations) {
   this.populateStartDropDown(locations)
   this.populateFinishDropDown(locations)
+  // this.populateCurrentRouteDiv(locations)
   }.bind(this));
 
   this.loadMap();
-  
 }
 
 UI.prototype = {
@@ -41,7 +41,7 @@ UI.prototype = {
       startSelect.appendChild(option)
     });
 
-    startSelect.addEventListener('change', function (event) {
+    startSelect.addEventListener('change', function(location){
       var index = this.value;
       var location = locations[index];
       var currentRoute = document.getElementById('currently-selected-route');
@@ -54,10 +54,10 @@ UI.prototype = {
 
       currentRoute.appendChild(startTagName);
       currentRoute.appendChild(startTagLatlng);
-
-      return location;
-    });
+   });
   },
+
+
 
   populateFinishDropDown: function(locations) {
     var finishSelect = document.querySelector('#finish');
@@ -82,8 +82,6 @@ UI.prototype = {
 
       currentRoute.appendChild(finishTagName);
       currentRoute.appendChild(finishTagLatlng);
-
-      return location;
     });
   },
 
