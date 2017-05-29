@@ -12,7 +12,7 @@ body{
 }
 
 .placeholder {
-  height: 150px;
+  height: auto;
   margin-top: 5px;
 }
 

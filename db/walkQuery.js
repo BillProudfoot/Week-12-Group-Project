@@ -29,6 +29,25 @@ WalkQuery.prototype = {
         });
       }
     });
+  },
+
+  update: function(walkToUpdate, onQueryFinished) {
+    MongoClient.connect(this.url, function(err, db) {
+      if (db) {
+        var collection = db.collection("walks");
+      collection.update(
+          {name:walkToUpdate.name},
+          {name: walkToUpdate.name,
+           start: walkToUpdate.start,
+           finish: walkToUpdate.finish,
+           completed: true}
+      );
+      collection.find().toArray(function(err, docs){
+        console.log(docs);
+        onQueryFinished(docs);
+      });
+      }
+    });
   }
 
   //TODO write an update function - not quite sure how to
