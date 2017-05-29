@@ -7,7 +7,7 @@ db.locations.insert([
     latlng: {lat: 55.9533, lng: -3.1883}
   },
   {
-    name: "Hope Park Terrace",
+    name: "Holyrood Palace",
     latlng: {lat: 10, lng: -10}
   }
 ]);
