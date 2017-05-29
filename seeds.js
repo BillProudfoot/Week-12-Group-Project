@@ -16,16 +16,16 @@ db.locations.insert([
     latlng: {lat: 55.001571, lng: -1.667013}
   },
   {
-    name: "High Street",
-    latlng: {lat: 55.006948, lng: -1.619644}
+    name: "Newcastle City Hall",
+    latlng: {lat: 54.977068, lng: -1.610123}
   },
   {
     name: "High Street Gateshead",
     latlng: {lat: 54.962064, lng: -1.600266}
   },
   {
-    name: "St Ann's Street",
-    latlng: {lat: 55.971936, lng: -1.596565}
+    name: "intu Eldon Square",
+    latlng: {lat: 54.9752, lng: -1.6151}
   }
 ]);
 
