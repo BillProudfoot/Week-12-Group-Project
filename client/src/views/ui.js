@@ -77,6 +77,7 @@ UI.prototype = {
 
       currentRoute.appendChild(startTagName);
       currentRoute.appendChild(startTagLatlng);
+      mainMap.onChangeHandler();
    });
   },
 
