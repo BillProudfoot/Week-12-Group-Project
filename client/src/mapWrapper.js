@@ -1,6 +1,7 @@
 var MapWrapper = function(mapDiv, coords, zoom) {
   this.directionsService = new google.maps.DirectionsService;
   this.directionsDisplay = new google.maps.DirectionsRenderer;
+  this.geocoder = new google.maps.Geocoder();
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
     zoom: zoom,
@@ -11,6 +12,23 @@ var MapWrapper = function(mapDiv, coords, zoom) {
 
 
 MapWrapper.prototype = {
+
+  geocodeAddress: function(address) {
+    console.log("MY ADDRESS",address)
+    this.geocoder.geocode({'address': address}, function(results, status) {
+      if (status === 'OK') {
+        console.log("ehhhhh",this.googleMap)
+        this.googleMap.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: this.googleMap,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    }.bind(this));
+  },
+
   addMarker: function (coords){
     var marker = new google.maps.Marker({
       position: coords,
@@ -61,3 +79,5 @@ MapWrapper.prototype = {
 
 
 module.exports = MapWrapper;
+
+

@@ -28,19 +28,19 @@ var UI = function() {
 
   this.saveToWishListHandler();
   this.getRouteButtonHandler();
+  this.newLocationButtonHandler();
   this.loadMap();
-  this.newLocation();
 
 }
 
 UI.prototype = {
 
-  newLocation: function(){
-    var newLocation = document.getElementById('new-location');
-    var submitButton = document.getElementById('submit-new-location')
-    //NEED THE TEXT FROM newLocation
-    console.log("newLocation", newLocation)
-    console.log("submitButton", submitButton)
+  newLocationButtonHandler: function(){
+    var newLocationButton = document.getElementById('submit-new-location');
+    var usersNewLocation = document.getElementById('new-location');
+    newLocationButton.addEventListener('click', function(){
+      this.mainMap.geocodeAddress(usersNewLocation.value)
+    }.bind(this))
   },
 
   loadMap: function(){
@@ -179,21 +179,8 @@ UI.prototype = {
         }.bind(this))
     }.bind(this))
 
-
   }
-  //
-  // setWalkAsCompleted: function(){
-  //   var buttons = document.getElementsByTagName('button');
-  //       for(var i = 0; i < buttons.length; i++) {
-  //           var button = buttons[i];
-  //           console.log(button)
-  //           if(("btn completed").match(button.className)) {
-  //               button.addEventListener("click", function(){
-  //                 console.log("clickccc")
-  //               })
-  //           }
-  //       }
-  // }
+
 }
 
 
