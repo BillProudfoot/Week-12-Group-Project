@@ -1,8 +1,13 @@
 var MapWrapper = function(mapDiv, coords, zoom) {
+  this.directionsService = new google.maps.DirectionsService;
+  this.directionsDisplay = new google.maps.DirectionsRenderer;
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
-    zoom: zoom
+    zoom: zoom,
+    scrollwheel: false
   });
+  //might need to change this
+  this.directionsDisplay.setMap(this.googleMap);
 }
 
 
@@ -33,6 +38,24 @@ MapWrapper.prototype = {
       this.addMarker(center);
     }.bind(this));
   },
+
+  onChangeHandler: function() {
+    this.calculateAndDisplayRoute(this.directionsService, this.directionsDisplay);
+  },
+
+  calculateAndDisplayRoute: function(directionsService, directionsDisplay) {
+    directionsService.route({
+      origin: document.getElementById("start").options[start.selectedIndex].text,
+      destination: document.getElementById("finish").options[finish.selectedIndex].text,
+      travelMode: "WALKING"
+    }, function(response, status) {
+      if (status === "OK") {
+        directionsDisplay.setDirections(response);
+      } else {
+        console.log("Failed to get directions " + status);
+      }
+    });
+  }
 
 }
 

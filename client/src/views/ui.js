@@ -8,6 +8,12 @@ var UI = function() {
   var locations = new Locations();
   this.walks = new Walks();
 
+  var center = {lat: 55.9533, lng: -3.1883};
+  var zoom = 12;
+  var mapDiv = document.getElementById("main-map");
+
+  this.mainMap = new MapWrapper(mapDiv, center, zoom);
+
   this.walks.all(function(walks){
     this.populateWishListAndCompleted(walks);
   }.bind(this))
@@ -25,15 +31,11 @@ var UI = function() {
 UI.prototype = {
 
   loadMap: function(){
-  var center = {lat: 55.9533, lng: -3.1883};
-  var zoom = 12;
-  var mapDiv = document.getElementById("main-map");
-
-  var mainMap = new MapWrapper(mapDiv, center, zoom);
-  mainMap.addClickEvent();
+  this.mainMap.addClickEvent();
+  console.log("the map in the load map function - " + this.mainMap);
 
   var whereAmIButton = document.querySelector('#geolocate')
-  whereAmIButton.addEventListener('click', mainMap.geoLocate.bind(mainMap));
+  whereAmIButton.addEventListener('click', this.mainMap.geoLocate.bind(this.mainMap));
 
   // var getRouteButton = document.querySelector('#getRouteButton');
   // getRouteButton.addEventListener('click', mainMap.onGetRouteButtonClicked)
@@ -63,21 +65,6 @@ UI.prototype = {
       startSelect.appendChild(startOption)
       finishSelect.appendChild(finishOption)
     });
-
-    startSelect.addEventListener('change', function(location){
-      var index = this.value;
-      var location = locations[index];
-      var currentRoute = document.getElementById('currently-selected-route');
-
-      var startTagName = document.createElement('h3');
-      var startTagLatlng = document.createElement('p');
-
-      startTagName.innerText = "Your starting Location: " + location.name;
-      startTagLatlng.innerText = "latlng of starting location: " + location.latlng.lat + " " + location.latlng.lng;
-
-      currentRoute.appendChild(startTagName);
-      currentRoute.appendChild(startTagLatlng);
-   });
   },
 
 
@@ -89,6 +76,7 @@ UI.prototype = {
     var startPointText = document.querySelector("#start-point-wish-list");
     var finishPointText = document.querySelector("#finish-point-wish-list");
     var walkNameText = document.querySelector("#walk-name");
+    // this.mainMap.onChangeHandler = this.mainMap.onChangeHandler.bind(this.mainMap);
 
     getRouteButton.addEventListener('click', function(){
       //TODO this function will contain google maps stuff. i'm writing
@@ -100,8 +88,12 @@ UI.prototype = {
       var walkName = startName + " to " + finishName;
       walkNameText.value = walkName;
 
-
     })
+
+
+      this.mainMap.onChangeHandler();
+    }.bind(this))
+
   },
 
 
@@ -134,6 +126,7 @@ UI.prototype = {
         completedDiv.appendChild(p);
       }
     })
+
     }.bind(this))
   },
 
@@ -162,6 +155,9 @@ UI.prototype = {
           this.populateWishListAndCompleted();
         }.bind(this))
     }.bind(this))
+
+
+    }.bind(this));
 
   }
 }
