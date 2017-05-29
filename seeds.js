@@ -9,6 +9,22 @@ db.locations.insert([
   {
     name: "Holyrood Palace",
     latlng: {lat: 10, lng: -10}
+  },
+  {
+    name: "Roseburn",
+    latlng: {lat:10, lng: -10}
+  },
+  {
+    name: "Dean Village",
+    latlng: {lat:10, lng: -10}
+  },
+  {
+    name: "Balerno",
+    latlng: {lat:10, lng: -10}
+  },
+  {
+    name: "Slateford",
+    latlng: {lat:10, lng: -10}
   }
 ]);
 
