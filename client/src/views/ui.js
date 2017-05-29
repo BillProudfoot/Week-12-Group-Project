@@ -16,6 +16,7 @@ var UI = function() {
   this.populateDropDown(locations)
   }.bind(this));
 
+  this.setWalkAsCompleted();
   this.saveToWishListHandler();
   this.getRouteButtonHandler();
   this.loadMap();
@@ -109,7 +110,7 @@ UI.prototype = {
     var wishlistDiv = document.querySelector("#wishlist");
     var completedDiv = document.querySelector("#completed-walks")
     wishlistDiv.innerText = "";
-    completedDiv.innerText ="";
+    completedDiv.innerText = "";
     console.log(this)
     this.walks.all(function(walks){
       walks.forEach(function(walk){
@@ -121,6 +122,9 @@ UI.prototype = {
         var walkTitle = walk.start + " to " + walk.finish;
         p.innerText = walkTitle;
         var completedButton = document.createElement("button");
+        completedButton.value = JSON.stringify(walk)
+        console.log(completedButton.value);
+        completedButton.classList.add("btn", "completed");
         completedButton.innerText = "completed!";
         p.appendChild(completedButton);
         wishlistDiv.appendChild(p);
@@ -143,7 +147,6 @@ UI.prototype = {
     var saveButton = document.querySelector("#save-to-wishlist");
     var walkNameField = document.querySelector("#walk-name");
 
-    console.log("walk name")
     var startName = start.options[start.selectedIndex].text;
     var finishName = finish.options[finish.selectedIndex].text;
 
@@ -163,6 +166,16 @@ UI.prototype = {
         }.bind(this))
     }.bind(this))
 
+  },
+
+  setWalkAsCompleted: function(){
+    var completedButtons = document.getElementsByClassName("completed");
+    console.log(completedButtons)
+    // console.log(Array.prototype.slice.call(completedButtons))
+    console.log(completedButtons[0])
+    console.log(completedButtons['0'])
+    for (button of completedButtons){
+    }
   }
 }
 

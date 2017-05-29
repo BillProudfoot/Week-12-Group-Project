@@ -26,7 +26,7 @@ walkRouter.post('/', function(req, res) {
   })
 });
 
-walkRouter.put(‘/:id’, function(req, res) {
+walkRouter.put('/:id', function(req, res) {
   var walk = new Walk({
     name: req.body.name,
     start: req.body.start,
