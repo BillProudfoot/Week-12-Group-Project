@@ -1,13 +1,16 @@
 var MapWrapper = function(mapDiv, coords, zoom) {
+
   this.directionsService = new google.maps.DirectionsService;
   this.directionsDisplay = new google.maps.DirectionsRenderer;
   this.geocoder = new google.maps.Geocoder();
+
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
     zoom: zoom,
     scrollwheel: false
   });
   this.directionsDisplay.setMap(this.googleMap);
+     
 }
 
 
@@ -31,7 +34,6 @@ MapWrapper.prototype = {
     }.bind(this));
   },
 
-
   addMarker: function (coords){
     var marker = new google.maps.Marker({
       position: coords,
@@ -47,7 +49,6 @@ MapWrapper.prototype = {
       this.addMarker(position);
     }.bind(this));
   },
-
 
   geoLocate: function(){
     navigator.geolocation.getCurrentPosition(function(position){
@@ -78,28 +79,3 @@ MapWrapper.prototype = {
 }
 
 module.exports = MapWrapper;
-
-
-
-// //WRONG
-// function foo(address){
-
-//       // google map stuff
-//       geocoder.geocode( { 'address': address}, function(results, status) {
-//           results[0].geometry.location; // I want to return this value
-//       })
-
-//     }
-//     foo(); //result should be results[0].geometry.location; value
-
-
-// //RIGHT
-// function foo(address, fn){
-//   geocoder.geocode( { 'address': address}, function(results, status) {
-//      fn(results[0].geometry.location); 
-//   });
-// }
-
-// foo("address", function(location){
-//   alert(location); // this is where you get the return value
-// });

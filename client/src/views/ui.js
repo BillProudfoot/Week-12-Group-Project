@@ -40,7 +40,7 @@ UI.prototype = {
     var usersNewLocation = document.getElementById('new-location');
     newLocationButton.addEventListener('click', function(){
       this.mainMap.geocodeAddress(usersNewLocation.value, function(newLatLng){
-        console.log("CONSOLE", newLatLng)
+        console.log("USER ENTERED LOCATION LATLNG: ", newLatLng)
       })
     }.bind(this))
   },
