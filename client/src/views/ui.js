@@ -53,6 +53,11 @@ UI.prototype = {
       startOption.value = index;
       finishOption.value = index;
 
+      startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
+
+      finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
+  
+
       startOption.text = location.name;
       finishOption.text = location.name;
 
