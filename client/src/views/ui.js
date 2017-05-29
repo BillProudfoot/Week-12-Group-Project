@@ -74,7 +74,13 @@ UI.prototype = {
     var walkNameText = document.querySelector("#walk-name");
     // this.mainMap.onChangeHandler = this.mainMap.onChangeHandler.bind(this.mainMap);
 
+    console.log("START VALUE: ",start.index)
+    
+
     getRouteButton.addEventListener('click', function(){
+
+      if(start.value === 'Choose your starting Location' || finish.value === 'Choose your finishing Location') return;
+
       //TODO this function will contain google maps stuff. i'm writing
       //the section that populates the "save to wishlish" form.
       var startName = start.options[start.selectedIndex].text;
