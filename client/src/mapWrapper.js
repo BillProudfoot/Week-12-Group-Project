@@ -13,11 +13,13 @@ var MapWrapper = function(mapDiv, coords, zoom) {
 
 MapWrapper.prototype = {
 
-  geocodeAddress: function(address) {
-    console.log("MY ADDRESS",address)
-    this.geocoder.geocode({'address': address}, function(results, status) {
+  geocodeAddress: function(address, callback) {
+    var ukAddress = address + " United Kingdom"
+    this.geocoder.geocode({'address': ukAddress}, function(results, status) {
+      
       if (status === 'OK') {
-        console.log("ehhhhh",this.googleMap)
+        var newLatLng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+        callback(newLatLng)
         this.googleMap.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
           map: this.googleMap,
@@ -28,6 +30,7 @@ MapWrapper.prototype = {
       }
     }.bind(this));
   },
+
 
   addMarker: function (coords){
     var marker = new google.maps.Marker({
@@ -74,10 +77,29 @@ MapWrapper.prototype = {
 
 }
 
-
-
-
-
 module.exports = MapWrapper;
 
 
+
+// //WRONG
+// function foo(address){
+
+//       // google map stuff
+//       geocoder.geocode( { 'address': address}, function(results, status) {
+//           results[0].geometry.location; // I want to return this value
+//       })
+
+//     }
+//     foo(); //result should be results[0].geometry.location; value
+
+
+// //RIGHT
+// function foo(address, fn){
+//   geocoder.geocode( { 'address': address}, function(results, status) {
+//      fn(results[0].geometry.location); 
+//   });
+// }
+
+// foo("address", function(location){
+//   alert(location); // this is where you get the return value
+// });

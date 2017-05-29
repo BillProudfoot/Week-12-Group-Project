@@ -39,7 +39,9 @@ UI.prototype = {
     var newLocationButton = document.getElementById('submit-new-location');
     var usersNewLocation = document.getElementById('new-location');
     newLocationButton.addEventListener('click', function(){
-      this.mainMap.geocodeAddress(usersNewLocation.value)
+      this.mainMap.geocodeAddress(usersNewLocation.value, function(newLatLng){
+        console.log("CONSOLE", newLatLng)
+      })
     }.bind(this))
   },
 
@@ -88,8 +90,6 @@ UI.prototype = {
     var finishPointText = document.querySelector("#finish-point-wish-list");
     var walkNameText = document.querySelector("#walk-name");
     // this.mainMap.onChangeHandler = this.mainMap.onChangeHandler.bind(this.mainMap);
-
-    console.log("START VALUE: ",start.index)
 
 
     getRouteButton.addEventListener('click', function(){
