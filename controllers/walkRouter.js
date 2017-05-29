@@ -24,7 +24,15 @@ walkRouter.post('/', function(req, res) {
   query.add(walk, function(results){
     res.json(results);
   })
-})
+});
+
+walkRouter.put('/', function(req, res) {
+  var walk = req.body;
+  query.update(walk, function(results){
+    res.json(results);
+  })
+
+});
 
 
 module.exports = walkRouter;
