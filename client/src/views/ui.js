@@ -32,13 +32,9 @@ UI.prototype = {
 
   loadMap: function(){
   this.mainMap.addClickEvent();
-  console.log("the map in the load map function - " + this.mainMap);
 
   var whereAmIButton = document.querySelector('#geolocate')
   whereAmIButton.addEventListener('click', this.mainMap.geoLocate.bind(this.mainMap));
-
-  // var getRouteButton = document.querySelector('#getRouteButton');
-  // getRouteButton.addEventListener('click', mainMap.onGetRouteButtonClicked)
 },
 
 

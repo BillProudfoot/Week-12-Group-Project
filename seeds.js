@@ -1,6 +1,7 @@
 use path_finder;
 db.dropDatabase();
 
+//we're not using latlng for anything at the moment
 db.locations.insert([
   {
     name: "Edinburgh Castle",
