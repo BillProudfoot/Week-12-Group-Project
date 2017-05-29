@@ -33,7 +33,6 @@ UI.prototype = {
 
   loadMap: function(){
   this.mainMap.addClickEvent();
-  console.log("the map in the load map function - " + this.mainMap);
 
   var whereAmIButton = document.querySelector('#geolocate')
   whereAmIButton.addEventListener('click', this.mainMap.geoLocate.bind(this.mainMap));
@@ -107,7 +106,7 @@ UI.prototype = {
         console.log(walk);
         var p = document.createElement("p");
         //TODO fix this when walk name is in the database;
-        var walkTitle = walk.start + " to " + walk.finish;
+        var walkTitle = walk.name + ": From " + walk.start + " to " + walk.finish + " ";
         p.innerText = walkTitle;
         var completedButton = document.createElement("button");
         completedButton.innerText = "completed!";
@@ -118,7 +117,7 @@ UI.prototype = {
       else if (walk.completed === true) {
         var p = document.createElement("p");
         //TODO fix this when walk name is in the database;
-        var walkTitle = walk.start + " to " + walk.finish;
+        var walkTitle = walk.name + ": From " + walk.start + " to " + walk.finish + " ";
         p.innerText = walkTitle;
         completedDiv.appendChild(p);
       }
