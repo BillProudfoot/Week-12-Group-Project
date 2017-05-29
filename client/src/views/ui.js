@@ -74,6 +74,7 @@ UI.prototype = {
     var startPointText = document.querySelector("#start-point-wish-list");
     var finishPointText = document.querySelector("#finish-point-wish-list");
     var walkNameText = document.querySelector("#walk-name");
+    // this.mainMap.onChangeHandler = this.mainMap.onChangeHandler.bind(this.mainMap);    
 
     getRouteButton.addEventListener('click', function(){
       //TODO this function will contain google maps stuff. i'm writing
@@ -85,9 +86,9 @@ UI.prototype = {
       var walkName = startName + " to " + finishName;
       walkNameText.value = walkName;
 
-      console.log("the map in the routebuttonhandler function " + this.mainMap);
+      
       this.mainMap.onChangeHandler();
-    })
+    }.bind(this))
   },
 
 

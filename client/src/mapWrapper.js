@@ -1,12 +1,12 @@
 var MapWrapper = function(mapDiv, coords, zoom) {
-  var directionsService = new google.maps.DirectionsService;
-  var directionsDisplay = new google.maps.DirectionsRenderer;
+  this.directionsService = new google.maps.DirectionsService;
+  this.directionsDisplay = new google.maps.DirectionsRenderer;
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
     zoom: zoom
   });
   //might need to change this
-  directionsDisplay.setMap(this.googleMap);
+  this.directionsDisplay.setMap(this.googleMap);
 }
 
 
@@ -39,7 +39,7 @@ MapWrapper.prototype = {
   },
 
   onChangeHandler: function() {
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
+    this.calculateAndDisplayRoute(this.directionsService, this.directionsDisplay);
   },
 
   calculateAndDisplayRoute: function(directionsService, directionsDisplay) {
