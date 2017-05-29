@@ -88,12 +88,9 @@ UI.prototype = {
       var walkName = startName + " to " + finishName;
       walkNameText.value = walkName;
 
-    })
-
 
       this.mainMap.onChangeHandler();
     }.bind(this))
-
   },
 
 
@@ -155,10 +152,6 @@ UI.prototype = {
           this.populateWishListAndCompleted();
         }.bind(this))
     }.bind(this))
-
-
-    }.bind(this));
-
   }
 }
 
