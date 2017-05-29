@@ -6,7 +6,7 @@ var MapWrapper = require('../mapWrapper.js');
 
 
 var UI = function() {
-  var locations = new Locations();
+  this.locations = new Locations();
   this.walks = new Walks();
 
   var center = {lat: 55.9533, lng: -3.1883};
@@ -19,7 +19,7 @@ var UI = function() {
 
   }.bind(this))
 
-  locations.all(function (locations) {
+  this.locations.all(function (locations) {
   this.populateDropDown(locations)
   }.bind(this));
 
@@ -53,13 +53,12 @@ UI.prototype = {
       startOption.value = index;
       finishOption.value = index;
 
-      startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
-
-      finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
-  
-
       startOption.text = location.name;
       finishOption.text = location.name;
+
+      startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
+      finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
+
 
 
       startSelect.appendChild(startOption)
@@ -87,6 +86,7 @@ UI.prototype = {
 
       //TODO this function will contain google maps stuff. i'm writing
       //the section that populates the "save to wishlish" form.
+
       var startName = start.options[start.selectedIndex].text;
       var finishName = finish.options[finish.selectedIndex].text;
       startPointText.innerText = "Start point: " + startName;
