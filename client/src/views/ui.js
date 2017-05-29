@@ -16,7 +16,7 @@ var UI = function() {
   this.populateDropDown(locations)
   }.bind(this));
 
-
+  this.saveToWishListHandler();
   this.getRouteButtonHandler();
   this.loadMap();
 
@@ -80,6 +80,8 @@ UI.prototype = {
    });
   },
 
+
+
   getRouteButtonHandler: function() {
     var getRouteButton = document.querySelector("#get-route");
     var start = document.querySelector("#start");
@@ -97,6 +99,8 @@ UI.prototype = {
       finishPointText.innerText = "Finish point: " + finishName;
       var walkName = startName + " to " + finishName;
       walkNameText.value = walkName;
+
+
     })
   },
 
@@ -110,7 +114,7 @@ UI.prototype = {
     this.walks.all(function(walks){
       walks.forEach(function(walk){
 
-        if (walk.completed === true){
+        if (walk.completed === false){
         console.log(walk);
         var p = document.createElement("p");
         //TODO fix this when walk name is in the database;
@@ -122,7 +126,7 @@ UI.prototype = {
         wishlistDiv.appendChild(p);
       }
 
-      else if (walk.completed === false) {
+      else if (walk.completed === true) {
         var p = document.createElement("p");
         //TODO fix this when walk name is in the database;
         var walkTitle = walk.start + " to " + walk.finish;
@@ -131,6 +135,34 @@ UI.prototype = {
       }
     })
     }.bind(this))
+  },
+
+  saveToWishListHandler: function(){
+    var start = document.querySelector("#start");
+    var finish = document.querySelector("#finish");
+    var saveButton = document.querySelector("#save-to-wishlist");
+    var walkNameField = document.querySelector("#walk-name");
+
+    console.log("walk name")
+    var startName = start.options[start.selectedIndex].text;
+    var finishName = finish.options[finish.selectedIndex].text;
+
+    saveButton.addEventListener('click', function(){
+      var walkName = walkNameField.value;
+      var startName = start.options[start.selectedIndex].text;
+      var finishName = finish.options[finish.selectedIndex].text;
+
+        var walkToAdd = {
+          name: walkName,
+          start: startName,
+          finish: finishName,
+          completed: false
+        }
+        this.walks.add(walkToAdd, function(){
+          this.populateWishListAndCompleted();
+        }.bind(this))
+    }.bind(this))
+
   }
 }
 
