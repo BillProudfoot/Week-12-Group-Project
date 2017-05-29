@@ -26,15 +26,12 @@ walkRouter.post('/', function(req, res) {
   })
 });
 
-walkRouter.put('/:id', function(req, res) {
-  var walk = new Walk({
-    name: req.body.name,
-    start: req.body.start,
-    finish: req.body.finish,
-    completed: req.body.completed
-  });
-  walks[req.params.id] = walk;
-  res.json({data: walks});
+walkRouter.put('/', function(req, res) {
+  var walk = req.body;
+  query.update(walk, function(results){
+    res.json(results);
+  })
+
 });
 
 

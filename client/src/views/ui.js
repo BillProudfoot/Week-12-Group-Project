@@ -13,16 +13,16 @@ var UI = function() {
   var mapDiv = document.getElementById("main-map");
 
   this.mainMap = new MapWrapper(mapDiv, center, zoom);
-
   this.walks.all(function(walks){
     this.populateWishListAndCompleted(walks);
+
   }.bind(this))
 
   locations.all(function (locations) {
   this.populateDropDown(locations)
   }.bind(this));
 
-  this.setWalkAsCompleted();
+
   this.saveToWishListHandler();
   this.getRouteButtonHandler();
   this.loadMap();
@@ -61,7 +61,6 @@ UI.prototype = {
       startOption.text = location.name;
       finishOption.text = location.name;
 
-      console.log("select options: ", startOption)
 
       startSelect.appendChild(startOption)
       finishSelect.appendChild(finishOption)
@@ -100,21 +99,25 @@ UI.prototype = {
     var completedDiv = document.querySelector("#completed-walks")
     wishlistDiv.innerText = "";
     completedDiv.innerText = "";
-    console.log(this)
     this.walks.all(function(walks){
       walks.forEach(function(walk){
 
         if (walk.completed === false){
-        console.log(walk);
         var p = document.createElement("p");
         //TODO fix this when walk name is in the database;
-        var walkTitle = walk.start + " to " + walk.finish;
-        p.innerText = walkTitle;
+        var walkTitle = walk.name;
+        p.innerText = walkTitle + "  " ;
         var completedButton = document.createElement("button");
-        completedButton.value = JSON.stringify(walk)
-        console.log(completedButton.value);
+        completedButton.value = JSON.stringify(walk);
         completedButton.classList.add("btn", "completed");
         completedButton.innerText = "completed!";
+
+        completedButton.addEventListener('click', function(){
+          var walkToUpdate = walk;
+          walkToUpdate.completed = true;
+          this.walks.update(walkToUpdate, function(){
+          }.bind(this))
+        }.bind(this))
         p.appendChild(completedButton);
         wishlistDiv.appendChild(p);
       }
@@ -122,11 +125,11 @@ UI.prototype = {
       else if (walk.completed === true) {
         var p = document.createElement("p");
         //TODO fix this when walk name is in the database;
-        var walkTitle = walk.start + " to " + walk.finish;
+        var walkTitle = walk.name;
         p.innerText = walkTitle;
         completedDiv.appendChild(p);
       }
-    })
+    }.bind(this))
 
     }.bind(this))
   },
@@ -157,18 +160,20 @@ UI.prototype = {
     }.bind(this))
 
 
-  },
-
-  setWalkAsCompleted: function(){
-    var completedButtons = document.getElementsByClassName("completed");
-    console.log(completedButtons)
-    // console.log(Array.prototype.slice.call(completedButtons))
-    console.log(completedButtons[0])
-    console.log(completedButtons['0'])
-    for (button of completedButtons){
-    }
-
   }
+  //
+  // setWalkAsCompleted: function(){
+  //   var buttons = document.getElementsByTagName('button');
+  //       for(var i = 0; i < buttons.length; i++) {
+  //           var button = buttons[i];
+  //           console.log(button)
+  //           if(("btn completed").match(button.className)) {
+  //               button.addEventListener("click", function(){
+  //                 console.log("clickccc")
+  //               })
+  //           }
+  //       }
+  // }
 }
 
 
