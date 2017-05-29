@@ -2,12 +2,14 @@ var Locations = require('../models/locations');
 var Walk = require('../models/walk');
 var Walks = require('../models/walks')
 var MapWrapper = require('../mapWrapper.js');
+var RestCrimes = require('../models/restCrimes');
 
 
 
 var UI = function() {
   this.locations = new Locations();
   this.walks = new Walks();
+  this.restCrimes = new RestCrimes();
 
   var center = {lat: 55.9533, lng: -3.1883};
   var zoom = 12;

@@ -1,6 +1,6 @@
 var Crime = function(options) {
-  this.category = options.category,
-  this.location_type = options.location_type;
+  this.category = options.crime.category,
+  this.location = options.crime.location;
 }
 
 Crime.prototype = {

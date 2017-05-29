@@ -17,7 +17,7 @@ RestCrimes.prototype = {
     request.send();
   },
 
-  all: function (callback) {
+  all: function (url, callback) {
     this.makeRequest(url, function (results) {
       var crimes = this.populateCrimes(results)
       console.log(callback);
