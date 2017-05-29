@@ -31,12 +31,8 @@ var UI = function() {
 UI.prototype = {
 
   loadMap: function(){
-  // var center = {lat: 55.9533, lng: -3.1883};
-  // var zoom = 12;
-  // var mapDiv = document.getElementById("main-map");
-
-  // var mainMap = new MapWrapper(mapDiv, center, zoom);
   this.mainMap.addClickEvent();
+  console.log("the map in the load map function - " + this.mainMap);
 
   var whereAmIButton = document.querySelector('#geolocate')
   whereAmIButton.addEventListener('click', this.mainMap.geoLocate.bind(this.mainMap));
@@ -64,7 +60,6 @@ UI.prototype = {
       startSelect.appendChild(startOption)
       finishSelect.appendChild(finishOption)
     });
-
   },
 
   getRouteButtonHandler: function() {
@@ -74,6 +69,7 @@ UI.prototype = {
     var startPointText = document.querySelector("#start-point-wish-list");
     var finishPointText = document.querySelector("#finish-point-wish-list");
     var walkNameText = document.querySelector("#walk-name");
+    // this.mainMap.onChangeHandler = this.mainMap.onChangeHandler.bind(this.mainMap);    
 
     getRouteButton.addEventListener('click', function(){
       //TODO this function will contain google maps stuff. i'm writing
@@ -84,8 +80,8 @@ UI.prototype = {
       finishPointText.innerText = "Finish point: " + finishName;
       var walkName = startName + " to " + finishName;
       walkNameText.value = walkName;
-      
-    })
+      this.mainMap.onChangeHandler();
+    }.bind(this))
   },
 
 
@@ -118,7 +114,7 @@ UI.prototype = {
         completedDiv.appendChild(p);
       }
     })
-    }.bind(this))
+    }.bind(this));
   }
 }
 
