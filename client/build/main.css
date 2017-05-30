@@ -5,10 +5,21 @@
 }
 
 body{
+  font-family: 'Arvo', serif;
+}
+
+label{
+  display: block;
 }
 
 .row{
   margin: -5px;
+}
+
+.content-block {
+  padding-bottom: 10px;
+  padding-left: 3px;
+  padding-top: 3px;
 }
 
 .placeholder {
@@ -38,8 +49,15 @@ body{
   height: 500px;
 }
 
-#start-finish-section{
-  height:auto;
+#info{
+  padding: 10px;
+  font-family: 'Barrio', cursive;
+  text-align: center;
+  background-image: url('img/green_dust_scratch.png');
+}
+
+.btn{
+  margin-top: 5px;
 }
 
 @media only screen and (max-width: 960px) {
