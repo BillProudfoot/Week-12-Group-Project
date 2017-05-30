@@ -21,6 +21,8 @@ label{
   padding-bottom: 10px;
   padding-left: 3px;
   padding-top: 3px;
+  margin-top: 10px;
+  box-shadow: 5px 0 5px 1px #ccc;
 }
 
 .placeholder {
@@ -40,14 +42,21 @@ label{
   background-color: thistle;
 }
 
+.color3 {
+  background-color: lightseagreen;
+}
+
 .info-section{
-  background-color: skyblue;
+  padding-left: 10px;
+  height:300px;
+  overflow: scroll;
 
 }
 
 #main-map{
   width: 75%;
   height: 500px;
+  box-shadow: 5px 0 5px 1px #ccc;
 }
 
 #info{
