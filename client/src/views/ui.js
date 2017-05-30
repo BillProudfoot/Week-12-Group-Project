@@ -70,7 +70,7 @@ UI.prototype = {
     option.value = index;
     option.text = location.name;
     option.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
-    console.log(option)
+    return option;
 
   },
 
@@ -78,43 +78,15 @@ UI.prototype = {
     var startSelect = document.querySelector('#start');
     var finishSelect = document.querySelector('#finish');
 
-    locations.forEach(function(location, index){
-      this.createDropDownOption(location, index);
-      console.log(option);
+    locations.forEach(function(location){
+      var option = this.createDropDownOption(location);
+      startSelect.appendChild(option);
+      var option = this.createDropDownOption(location);
+      finishSelect.appendChild(option);
     }.bind(this))
 
-    // startSelect.appendChild(option);
-    // finishSelect.appendChild(option);
 
   },
-
-
-  // populateDropDown: function(locations) {
-  //   var startSelect = document.querySelector('#start');
-  //   var finishSelect = document.querySelector('#finish');
-  //
-  //   locations.forEach(function(location, index){
-  //     location.index = index;
-  //
-  //     var startOption = document.createElement('option');
-  //     var finishOption = document.createElement('option');
-  //
-  //     startOption.value = index;
-  //     finishOption.value = index;
-  //
-  //     startOption.text = location.name;
-  //     finishOption.text = location.name;
-  //
-  //     startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
-  //     finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
-  //
-  //
-  //     startSelect.appendChild(startOption)
-  //     finishSelect.appendChild(finishOption)
-  //   });
-  // },
-
-
 
   getRouteButtonHandler: function() {
 
