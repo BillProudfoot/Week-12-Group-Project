@@ -31,6 +31,8 @@ RestCrimes.prototype = {
       });
       return crimes;
     }
+
+
 }
 
 module.exports = RestCrimes;

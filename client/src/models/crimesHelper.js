@@ -1,7 +1,8 @@
 var Crime = require ('./crime.js');
-var restCrimes = require('./restCrimes.js');
+var RestCrimes = require('./restCrimes.js');
 
 var CrimeHelper = function() {
+  this.restCrimes = new RestCrimes;
 
 }
 
@@ -14,11 +15,25 @@ CrimeHelper.protoype = {
       lat: avgLat,
       lng: avgLng
     }
+    console.log(midpoint);
     return midpoint;
   }
 
   urlGenerator: function(coords){
     var baseUrl = 'https://data.police.uk/api/crimes-street/all-crime?lat=' + coords.lat + '&lng=' + coords.lng + '&date=2017-03';
+    console.log(baseUrl);
     return baseUrl;
   }
+
+  getCrimes: function(coords1, coords2){
+    var midpoint = this.coordinateFinder(coords1, coords2);
+    var url = urlGenerator(midpoint);
+    this.restCrimes.all(url, function(crimes){
+      crimes.forEach(function(crime){
+        console.log(crime);
+      })
+    })
+  }
 }
+
+module.exports = CrimeHelper;
