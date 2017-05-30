@@ -40,12 +40,12 @@ MapWrapper.prototype = {
 
   addMarker: function (coords){
     
-    var drugs = 'http://localhost:3000/img/baseball-bat.png'
+    // var drugs = 'http://localhost:3000/img/baseball-bat.png'
     var marker = new google.maps.Marker({
       position: coords,
       map: this.googleMap,
       animation: google.maps.Animation.DROP,
-      icon: drugs
+      // icon: drugs
     });
     return marker;
   },

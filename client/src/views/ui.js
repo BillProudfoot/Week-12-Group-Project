@@ -4,6 +4,7 @@ var Walks = require('../models/walks')
 var MapWrapper = require('../mapWrapper.js');
 var RestCrimes = require('../models/restCrimes');
 var CrimesHelper = require('../models/crimesHelper');
+var ColumnChart = require('../models/columnChart.js');
 
 
 
@@ -12,6 +13,7 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
   this.crimesHelper = new CrimesHelper();
+  this.columnChart = new ColumnChart();
   
 
   var center = {lat: 54.9783, lng: -1.6178};
@@ -36,6 +38,7 @@ var UI = function() {
   this.getRouteButtonHandler();
   this.newLocationButtonHandler();
   this.loadMap();
+ 
 
 }
 
