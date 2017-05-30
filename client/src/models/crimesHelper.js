@@ -14,25 +14,38 @@ CrimesHelper.prototype = {
       lat: avgLat,
       lng: avgLng
     }
-    console.log(midpoint);
+    // console.log(midpoint);
     return midpoint;
   },
 
   urlGenerator: function(coords){
     var baseUrl = 'https://data.police.uk/api/crimes-street/all-crime?lat=' + coords.lat + '&lng=' + coords.lng + '&date=2017-03';
-    console.log(baseUrl);
+    // console.log(baseUrl);
     return baseUrl;
   },
 
   getCrimes: function(coords1, coords2){
     var midpoint = this.coordinateFinder(coords1, coords2);
     var url = this.urlGenerator(midpoint);
+
+
     this.restCrimes.all(url, function(crimes){
-      crimes.forEach(function(crime){
-        // console.log(crime);
-      })
-    })
+      // console.log("this", this)
+       this.crimesArray = crimes.map(function(crime){
+        return crime;
+      }.bind(this))
+       // console.log("crimesArray", this.crimesArray);
+    }.bind(this))
+    
   }
+
 }
 
 module.exports = CrimesHelper;
+
+// this.locations.all(function (locations) {
+
+// this.locationsArray = locations.map(function(location){
+//   return location;
+// }.bind(this))
+// }.bind(this));

@@ -12,8 +12,7 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
   this.crimesHelper = new CrimesHelper();
-  console.log(this.crimesHelper);
-  this.crimesHelper.getCrimes({lat:54.978528, lng:-1.610805}, {lat:54.966596, lng: -1.618418});
+  
 
   var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;
@@ -27,6 +26,9 @@ var UI = function() {
 
   this.locations.all(function (locations) {
   this.populateDropDown(locations)
+  this.locationsArray = locations.map(function(location){
+    return location;
+  }.bind(this))
   }.bind(this));
 
 
@@ -84,10 +86,10 @@ UI.prototype = {
     var startSelect = document.querySelector('#start');
     var finishSelect = document.querySelector('#finish');
 
-    locations.forEach(function(location){
-      var option = this.createDropDownOption(location);
+    locations.forEach(function(location, index){
+      var option = this.createDropDownOption(location, index);
       startSelect.appendChild(option);
-      var option = this.createDropDownOption(location);
+      var option = this.createDropDownOption(location, index);
       finishSelect.appendChild(option);
     }.bind(this))
 
@@ -121,21 +123,37 @@ UI.prototype = {
       walkNameText.value = walkName;
       this.mainMap.onChangeHandler();
       this.crimesOnRoute();
-      console.log(this);
     }.bind(this))
   },
 
   crimesOnRoute: function(){
     var crimeButton = document.createElement("button");
-    console.log(crimeButton);
     crimeButton.innerText = "crimes!!!!!!!!!!!"
     var getRouteButton = document.querySelector("#get-route");
     var div = document.querySelector("#start-finish-section");
+    var start = document.querySelector("#start");
+    var finish = document.querySelector("#finish");
+
     div.appendChild(crimeButton);
 
     crimeButton.addEventListener('click', function(){
-      console.log("loads of crimes")
-    })
+
+      var startLocation = this.locationsArray[start.value].latlng;
+      var finishLocation = this.locationsArray[finish.value].latlng;
+      this.crimesHelper.getCrimes(startLocation, finishLocation);
+      // console.log("this crimes array", this.crimesHelper.crimesArray)
+      // console.log("this crimes array", this.crimesHelper.crimesArray[0].lat)
+      this.crimesHelper.crimesArray.forEach(function(crime){
+        var lat = parseFloat(crime.lat)
+        var lng = parseFloat(crime.lng)
+        console.log("lat", lat)
+      var coords = {lat: lat, lng: lng}
+      console.log("coords", this)
+      this.mainMap.addMarker(coords);
+      }.bind(this))
+      // this.mainMap.addMarker(this.crimesHelper.crimesArray.)
+    }.bind(this))
+    
   },
 
 

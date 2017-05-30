@@ -40,12 +40,12 @@ MapWrapper.prototype = {
 
   addMarker: function (coords){
     
-    var drugs = 'https://image.flaticon.com/icons/png/128/119/119073.png'
+    // var drugs = 'https://image.flaticon.com/icons/png/128/119/119073.png'
     var marker = new google.maps.Marker({
       position: coords,
       map: this.googleMap,
       animation: google.maps.Animation.DROP,
-      icon: drugs
+      // icon: drugs
     });
     return marker;
   },

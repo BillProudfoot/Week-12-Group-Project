@@ -44,7 +44,6 @@ Walks.prototype = {
     request.send(payload);
   },
 
-
   all: function (callback) {
   this.makeRequest('http://localhost:3000/api/walks', function (results) {
     var walks = this.populateWalks(results)
