@@ -55,8 +55,8 @@ UI.prototype = {
           name: locationName,
           latlng: newLatLng
         }
-        this.locations.add(locationToAdd, function(){
-          console.log("POPULATE DROP DOWN?")
+        this.locations.add(locationToAdd, function(locations){
+          this.populateDropDown(locations);
 
           // location.reload(); RELOADS THE PAGE BUT WE JUST WANT TO REFRESH THE DROPDOWNS
         }.bind(this))
