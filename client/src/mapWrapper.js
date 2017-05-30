@@ -21,8 +21,11 @@ MapWrapper.prototype = {
     this.geocoder.geocode({'address': ukAddress}, function(results, status) {
       
       if (status === 'OK') {
-        var newLatLng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
-        callback(newLatLng)
+
+        var latlng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+
+        callback(latlng)
+        
         this.googleMap.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
           map: this.googleMap,

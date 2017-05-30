@@ -40,10 +40,20 @@ UI.prototype = {
     var usersNewLocation = document.getElementById('new-location');
     newLocationButton.addEventListener('click', function(){
       this.mainMap.geocodeAddress(usersNewLocation.value, function(newLatLng){
-        console.log("USER ENTERED LOCATION LATLNG: ", newLatLng)
-      })
+      console.log("USER ENTERED LOCATION LATLNG: ", newLatLng);
+      var locationName = usersNewLocation.value;
+
+        var locationToAdd = {
+          name: locationName,
+          latlng: newLatLng
+        }
+        this.locations.add(locationToAdd, function(){
+          console.log("POPULATE DROP DOWN?")
+        }.bind(this))
+      }.bind(this))
     }.bind(this))
   },
+
 
   loadMap: function(){
   this.mainMap.addClickEvent();
@@ -69,6 +79,7 @@ UI.prototype = {
       startOption.text = location.name;
       finishOption.text = location.name;
 
+      console.log("location.latlng.lat", location.latlng.lat)
       startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
       finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
 

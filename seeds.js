@@ -27,6 +27,7 @@ db.locations.insert([
     name: "intu Eldon Square",
     latlng: {lat: 54.9752, lng: -1.6151}
   }
+
 ]);
 
 db.walks.insert([
