@@ -1,9 +1,10 @@
 var Crime = function(options) {
   this.category = options.crime.category,
-  this.location = options.crime.location;
+  this.lat = options.crime.location.latitude;
+  this.lng = option.crime.location.longitude;
 }
 
-Crime.prototype = {
+// these are the options that come back from the API 
 //   "crime": {
 // "category": "other-theft",
 // "location_type": "Force",
@@ -21,6 +22,9 @@ Crime.prototype = {
 // "location_subtype": "NIGHTCLUBS",
 // "month": "2012-12"
 // }
+
+Crime.prototype = {
+
 }
 
 module.exports = Crime;
