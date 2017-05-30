@@ -19,7 +19,6 @@ locationRouter.get('/', function(req, res) {
 
 locationRouter.post('/', function(req, res) {
   var location = req.body;
-  console.log(req.body);
   query.add(location, function(results){
     res.json(results);
   })
