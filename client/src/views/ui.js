@@ -79,7 +79,6 @@ UI.prototype = {
       startOption.text = location.name;
       finishOption.text = location.name;
 
-      console.log("location.latlng.lat", location.latlng.lat)
       startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
       finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
 
