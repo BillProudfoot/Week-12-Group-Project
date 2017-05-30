@@ -15,11 +15,9 @@ Locations.prototype = {
   },
 
   populateLocations: function (results) {
-    // console.log("4th call: ",results)
     var locations = results.map(function (resultObject) {
       return new Location(resultObject)
     });
-    // console.log("5th call: ",locations)
     return locations;
   },
 
@@ -33,7 +31,26 @@ Locations.prototype = {
       callback(resultsObject);
     });
     request.send();
-  }
+  },
+
+  add: function(newLocation, callback) {
+    var locationData = JSON.stringify(newLocation);
+    this.makePostRequest('http://localhost:3000/api/locations', callback, locationData);
+  },
+
+  makePostRequest: function (url, callback, payload) {
+    var request = new XMLHttpRequest();
+    request.open('POST', url);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener('load', function() {
+      if (request.status !== 200) return;
+      var jsonString = request.responseText;
+      var resultsObject = JSON.parse(jsonString);
+      callback(resultsObject);
+    })
+    request.send(payload);
+  },
+
 }
 
 module.exports = Locations

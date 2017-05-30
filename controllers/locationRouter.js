@@ -1,8 +1,6 @@
 var express = require('express');
 var app = express();
 var locationRouter = express.Router();
-//models
-//since we don't have a database we'll use our front end models at the moment
 
 var LocationQuery = require('../db/locationQuery.js');
 var query = new LocationQuery();
@@ -17,6 +15,21 @@ locationRouter.get('/', function(req, res) {
   query.all(function (locations) {
     res.json(locations);
   });
+});
+
+locationRouter.post('/', function(req, res) {
+  var location = req.body;
+  console.log(req.body);
+  query.add(location, function(results){
+    res.json(results);
+  })
+});
+
+locationRouter.put('/', function(req, res) {
+  var location = req.body;
+  query.update(location, function(results){
+    res.json(results);
+  })
 });
 
 

@@ -1,16 +1,42 @@
 var MapWrapper = function(mapDiv, coords, zoom) {
+
   this.directionsService = new google.maps.DirectionsService;
   this.directionsDisplay = new google.maps.DirectionsRenderer;
+  this.geocoder = new google.maps.Geocoder();
+
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
     zoom: zoom,
     scrollwheel: false
   });
   this.directionsDisplay.setMap(this.googleMap);
+     
 }
 
 
 MapWrapper.prototype = {
+
+  geocodeAddress: function(address, callback) {
+    var ukAddress = address + " United Kingdom"
+    this.geocoder.geocode({'address': ukAddress}, function(results, status) {
+      
+      if (status === 'OK') {
+
+        var latlng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+
+        callback(latlng)
+        
+        this.googleMap.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: this.googleMap,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    }.bind(this));
+  },
+
   addMarker: function (coords){
     var marker = new google.maps.Marker({
       position: coords,
@@ -26,7 +52,6 @@ MapWrapper.prototype = {
       this.addMarker(position);
     }.bind(this));
   },
-
 
   geoLocate: function(){
     navigator.geolocation.getCurrentPosition(function(position){
@@ -55,9 +80,5 @@ MapWrapper.prototype = {
   }
 
 }
-
-
-
-
 
 module.exports = MapWrapper;

@@ -14,7 +14,24 @@ LocationQuery.prototype = {
         });
       }
     });
-  }
+  },
+
+  add: function(locationToAdd, onQueryFinished) {
+    MongoClient.connect(this.url, function(err,db){
+      if (db) {
+        var collection = db.collection('locations');
+        console.log(locationToAdd);
+        collection.insert(locationToAdd);
+        collection.find().toArray(function(err, docs){
+          console.log(docs);
+          onQueryFinished(docs);
+        });
+      }
+    });
+  },
+
 };
+
+
 
 module.exports = LocationQuery;

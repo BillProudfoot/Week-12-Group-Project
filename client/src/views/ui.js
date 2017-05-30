@@ -28,11 +28,32 @@ var UI = function() {
 
   this.saveToWishListHandler();
   this.getRouteButtonHandler();
+  this.newLocationButtonHandler();
   this.loadMap();
 
 }
 
 UI.prototype = {
+
+  newLocationButtonHandler: function(){
+    var newLocationButton = document.getElementById('submit-new-location');
+    var usersNewLocation = document.getElementById('new-location');
+    newLocationButton.addEventListener('click', function(){
+      this.mainMap.geocodeAddress(usersNewLocation.value, function(newLatLng){
+      console.log("USER ENTERED LOCATION LATLNG: ", newLatLng);
+      var locationName = usersNewLocation.value;
+
+        var locationToAdd = {
+          name: locationName,
+          latlng: newLatLng
+        }
+        this.locations.add(locationToAdd, function(){
+          console.log("POPULATE DROP DOWN?")
+        }.bind(this))
+      }.bind(this))
+    }.bind(this))
+  },
+
 
   loadMap: function(){
   this.mainMap.addClickEvent();
@@ -61,7 +82,8 @@ UI.prototype = {
       startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
       finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
 
-
+      // console.log("Start LatLng", startOption.latlng)
+      // console.log("Finish LatLng", finishOption.latlng)
 
       startSelect.appendChild(startOption)
       finishSelect.appendChild(finishOption)
@@ -78,8 +100,6 @@ UI.prototype = {
     var finishPointText = document.querySelector("#finish-point-wish-list");
     var walkNameText = document.querySelector("#walk-name");
     // this.mainMap.onChangeHandler = this.mainMap.onChangeHandler.bind(this.mainMap);
-
-    console.log("START VALUE: ",start.index)
 
 
     getRouteButton.addEventListener('click', function(){
@@ -169,21 +189,8 @@ UI.prototype = {
         }.bind(this))
     }.bind(this))
 
-
   }
-  //
-  // setWalkAsCompleted: function(){
-  //   var buttons = document.getElementsByTagName('button');
-  //       for(var i = 0; i < buttons.length; i++) {
-  //           var button = buttons[i];
-  //           console.log(button)
-  //           if(("btn completed").match(button.className)) {
-  //               button.addEventListener("click", function(){
-  //                 console.log("clickccc")
-  //               })
-  //           }
-  //       }
-  // }
+
 }
 
 
