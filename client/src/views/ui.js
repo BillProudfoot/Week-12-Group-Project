@@ -11,7 +11,7 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
 
-  var center = {lat: 55.9533, lng: -3.1883};
+  var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;
   var mapDiv = document.getElementById("main-map");
 
@@ -65,36 +65,33 @@ UI.prototype = {
 
 },
 
-  populateDropDown: function(locations) {
+  createDropDownOption: function(location, index){
+    location.index = index;
+
+    var option = document.createElement('option');
+    option.value = index;
+    option.text = location.name;
+    option.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
+    return option;
+
+  },
+
+  populateDropDown: function(locations){
     var startSelect = document.querySelector('#start');
     var finishSelect = document.querySelector('#finish');
 
-    locations.forEach(function(location, index){
-      location.index = index;
+    locations.forEach(function(location){
+      var option = this.createDropDownOption(location);
+      startSelect.appendChild(option);
+      var option = this.createDropDownOption(location);
+      finishSelect.appendChild(option);
+    }.bind(this))
 
-      var startOption = document.createElement('option');
-      var finishOption = document.createElement('option');
 
-      startOption.value = index;
-      finishOption.value = index;
-
-      startOption.text = location.name;
-      finishOption.text = location.name;
-
-      startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
-      finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
-
-      // console.log("Start LatLng", startOption.latlng)
-      // console.log("Finish LatLng", finishOption.latlng)
-
-      startSelect.appendChild(startOption)
-      finishSelect.appendChild(finishOption)
-    });
   },
 
-
-
   getRouteButtonHandler: function() {
+
     var getRouteButton = document.querySelector("#get-route");
     var start = document.querySelector("#start");
     var finish = document.querySelector("#finish");
@@ -108,13 +105,14 @@ UI.prototype = {
 
       if(start.value === 'Choose your starting Location' || finish.value === 'Choose your finishing Location') return;
 
-      //TODO this function will contain google maps stuff. i'm writing
-      //the section that populates the "save to wishlish" form.
+
 
       var startName = start.options[start.selectedIndex].text;
       var finishName = finish.options[finish.selectedIndex].text;
+
       startPointText.innerText = "Start point: " + startName;
       finishPointText.innerText = "Finish point: " + finishName;
+
       var walkName = startName + " to " + finishName;
       walkNameText.value = walkName;
       this.mainMap.onChangeHandler();
@@ -130,34 +128,40 @@ UI.prototype = {
     this.walks.all(function(walks){
       walks.forEach(function(walk){
 
+        //this handles going through all walks and separates them into ones
+        //which belong in the wishlist and ones for the completed walks div
         if (walk.completed === false){
+        //populates wishlist
         var p = document.createElement("p");
-        //TODO fix this when walk name is in the database;
 
         var walkTitle = walk.name;
         p.innerText = walkTitle + "  " ;
 
+        //creates "completed" button
         var completedButton = document.createElement("button");
         completedButton.value = JSON.stringify(walk);
         completedButton.classList.add("btn", "completed");
         completedButton.innerText = "completed!";
 
+        //adds functionality to button where when it is clicked the walk
+        // is marked as completed
         completedButton.addEventListener('click', function(){
           var walkToUpdate = walk;
           walkToUpdate.completed = true;
           this.walks.update(walkToUpdate, function(){
           }.bind(this))
+          completedDiv.appendChild(p);
+          completedButton.style.display = "none";
         }.bind(this))
         p.appendChild(completedButton);
         wishlistDiv.appendChild(p);
       }
 
+      //if a walk is completed sends it to the correct div
       else if (walk.completed === true) {
         var p = document.createElement("p");
-        //TODO fix this when walk name is in the database;
 
         var walkTitle = walk.name;
-
         p.innerText = walkTitle;
         completedDiv.appendChild(p);
       }
@@ -176,6 +180,9 @@ UI.prototype = {
     var finishName = finish.options[finish.selectedIndex].text;
 
     saveButton.addEventListener('click', function(){
+
+      //gets details of walk and saves them to database, with completed
+      //value as false so they are added to the wish list
       var walkName = walkNameField.value;
       var startName = start.options[start.selectedIndex].text;
       var finishName = finish.options[finish.selectedIndex].text;
