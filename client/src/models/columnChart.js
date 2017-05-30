@@ -1,4 +1,4 @@
-var ColumnChart = function(){
+var ColumnChart = function(catKeys, catValues){
   var container = document.querySelector("#column-chart");
 
   var chart = new Highcharts.Chart({
@@ -8,31 +8,21 @@ var ColumnChart = function(){
       renderTo: container
     },
     title: {
-      text: "Our Favourite Programming Languages"
+      text: "Most popular crimes along your walk"
     },
 
     credits: {
                 enabled: false
             },
-
-
     series: [
         {
-        name: "Cohort 11",
-        data: [1,2,3]
+        // name: "Cohort 11",
+        data: catValues
         },
-        {
-        name: "Cohort 12",
-        data: [5,5,5]
-        },
-        {
-        name: "Cohort 10",
-        data: [10,10,10]
-        }
       ],
 
      xAxis: {
-      categories: ["Ruby", "Java", "JavaScript", "COBOL"]
+      categories: catKeys
      }
   })
 }

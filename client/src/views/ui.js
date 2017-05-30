@@ -13,12 +13,8 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
   this.crimesHelper = new CrimesHelper();
-<<<<<<< HEAD
-  this.columnChart = new ColumnChart();
   
-=======
-
->>>>>>> develop
+  
 
   var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;
@@ -43,10 +39,17 @@ var UI = function() {
   this.newLocationButtonHandler();
   this.loadMap();
  
-
 }
 
 UI.prototype = {
+
+  populateColumnChart: function(){
+    var categories = this.crimesHelper.countCategories();
+    var catKeys = Object.keys(categories)
+    var catValues = Object.values(categories)
+
+    this.columnChart = new ColumnChart(catKeys, catValues);
+  },
 
   newLocationButtonHandler: function(){
     var newLocationButton = document.getElementById('submit-new-location');
@@ -163,6 +166,14 @@ UI.prototype = {
       }.bind(this))
       // this.mainMap.addMarker(this.crimesHelper.crimesArray.)
     }.bind(this))
+
+    var crimeStats = document.createElement("button");
+    crimeStats.innerText = "Crime Stats";
+    div.appendChild(crimeStats);
+    crimeStats.addEventListener('click', function(){
+      this.populateColumnChart();
+    }.bind(this))
+    
 
   },
 

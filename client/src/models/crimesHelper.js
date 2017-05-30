@@ -51,6 +51,7 @@ CrimesHelper.prototype = {
         counterObject[category] +=1
       }
     }.bind(this))
+    // console.log(counterObject)
     return counterObject;
   }
 
