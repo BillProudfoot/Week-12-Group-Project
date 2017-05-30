@@ -3,7 +3,7 @@ var Walk = require('../models/walk');
 var Walks = require('../models/walks')
 var MapWrapper = require('../mapWrapper.js');
 var RestCrimes = require('../models/restCrimes');
-var CrimeHelper = require('../models/crimeHelper.js');
+var CrimesHelper = require('../models/crimesHelper');
 
 
 
@@ -11,8 +11,9 @@ var UI = function() {
   this.locations = new Locations();
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
-  this.crimeHelper = new CrimeHelper();
-  crimeHelper.getCrimes({lat:54.978528, lng:-1.610805}, {lat:54.966596, lng: -1.618418});
+  this.crimesHelper = new CrimesHelper();
+  console.log(this.crimesHelper);
+  this.crimesHelper.getCrimes({lat:54.978528, lng:-1.610805}, {lat:54.966596, lng: -1.618418});
 
   var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;

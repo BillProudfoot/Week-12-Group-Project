@@ -1,10 +1,10 @@
 var Crime = function(options) {
-  this.category = options.crime.category,
-  this.lat = options.crime.location.latitude;
-  this.lng = option.crime.location.longitude;
+  this.category = options.category,
+  this.lat = options.location.latitude;
+  this.lng = options.location.longitude;
 }
 
-// these are the options that come back from the API 
+// these are the options that come back from the API
 //   "crime": {
 // "category": "other-theft",
 // "location_type": "Force",

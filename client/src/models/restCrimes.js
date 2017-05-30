@@ -2,7 +2,7 @@ var Crime = require('./crime.js');
 
 var RestCrimes = function() {
 
-}
+};
 
 RestCrimes.prototype = {
   makeRequest: function(url, callback) {
