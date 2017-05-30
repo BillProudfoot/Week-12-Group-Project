@@ -3,6 +3,7 @@ var MapWrapper = function(mapDiv, coords, zoom) {
   this.directionsService = new google.maps.DirectionsService;
   this.directionsDisplay = new google.maps.DirectionsRenderer;
   this.geocoder = new google.maps.Geocoder();
+  this.marker = new google.maps.Marker();
 
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
@@ -38,10 +39,13 @@ MapWrapper.prototype = {
   },
 
   addMarker: function (coords){
+    
+    var drugs = 'https://image.flaticon.com/icons/png/128/119/119073.png'
     var marker = new google.maps.Marker({
       position: coords,
       map: this.googleMap,
-      animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP,
+      icon: drugs
     });
     return marker;
   },

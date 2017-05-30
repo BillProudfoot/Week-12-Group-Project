@@ -49,6 +49,8 @@ UI.prototype = {
         }
         this.locations.add(locationToAdd, function(){
           console.log("POPULATE DROP DOWN?")
+          
+          // location.reload(); RELOADS THE PAGE BUT WE JUST WANT TO REFRESH THE DROPDOWNS
         }.bind(this))
       }.bind(this))
     }.bind(this))
