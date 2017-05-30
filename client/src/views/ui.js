@@ -11,7 +11,7 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
 
-  var center = {lat: 55.9533, lng: -3.1883};
+  var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;
   var mapDiv = document.getElementById("main-map");
 
