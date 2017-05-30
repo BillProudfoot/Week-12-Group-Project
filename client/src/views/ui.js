@@ -12,7 +12,7 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
   this.crimesHelper = new CrimesHelper();
-  
+
 
   var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;
@@ -59,7 +59,9 @@ UI.prototype = {
           // location.reload(); RELOADS THE PAGE BUT WE JUST WANT TO REFRESH THE DROPDOWNS
         }.bind(this))
       }.bind(this))
+      usersNewLocation.placeholder = "";
     }.bind(this))
+
   },
 
 
@@ -143,17 +145,18 @@ UI.prototype = {
       this.crimesHelper.getCrimes(startLocation, finishLocation);
       // console.log("this crimes array", this.crimesHelper.crimesArray)
       // console.log("this crimes array", this.crimesHelper.crimesArray[0].lat)
+      this.crimesHelper.countCategories();
       this.crimesHelper.crimesArray.forEach(function(crime){
         var lat = parseFloat(crime.lat)
         var lng = parseFloat(crime.lng)
-        console.log("lat", lat)
+        // console.log("lat", lat)
       var coords = {lat: lat, lng: lng}
-      console.log("coords", this)
+      // console.log("coords", this)
       this.mainMap.addMarker(coords);
       }.bind(this))
       // this.mainMap.addMarker(this.crimesHelper.crimesArray.)
     }.bind(this))
-    
+
   },
 
 
