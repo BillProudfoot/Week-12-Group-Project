@@ -67,9 +67,10 @@ MapWrapper.prototype = {
 
   calculateAndDisplayRoute: function(directionsService, directionsDisplay) {
     directionsService.route({
-      origin: document.getElementById("start").options[start.selectedIndex].text,
-      destination: document.getElementById("finish").options[finish.selectedIndex].text,
-      travelMode: "WALKING"
+      origin: document.getElementById("start").options[start.selectedIndex].latlng,
+      destination: document.getElementById("finish").options[finish.selectedIndex].latlng,
+      travelMode: "WALKING",
+      region: "UK"
     }, function(response, status) {
       if (status === "OK") {
         directionsDisplay.setDirections(response);
