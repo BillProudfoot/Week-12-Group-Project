@@ -36,7 +36,22 @@ CrimesHelper.prototype = {
       }.bind(this))
        // console.log("crimesArray", this.crimesArray);
     }.bind(this))
-    
+
+  },
+
+  countCategories: function(){
+    var counterObject = {}
+    var array = this.crimesArray;
+    array.forEach(function(crime){
+      var category = crime.category;
+      if (!counterObject[category]){
+        counterObject[category] = 1;
+      }
+      else {
+        counterObject[category] +=1
+      }
+    }.bind(this))
+    return counterObject;
   }
 
 }
