@@ -63,30 +63,56 @@ UI.prototype = {
 
 },
 
-  populateDropDown: function(locations) {
+  createDropDownOption: function(location, index){
+    location.index = index;
+
+    var option = document.createElement('option');
+    option.value = index;
+    option.text = location.name;
+    option.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
+    console.log(option)
+
+  },
+
+  populateDropDown: function(locations){
     var startSelect = document.querySelector('#start');
     var finishSelect = document.querySelector('#finish');
 
     locations.forEach(function(location, index){
-      location.index = index;
+      this.createDropDownOption(location, index);
+      console.log(option);
+    }.bind(this))
 
-      var startOption = document.createElement('option');
-      var finishOption = document.createElement('option');
+    // startSelect.appendChild(option);
+    // finishSelect.appendChild(option);
 
-      startOption.value = index;
-      finishOption.value = index;
-
-      startOption.text = location.name;
-      finishOption.text = location.name;
-
-      startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
-      finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
-
-
-      startSelect.appendChild(startOption)
-      finishSelect.appendChild(finishOption)
-    });
   },
+
+
+  // populateDropDown: function(locations) {
+  //   var startSelect = document.querySelector('#start');
+  //   var finishSelect = document.querySelector('#finish');
+  //
+  //   locations.forEach(function(location, index){
+  //     location.index = index;
+  //
+  //     var startOption = document.createElement('option');
+  //     var finishOption = document.createElement('option');
+  //
+  //     startOption.value = index;
+  //     finishOption.value = index;
+  //
+  //     startOption.text = location.name;
+  //     finishOption.text = location.name;
+  //
+  //     startOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
+  //     finishOption.latlng = {lat: location.latlng.lat, lng: location.latlng.lng};
+  //
+  //
+  //     startSelect.appendChild(startOption)
+  //     finishSelect.appendChild(finishOption)
+  //   });
+  // },
 
 
 
@@ -150,6 +176,8 @@ UI.prototype = {
           walkToUpdate.completed = true;
           this.walks.update(walkToUpdate, function(){
           }.bind(this))
+          completedDiv.appendChild(p);
+          completedButton.style.display = "none";
         }.bind(this))
         p.appendChild(completedButton);
         wishlistDiv.appendChild(p);
