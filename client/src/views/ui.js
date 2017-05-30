@@ -64,9 +64,7 @@ UI.prototype = {
           latlng: newLatLng
         }
         this.locations.add(locationToAdd, function(){
-          console.log("POPULATE DROP DOWN?")
-
-          // location.reload(); RELOADS THE PAGE BUT WE JUST WANT TO REFRESH THE DROPDOWNS
+          
         }.bind(this))
       }.bind(this))
       usersNewLocation.placeholder = "";
@@ -155,16 +153,13 @@ UI.prototype = {
       this.crimesHelper.getCrimes(startLocation, finishLocation);
       // console.log("this crimes array", this.crimesHelper.crimesArray)
       // console.log("this crimes array", this.crimesHelper.crimesArray[0].lat)
-      this.crimesHelper.countCategories();
+      // this.crimesHelper.countCategories();
       this.crimesHelper.crimesArray.forEach(function(crime){
         var lat = parseFloat(crime.lat)
         var lng = parseFloat(crime.lng)
-        // console.log("lat", lat)
       var coords = {lat: lat, lng: lng}
-      // console.log("coords", this)
       this.mainMap.addMarker(coords);
       }.bind(this))
-      // this.mainMap.addMarker(this.crimesHelper.crimesArray.)
     }.bind(this))
 
     var crimeStats = document.createElement("button");
@@ -261,8 +256,5 @@ UI.prototype = {
   }
 
 }
-
-
-
 
 module.exports = UI;
