@@ -120,8 +120,25 @@ UI.prototype = {
       var walkName = startName + " to " + finishName;
       walkNameText.value = walkName;
       this.mainMap.onChangeHandler();
+      this.crimesOnRoute();
+      console.log(this);
     }.bind(this))
   },
+
+  crimesOnRoute: function(){
+    var crimeButton = document.createElement("button");
+    console.log(crimeButton);
+    crimeButton.innerText = "crimes!!!!!!!!!!!"
+    var getRouteButton = document.querySelector("#get-route");
+    var div = document.querySelector("#start-finish-section");
+    div.appendChild(crimeButton);
+
+    crimeButton.addEventListener('click', function(){
+      console.log("loads of crimes")
+    })
+  },
+
+
 
 
   populateWishListAndCompleted: function(){

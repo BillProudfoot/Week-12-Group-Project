@@ -29,7 +29,7 @@ CrimesHelper.prototype = {
     var url = this.urlGenerator(midpoint);
     this.restCrimes.all(url, function(crimes){
       crimes.forEach(function(crime){
-        console.log(crime);
+        // console.log(crime);
       })
     })
   }
