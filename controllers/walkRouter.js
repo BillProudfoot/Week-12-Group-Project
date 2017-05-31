@@ -33,11 +33,5 @@ walkRouter.put('/', function(req, res) {
   })
 });
 
-// //delete walk
-// walkRouter.delete('/', function(req, res) {
-//   walks.splice()
-//   res.json(walks);
-// })
-
 
 module.exports = walkRouter;
