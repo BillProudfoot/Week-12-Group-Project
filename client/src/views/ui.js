@@ -67,7 +67,7 @@ UI.prototype = {
         }
 
         this.locations.add(locationToAdd, function(locations){
-          this.populateDropDown();
+          
           // var startSelect = document.querySelector('#start');
           // var finishSelect = document.querySelector('#finish');
           // var index = locationToAdd.index;
@@ -81,7 +81,7 @@ UI.prototype = {
       }.bind(this))
 
     }.bind(this))
-    this.populateDropDown();
+    
   },
 
 
