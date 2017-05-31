@@ -5,10 +5,24 @@
 }
 
 body{
+  font-family: 'Arvo', serif;
+  background-image: url('img/ep_naturalwhite.png');
+}
+
+label{
+  display: block;
 }
 
 .row{
   margin: -5px;
+}
+
+.content-block {
+  padding-bottom: 10px;
+  padding-left: 3px;
+  padding-top: 3px;
+  margin-top: 10px;
+  box-shadow: 5px 0 5px 1px #ccc;
 }
 
 .placeholder {
@@ -28,18 +42,32 @@ body{
   background-color: thistle;
 }
 
+.color3 {
+  background-color: lightseagreen;
+}
+
 .info-section{
-  background-color: skyblue;
+  padding-left: 10px;
+  height:300px;
+  overflow: scroll;
 
 }
 
 #main-map{
   width: 75%;
   height: 500px;
+  box-shadow: 5px 0 5px 1px #ccc;
 }
 
-#start-finish-section{
-  height:auto;
+#info{
+  padding: 10px;
+  font-family: 'Barrio', cursive;
+  text-align: center;
+  background-image: url('img/green_dust_scratch.png');
+}
+
+.btn{
+  margin-top: 5px;
 }
 
 @media only screen and (max-width: 960px) {

@@ -13,8 +13,8 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
   this.crimesHelper = new CrimesHelper();
-  
-  
+
+
 
   var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;
@@ -38,7 +38,7 @@ var UI = function() {
   this.getRouteButtonHandler();
   this.newLocationButtonHandler();
   this.loadMap();
- 
+
 }
 
 UI.prototype = {
@@ -55,21 +55,23 @@ UI.prototype = {
     var newLocationButton = document.getElementById('submit-new-location');
     var usersNewLocation = document.getElementById('new-location');
     newLocationButton.addEventListener('click', function(){
+
       this.mainMap.geocodeAddress(usersNewLocation.value, function(newLatLng){
       console.log("USER ENTERED LOCATION LATLNG: ", newLatLng);
       var locationName = usersNewLocation.value;
+      usersNewLocation.value = "";
 
         var locationToAdd = {
           name: locationName,
           latlng: newLatLng
         }
-        this.locations.add(locationToAdd, function(){
-          
+        
+        this.locations.add(locationToAdd, function(locations){
+
         }.bind(this))
       }.bind(this))
-      usersNewLocation.placeholder = "";
-    }.bind(this))
 
+    }.bind(this))
   },
 
 
@@ -137,13 +139,15 @@ UI.prototype = {
   },
 
   crimesOnRoute: function(){
+    var div = document.querySelector("#crime-button");
+    div.innerHTML = ""
     var crimeButton = document.createElement("button");
+    crimeButton.classList.add("btn")
     crimeButton.innerText = "crimes!!!!!!!!!!!"
     var getRouteButton = document.querySelector("#get-route");
-    var div = document.querySelector("#start-finish-section");
     var start = document.querySelector("#start");
     var finish = document.querySelector("#finish");
-
+    div.innerText = "";
     div.appendChild(crimeButton);
 
     crimeButton.addEventListener('click', function(){
@@ -168,7 +172,7 @@ UI.prototype = {
     crimeStats.addEventListener('click', function(){
       this.populateColumnChart();
     }.bind(this))
-    
+
 
   },
 
