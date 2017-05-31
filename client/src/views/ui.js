@@ -156,16 +156,18 @@ UI.prototype = {
 
       var startLocation = this.locationsArray[start.value].latlng;
       var finishLocation = this.locationsArray[finish.value].latlng;
-      this.crimesHelper.getCrimes(startLocation, finishLocation);
+      this.crimesHelper.getCrimes(startLocation, finishLocation, function(){
+        this.crimesHelper.crimesArray.forEach(function(crime){
+          var lat = parseFloat(crime.lat)
+          var lng = parseFloat(crime.lng)
+        var coords = {lat: lat, lng: lng}
+        this.mainMap.addMarker(coords);
+        }.bind(this))
+      }.bind(this));
       // console.log("this crimes array", this.crimesHelper.crimesArray)
       // console.log("this crimes array", this.crimesHelper.crimesArray[0].lat)
       // this.crimesHelper.countCategories();
-      this.crimesHelper.crimesArray.forEach(function(crime){
-        var lat = parseFloat(crime.lat)
-        var lng = parseFloat(crime.lng)
-      var coords = {lat: lat, lng: lng}
-      this.mainMap.addMarker(coords);
-      }.bind(this))
+
     }.bind(this))
 
     var crimeStats = document.createElement("button");
@@ -205,7 +207,7 @@ UI.prototype = {
         var completedButton = document.createElement("button");
         completedButton.value = JSON.stringify(walk);
         completedButton.classList.add("btn", "completed");
-        completedButton.innerHTML = "<i class='fa fa-check'></i>";
+        completedButton.innerHTML = "<i class='fa fa-check  '></i>";
 
         //adds functionality to button where when it is clicked the walk
         // is marked as completed
