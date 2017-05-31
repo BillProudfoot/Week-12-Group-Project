@@ -220,7 +220,7 @@ UI.prototype = {
         var completedButton = document.createElement("button");
         completedButton.value = JSON.stringify(walk);
         completedButton.classList.add("btn", "completed");
-        completedButton.innerText = "completed!";
+        completedButton.innerHTML = "<i class='fa fa-check'></i>";
 
         //adds functionality to button where when it is clicked the walk
         // is marked as completed
