@@ -65,9 +65,9 @@ UI.prototype = {
           name: locationName,
           latlng: newLatLng
         }
-        
-        this.locations.add(locationToAdd, function(locations){
 
+        this.locations.add(locationToAdd, function(locations){
+          this.populateDropDown(locations);
         }.bind(this))
       }.bind(this))
 
