@@ -198,7 +198,6 @@ UI.prototype = {
         deleteButton.innerHTML = "<i class='fa fa-times'></i>";
 
         deleteButton.addEventListener("click", function() {
-          console.log("delete button is being clicked");
           p.innerText = "";
         });
 
@@ -254,6 +253,7 @@ UI.prototype = {
         var walkTitle = walk.name;
         p.innerText = walkTitle;
         p.appendChild(showRouteButton);
+        p.appendChild(deleteButton);
         completedDiv.appendChild(p);
       }
     }.bind(this))
