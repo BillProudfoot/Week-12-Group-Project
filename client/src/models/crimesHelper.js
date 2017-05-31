@@ -3,6 +3,7 @@ var RestCrimes = require('./restCrimes.js');
 
 var CrimesHelper = function() {
   this.restCrimes = new RestCrimes();
+  
 }
 
 CrimesHelper.prototype = {
@@ -24,18 +25,16 @@ CrimesHelper.prototype = {
     return baseUrl;
   },
 
-  getCrimes: function(coords1, coords2){
+  getCrimes: function(coords1, coords2, callback){
     var midpoint = this.coordinateFinder(coords1, coords2);
     var url = this.urlGenerator(midpoint);
 
-
     this.restCrimes.all(url, function(crimes){
-      // console.log("this", this)
-       this.crimesArray = crimes.map(function(crime){
-        return crime;
-      }.bind(this))
-       // console.log("crimesArray", this.crimesArray);
+
+       this.crimesArray = crimes;
+       callback();
     }.bind(this))
+
 
   },
 
@@ -51,7 +50,7 @@ CrimesHelper.prototype = {
         counterObject[category] +=1
       }
     }.bind(this))
-    // console.log(counterObject)
+    console.log(counterObject)
     return counterObject;
   }
 

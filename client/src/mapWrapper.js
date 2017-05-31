@@ -1,17 +1,20 @@
+var CrimeIcons = require('./models/crimeIcons')
+
 var MapWrapper = function(mapDiv, coords, zoom) {
 
   this.directionsService = new google.maps.DirectionsService;
   this.directionsDisplay = new google.maps.DirectionsRenderer;
   this.geocoder = new google.maps.Geocoder();
   this.marker = new google.maps.Marker();
+  this.crimeIcons = new CrimeIcons();
 
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
     zoom: zoom,
     scrollwheel: false
   });
+
   this.directionsDisplay.setMap(this.googleMap);
-     
 }
 
 
@@ -39,15 +42,37 @@ MapWrapper.prototype = {
   },
 
   addMarker: function (coords){
-    
-    // var drugs = 'http://localhost:3000/img/baseball-bat.png'
     var marker = new google.maps.Marker({
       position: coords,
       map: this.googleMap,
       animation: google.maps.Animation.DROP,
-      // icon: drugs
     });
-    return marker;
+  },
+
+  addCrimeMarker: function(crimeImage, coords){
+    var marker = new google.maps.Marker({
+      position: coords,
+      map: this.googleMap,
+      icon: crimeImage
+    })
+  },
+
+  filterCrimeIcons: function(crime, coords){
+    var crimeIconObj = this.crimeIcons.crimePics
+    var imgKeys = Object.keys(crimeIconObj)
+    var imgSrc = Object.values(crimeIconObj)
+
+    for(var key of imgKeys){
+      if(key === crime.category){
+        var crimeImage = {
+        url: crimeIconObj[key], 
+        scaledSize: new google.maps.Size(60, 60),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(0, 0)
+        }
+      this.addCrimeMarker(crimeImage, coords)
+      }
+    }
   },
 
   addClickEvent: function (){

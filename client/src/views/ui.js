@@ -49,7 +49,7 @@ UI.prototype = {
     var categories = this.crimesHelper.countCategories();
     var catKeys = Object.keys(categories)
     var catValues = Object.values(categories)
-
+    console.log(catKeys)
     this.columnChart = new ColumnChart(catKeys, catValues);
   },
 
@@ -156,20 +156,24 @@ UI.prototype = {
 
       var startLocation = this.locationsArray[start.value].latlng;
       var finishLocation = this.locationsArray[finish.value].latlng;
-      this.crimesHelper.getCrimes(startLocation, finishLocation);
+      this.crimesHelper.getCrimes(startLocation, finishLocation, function(){
+        this.crimesHelper.crimesArray.forEach(function(crime){
+          var lat = parseFloat(crime.lat)
+          var lng = parseFloat(crime.lng)
+        var coords = {lat: lat, lng: lng}
+        console.log(crime)
+        this.mainMap.filterCrimeIcons(crime, coords);
+        }.bind(this))
+      }.bind(this))
       // console.log("this crimes array", this.crimesHelper.crimesArray)
       // console.log("this crimes array", this.crimesHelper.crimesArray[0].lat)
       // this.crimesHelper.countCategories();
-      this.crimesHelper.crimesArray.forEach(function(crime){
-        var lat = parseFloat(crime.lat)
-        var lng = parseFloat(crime.lng)
-      var coords = {lat: lat, lng: lng}
-      this.mainMap.addMarker(coords);
-      }.bind(this))
-    }.bind(this))
+
+    }.bind(this));
 
     var crimeStats = document.createElement("button");
-    crimeStats.innerText = "Crime Stats";
+    crimeStats.classList.add("btn")
+    crimeStats.innerHTML = "<i class='fa fa-bar-chart' aria-hidden='true'></i>";
     div.appendChild(crimeStats);
     crimeStats.addEventListener('click', function(){
       console.log("crime stats button click")
@@ -180,9 +184,6 @@ UI.prototype = {
 
 
   },
-
-
-
 
   populateWishListAndCompleted: function(){
     var wishlistDiv = document.querySelector("#wishlist");
@@ -219,6 +220,7 @@ UI.prototype = {
         //which belong in the wishlist and ones for the completed walks div
         if (walk.completed === false){
         //populates wishlist
+        
         var p = document.createElement("p");
 
         var walkTitle = walk.name;
@@ -228,7 +230,7 @@ UI.prototype = {
         var completedButton = document.createElement("button");
         completedButton.value = JSON.stringify(walk);
         completedButton.classList.add("btn", "completed");
-        completedButton.innerHTML = "<i class='fa fa-check'></i>";
+        completedButton.innerHTML = "<i class='fa fa-check  '></i>";
 
         //adds functionality to button where when it is clicked the walk
         // is marked as completed
