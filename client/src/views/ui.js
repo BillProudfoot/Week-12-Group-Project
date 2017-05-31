@@ -145,7 +145,7 @@ UI.prototype = {
     div.innerHTML = ""
     var crimeButton = document.createElement("button");
     crimeButton.classList.add("btn")
-    crimeButton.innerText = "crimes!!!!!!!!!!!"
+    crimeButton.innerText = "crimes!!!!!!!!!!!";
     var getRouteButton = document.querySelector("#get-route");
     var start = document.querySelector("#start");
     var finish = document.querySelector("#finish");
@@ -192,7 +192,7 @@ UI.prototype = {
     this.walks.all(function(walks){
       walks.forEach(function(walk){
 
-        //creates delete button
+        //creates delete button - deletes walk on click
         var deleteButton = document.createElement("button");
         deleteButton.classList.add("btn", "delete");
         deleteButton.innerHTML = "<i class='fa fa-times'></i>";
@@ -201,8 +201,7 @@ UI.prototype = {
           p.innerText = "";
         });
 
-        //create "show route" button outside if statement so it can be
-        //appended to both wishlist and completed walks
+        //create "show route" button - shows route on map on click
         var showRouteButton = document.createElement("button");
         showRouteButton.classList.add("btn", "showRoute");
         showRouteButton.innerHTML = "<i class='fa fa-exchange'></i>";
