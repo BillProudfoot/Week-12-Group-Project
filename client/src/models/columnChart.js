@@ -16,7 +16,6 @@ var ColumnChart = function(catKeys, catValues){
             },
     series: [
         {
-        // name: "Cohort 11",
         data: catValues
         },
       ],

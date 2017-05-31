@@ -20,7 +20,7 @@ RestCrimes.prototype = {
   all: function (url, callback) {
     this.makeRequest(url, function (results) {
       var crimes = this.populateCrimes(results)
-      console.log(callback);
+      // console.log(callback);
       callback(crimes);
     }.bind(this));
   },

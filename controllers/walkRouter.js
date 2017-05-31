@@ -31,7 +31,6 @@ walkRouter.put('/', function(req, res) {
   query.update(walk, function(results){
     res.json(results);
   })
-
 });
 
 

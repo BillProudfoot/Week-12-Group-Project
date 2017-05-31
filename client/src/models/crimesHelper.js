@@ -3,6 +3,7 @@ var RestCrimes = require('./restCrimes.js');
 
 var CrimesHelper = function() {
   this.restCrimes = new RestCrimes();
+  
 }
 
 CrimesHelper.prototype = {
@@ -49,7 +50,7 @@ CrimesHelper.prototype = {
         counterObject[category] +=1
       }
     }.bind(this))
-    // console.log(counterObject)
+    console.log(counterObject)
     return counterObject;
   }
 
