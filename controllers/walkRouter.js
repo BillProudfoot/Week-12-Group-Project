@@ -31,8 +31,13 @@ walkRouter.put('/', function(req, res) {
   query.update(walk, function(results){
     res.json(results);
   })
-
 });
+
+// //delete walk
+// walkRouter.delete('/', function(req, res) {
+//   walks.splice()
+//   res.json(walks);
+// })
 
 
 module.exports = walkRouter;

@@ -191,6 +191,7 @@ UI.prototype = {
     completedDiv.innerText = "";
     this.walks.all(function(walks){
       walks.forEach(function(walk){
+        console.log(walk);
 
         //creates delete button - deletes walk on click
         var deleteButton = document.createElement("button");

@@ -1,4 +1,5 @@
 var Walk = function(options){
+  this._id = options._id;
   this.name = options.name;
   this.start = options.start;
   this.finish = options.finish;
