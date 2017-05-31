@@ -176,9 +176,6 @@ UI.prototype = {
 
   },
 
-
-
-
   populateWishListAndCompleted: function(){
     var wishlistDiv = document.querySelector("#wishlist");
     var completedDiv = document.querySelector("#completed-walks")
@@ -186,6 +183,12 @@ UI.prototype = {
     completedDiv.innerText = "";
     this.walks.all(function(walks){
       walks.forEach(function(walk){
+
+        // creates "show route" button that can be added to wishlist AND
+        //completed list
+        var showRouteButton = document.createElement("button");
+        showRouteButton.innerText = "show route";
+        showRouteButton.classList.add("btn", "showRoute");
 
         //this handles going through all walks and separates them into ones
         //which belong in the wishlist and ones for the completed walks div
@@ -213,6 +216,7 @@ UI.prototype = {
           completedButton.style.display = "none";
         }.bind(this))
         p.appendChild(completedButton);
+        p.appendChild(showRouteButton);
         wishlistDiv.appendChild(p);
       }
 
@@ -222,6 +226,7 @@ UI.prototype = {
 
         var walkTitle = walk.name;
         p.innerText = walkTitle;
+        p.appendChild(showRouteButton);
         completedDiv.appendChild(p);
       }
     }.bind(this))
