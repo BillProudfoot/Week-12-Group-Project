@@ -171,7 +171,8 @@ UI.prototype = {
     }.bind(this))
 
     var crimeStats = document.createElement("button");
-    crimeStats.innerText = "Crime Stats";
+    crimeStats.classList.add("btn")
+    crimeStats.innerHTML = "<i class='fa fa-bar-chart' aria-hidden='true'></i>";
     div.appendChild(crimeStats);
     crimeStats.addEventListener('click', function(){
       console.log("crime stats button click")
