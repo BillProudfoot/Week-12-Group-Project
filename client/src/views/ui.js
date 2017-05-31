@@ -196,7 +196,7 @@ UI.prototype = {
         //appended to both wishlist and completed walks
         var showRouteButton = document.createElement("button");
         showRouteButton.classList.add("btn", "showRoute");
-        showRouteButton.innerText = "show route";
+        showRouteButton.innerHTML = "<i class='fa fa-exchange'></i>";
 
         showRouteButton.addEventListener("click", function() {
           var startlatlng = walk.startlatlng;
