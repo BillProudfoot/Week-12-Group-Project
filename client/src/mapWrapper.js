@@ -48,8 +48,8 @@ MapWrapper.prototype = {
     };
 
     var mapImg = {
-        url: 'http://localhost:3000/img/weaponFinished.png', // url
-        scaledSize: new google.maps.Size(50, 50), // scaled size
+        url: 'http://localhost:3000/img/crimeSceneFinished.png', // url
+        scaledSize: new google.maps.Size(60, 60), // scaled size
         origin: new google.maps.Point(0,0), // origin
         anchor: new google.maps.Point(0, 0) // anchor
     };
