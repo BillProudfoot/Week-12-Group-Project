@@ -194,6 +194,18 @@ UI.prototype = {
     this.walks.all(function(walks){
       walks.forEach(function(walk){
 
+        //create "show route" button outside if statement so it can be
+        //appended to both wishlist and completed walks
+        var showRouteButton = document.createElement("button");
+        showRouteButton.classList.add("btn", "showRoute");
+        showRouteButton.innerText = "show route";
+
+        showRouteButton.addEventListener("click", function() {
+          var startlatlng = walk.startlatlng;
+          var finishlatlng = walk.finishlatlng;
+          this.mainMap.onShowRoute(startlatlng, finishlatlng);
+        }.bind(this));
+
         //this handles going through all walks and separates them into ones
         //which belong in the wishlist and ones for the completed walks div
         if (walk.completed === false){
@@ -220,6 +232,7 @@ UI.prototype = {
           completedButton.style.display = "none";
         }.bind(this))
         p.appendChild(completedButton);
+        p.appendChild(showRouteButton);
         wishlistDiv.appendChild(p);
       }
 
@@ -229,6 +242,7 @@ UI.prototype = {
 
         var walkTitle = walk.name;
         p.innerText = walkTitle;
+        p.appendChild(showRouteButton);
         completedDiv.appendChild(p);
       }
     }.bind(this))
@@ -252,12 +266,16 @@ UI.prototype = {
       var walkName = walkNameField.value;
       var startName = start.options[start.selectedIndex].text;
       var finishName = finish.options[finish.selectedIndex].text;
+      var startlatlng = start.options[start.selectedIndex].latlng;
+      var finishlatlng = finish.options[finish.selectedIndex].latlng;
 
         var walkToAdd = {
           name: walkName,
           start: startName,
           finish: finishName,
-          completed: false
+          completed: false,
+          startlatlng: startlatlng,
+          finishlatlng: finishlatlng,
         }
         this.walks.add(walkToAdd, function(){
           this.populateWishListAndCompleted();
