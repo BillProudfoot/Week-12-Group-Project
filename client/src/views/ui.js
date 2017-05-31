@@ -145,7 +145,7 @@ UI.prototype = {
     div.innerHTML = ""
     var crimeButton = document.createElement("button");
     crimeButton.classList.add("btn")
-    crimeButton.innerText = "crimes!!!!!!!!!!!"
+    crimeButton.innerText = "crimes!!!!!!!!!!!";
     var getRouteButton = document.querySelector("#get-route");
     var start = document.querySelector("#start");
     var finish = document.querySelector("#finish");
@@ -192,13 +192,24 @@ UI.prototype = {
     completedDiv.innerText = "";
     this.walks.all(function(walks){
       walks.forEach(function(walk){
+        console.log(walk);
 
-        //create "show route" button outside if statement so it can be
-        //appended to both wishlist and completed walks
+        //creates delete button - deletes walk on click
+        var deleteButton = document.createElement("button");
+        deleteButton.classList.add("btn", "delete");
+        deleteButton.innerHTML = "<i class='fa fa-times'></i>";
+
+        deleteButton.addEventListener("click", function() {
+          p.innerText = "";
+        });
+
+        //create "show route" button - shows route on map on click
         var showRouteButton = document.createElement("button");
         showRouteButton.classList.add("btn", "showRoute");
-        showRouteButton.innerText = "show route";
+        showRouteButton.innerHTML = "<i class='fa fa-exchange'></i>";
 
+        //when the show route button is clicked it will show the route on
+        //the map
         showRouteButton.addEventListener("click", function() {
           var startlatlng = walk.startlatlng;
           var finishlatlng = walk.finishlatlng;
@@ -233,6 +244,7 @@ UI.prototype = {
         }.bind(this))
         p.appendChild(completedButton);
         p.appendChild(showRouteButton);
+        p.appendChild(deleteButton);
         wishlistDiv.appendChild(p);
       }
 
@@ -243,6 +255,7 @@ UI.prototype = {
         var walkTitle = walk.name;
         p.innerText = walkTitle;
         p.appendChild(showRouteButton);
+        p.appendChild(deleteButton);
         completedDiv.appendChild(p);
       }
     }.bind(this))

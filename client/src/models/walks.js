@@ -69,8 +69,6 @@ Walks.prototype = {
     this.makePutRequest('http://localhost:3000/api/walks', callback, walkData);
   }
 
-
-
 }
 
 module.exports = Walks;
