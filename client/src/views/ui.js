@@ -5,6 +5,7 @@ var MapWrapper = require('../mapWrapper.js');
 var RestCrimes = require('../models/restCrimes');
 var CrimesHelper = require('../models/crimesHelper');
 var ColumnChart = require('../models/columnChart.js');
+var LightBox = require('./lightbox')
 
 
 
@@ -13,6 +14,7 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
   this.crimesHelper = new CrimesHelper();
+  this.lightBox = new LightBox();
 
 
 
@@ -65,9 +67,9 @@ UI.prototype = {
           name: locationName,
           latlng: newLatLng
         }
-        
-        this.locations.add(locationToAdd, function(locations){
 
+        this.locations.add(locationToAdd, function(locations){
+          this.populateDropDown(locations);
         }.bind(this))
       }.bind(this))
 
@@ -154,24 +156,30 @@ UI.prototype = {
 
       var startLocation = this.locationsArray[start.value].latlng;
       var finishLocation = this.locationsArray[finish.value].latlng;
-      this.crimesHelper.getCrimes(startLocation, finishLocation);
+      this.crimesHelper.getCrimes(startLocation, finishLocation, function(){
+        this.crimesHelper.crimesArray.forEach(function(crime){
+          var lat = parseFloat(crime.lat)
+          var lng = parseFloat(crime.lng)
+        var coords = {lat: lat, lng: lng}
+        console.log(crime)
+        this.mainMap.filterCrimeIcons(crime, coords);
+        }.bind(this))
+      }.bind(this))
       // console.log("this crimes array", this.crimesHelper.crimesArray)
       // console.log("this crimes array", this.crimesHelper.crimesArray[0].lat)
       // this.crimesHelper.countCategories();
-      this.crimesHelper.crimesArray.forEach(function(crime){
-        var category = crime.category;
-        var lat = parseFloat(crime.lat)
-        var lng = parseFloat(crime.lng)
-      var coords = {lat: lat, lng: lng}
-      this.mainMap.filterCrimeIcons(crime);
-      }.bind(this))
-    }.bind(this))
+
+    }.bind(this));
 
     var crimeStats = document.createElement("button");
-    crimeStats.innerText = "Crime Stats";
+    crimeStats.classList.add("btn")
+    crimeStats.innerHTML = "<i class='fa fa-bar-chart' aria-hidden='true'></i>";
     div.appendChild(crimeStats);
     crimeStats.addEventListener('click', function(){
+      console.log("crime stats button click")
       this.populateColumnChart();
+      var lightBox = document.querySelector(".lightbox");
+      lightBox.style.display = "block";
     }.bind(this))
 
 
@@ -184,6 +192,18 @@ UI.prototype = {
     completedDiv.innerText = "";
     this.walks.all(function(walks){
       walks.forEach(function(walk){
+
+        //create "show route" button outside if statement so it can be
+        //appended to both wishlist and completed walks
+        var showRouteButton = document.createElement("button");
+        showRouteButton.classList.add("btn", "showRoute");
+        showRouteButton.innerText = "show route";
+
+        showRouteButton.addEventListener("click", function() {
+          var startlatlng = walk.startlatlng;
+          var finishlatlng = walk.finishlatlng;
+          this.mainMap.onShowRoute(startlatlng, finishlatlng);
+        }.bind(this));
 
         //this handles going through all walks and separates them into ones
         //which belong in the wishlist and ones for the completed walks div
@@ -198,7 +218,7 @@ UI.prototype = {
         var completedButton = document.createElement("button");
         completedButton.value = JSON.stringify(walk);
         completedButton.classList.add("btn", "completed");
-        completedButton.innerText = "completed!";
+        completedButton.innerHTML = "<i class='fa fa-check  '></i>";
 
         //adds functionality to button where when it is clicked the walk
         // is marked as completed
@@ -211,6 +231,7 @@ UI.prototype = {
           completedButton.style.display = "none";
         }.bind(this))
         p.appendChild(completedButton);
+        p.appendChild(showRouteButton);
         wishlistDiv.appendChild(p);
       }
 
@@ -220,6 +241,7 @@ UI.prototype = {
 
         var walkTitle = walk.name;
         p.innerText = walkTitle;
+        p.appendChild(showRouteButton);
         completedDiv.appendChild(p);
       }
     }.bind(this))
@@ -243,12 +265,16 @@ UI.prototype = {
       var walkName = walkNameField.value;
       var startName = start.options[start.selectedIndex].text;
       var finishName = finish.options[finish.selectedIndex].text;
+      var startlatlng = start.options[start.selectedIndex].latlng;
+      var finishlatlng = finish.options[finish.selectedIndex].latlng;
 
         var walkToAdd = {
           name: walkName,
           start: startName,
           finish: finishName,
-          completed: false
+          completed: false,
+          startlatlng: startlatlng,
+          finishlatlng: finishlatlng,
         }
         this.walks.add(walkToAdd, function(){
           this.populateWishListAndCompleted();

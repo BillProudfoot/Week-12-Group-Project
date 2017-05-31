@@ -3,6 +3,8 @@ var Walk = function(options){
   this.start = options.start;
   this.finish = options.finish;
   this.completed = options.completed;
+  this.startlatlng = options.startlatlng;
+  this.finishlatlng = options.finishlatlng;
 }
 
 module.exports = Walk;

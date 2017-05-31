@@ -15,13 +15,10 @@ var MapWrapper = function(mapDiv, coords, zoom) {
   });
 
   this.directionsDisplay.setMap(this.googleMap);
-  
 }
 
 
 MapWrapper.prototype = {
-
-
 
   geocodeAddress: function(address, callback) {
     var ukAddress = address + " United Kingdom"
@@ -44,68 +41,38 @@ MapWrapper.prototype = {
     }.bind(this));
   },
 
-  addMarker: function (coords, crimeImage){
-
-    // var crimeImg = {
-    //     url: imgSrc, 
-    //     scaledSize: new google.maps.Size(60, 60),
-    //     origin: new google.maps.Point(0,0),
-    //     anchor: new google.maps.Point(0, 0)
-    // };
-
-
+  addMarker: function (coords){
     var marker = new google.maps.Marker({
       position: coords,
       map: this.googleMap,
       animation: google.maps.Animation.DROP,
-      icon: crimeImage
     });
-    return marker;
   },
 
-  filterCrimeIcons: function(crime, coords){
-
-    var crimeIconObj = this.crimeIcons.crimePics
-    // console.log("crimeIconObj",crimeIconObj)
-    var imgKeys = Object.keys(crimeIconObj)
-    // console.log("imgKeys",imgKeys)
-    var imgSrc = Object.values(crimeIconObj)
-    // console.log("imgSrc", imgSrc)
-    // console.log("crime !!", crime.category)
-
-
-
-    for(var key of imgKeys){
-      if(key === crime.category){
-
-          var crimeImage = {
-          url: crimeIconObj[key], 
-          scaledSize: new google.maps.Size(60, 60),
-          origin: new google.maps.Point(0,0),
-          anchor: new google.maps.Point(0, 0)
-        }
-        console.log("Crime",crime)
-        this.addCrimeMarker(crime, crimeImage)
-      }
-    }
-  },
-
-
-  // var lat = parseFloat(crime.lat)
-  // var lng = parseFloat(crime.lng)
-
-  addCrimeMarker: function(crime, crimeImage){
-    var category = crime[category];
-      var lat = parseFloat(crime.lat)
-      var lng = parseFloat(crime.lng)
-    var coords = {lat: lat, lng: lng}
-    
+  addCrimeMarker: function(crimeImage, coords){
     var marker = new google.maps.Marker({
       position: coords,
       map: this.googleMap,
       icon: crimeImage
-
     })
+  },
+
+  filterCrimeIcons: function(crime, coords){
+    var crimeIconObj = this.crimeIcons.crimePics
+    var imgKeys = Object.keys(crimeIconObj)
+    var imgSrc = Object.values(crimeIconObj)
+
+    for(var key of imgKeys){
+      if(key === crime.category){
+        var crimeImage = {
+        url: crimeIconObj[key], 
+        scaledSize: new google.maps.Size(60, 60),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(0, 0)
+        }
+      this.addCrimeMarker(crimeImage, coords)
+      }
+    }
   },
 
   addClickEvent: function (){
@@ -124,6 +91,7 @@ MapWrapper.prototype = {
   },
 
   onChangeHandler: function() {
+    console.log("OLD ROUTE",document.getElementById("start").options[start.selectedIndex].latlng)
     this.calculateAndDisplayRoute(this.directionsService, this.directionsDisplay);
   },
 
@@ -131,6 +99,26 @@ MapWrapper.prototype = {
     directionsService.route({
       origin: document.getElementById("start").options[start.selectedIndex].latlng,
       destination: document.getElementById("finish").options[finish.selectedIndex].latlng,
+      travelMode: "WALKING",
+      region: "UK"
+    }, function(response, status) {
+      if (status === "OK") {
+        directionsDisplay.setDirections(response);
+      } else {
+        console.log("Failed to get directions " + status);
+      }
+    });
+  },
+
+  onShowRoute: function(startlatlng, finishlatlng) {
+    console.log("NEW ROUTE", startlatlng)
+    this.calculateAndDisplayWishlistRoute(this.directionsService, this.directionsDisplay, startlatlng, finishlatlng);
+  },
+
+  calculateAndDisplayWishlistRoute: function(directionsService, directionsDisplay, startlatlng, finishlatlng) {
+    directionsService.route({
+      origin: startlatlng,
+      destination: finishlatlng,
       travelMode: "WALKING",
       region: "UK"
     }, function(response, status) {

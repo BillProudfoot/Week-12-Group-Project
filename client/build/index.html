@@ -7,8 +7,10 @@
     <!--link for bootstrap framework-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
+    <!-- link for font awesome-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- link for google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Arvo|Barrio" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barrio|Lato" rel="stylesheet">
     <!-- link for google maps -->
     <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCDDzJPPcQuw_HAopGmYnkGYO-pK4pxw_U&region=GB"></script>
     <script src="bundle.js"></script>
@@ -16,22 +18,24 @@
   </head>
   <body>
 
-    <div class="row main-content" >
+    <div class="container-fluid">
+    <div class="row" id="map-info-row">
+
 
         <div class="col-md-3">
           <div class="row">
-            <div id="info" class="">
+            <div id="info" class="color1">
               <h1>CRIMEWALKS</h1>
 
             </div>
           </div>
 
-          <div class="row">
-            <div class="blue content-block" id="start-finish-section">
+          <div class="row" id="left-section">
+            <div class="color2 content-block" id="start-finish-section">
               <label for="new-location">Enter a Location</label>
               <input type="text" name="NewLocation" id="new-location">
               <button class='btn' id=submit-new-location>Submit Location</button>
-              <p><button class="btn" id="geolocate">where am i</button></p>
+              <button class="btn" id="geolocate"><i class="fa fa-location-arrow"></i></button>
               <p><select id="start">
 
                 <option disabled selected hidden>choose start:</option>
@@ -52,7 +56,7 @@
           </div>
 
           <div class="row">
-            <div class="thistle content-block" id="add-to-wish-list">
+            <div class="color3 content-block" id="add-to-wish-list">
 
                 <label for="walk-name">name your walk</label>
                 <input type="text" name="walk-name" id="walk-name" size="30">
@@ -76,15 +80,13 @@
 
 
         <div class="col-md-9" id='main-map'></div>
-
       </div>
 
-      <div class="row">
+      <div class="row" id="wishlist-completed-row">
 
 
+      <div class="col-md-6 info-section content-block color4" id="">
 
-
-      <div class="col-md-5 info-section content-block color3" id="">
           <h4>Wishlist</h4>
           <div class="" id="wishlist">
 
@@ -93,7 +95,8 @@
       </div>
 
 
-      <div class="col-md-5 info-section content-block color3" id="">
+      <div class="col-md-6 info-section content-block color4" id="">
+
         <h4>Completed Walks</h4>
         <div class="" id="completed-walks">
 
@@ -102,8 +105,22 @@
 
       </div>
 
+<!-- section for graph to appear in lightbox -->
+      <div id="chart-lightbox" class="lightbox">
+        <table class="lightbox-table">
+            <tr>
+                <td class="lightbox-table-cell" align="center">
 
-      <div id="column-chart"></div>
+                  <div id="lightbox-content"></div>
+
+                </td>
+            </tr>
+        </table>
+      </div>
+
+    </div>
+
+
   </body>
 
   </html>

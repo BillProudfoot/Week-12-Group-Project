@@ -1,12 +1,7 @@
 
-
-*{
-  /*border: solid red 1px;*/
-}
-
 body{
-  font-family: 'Arvo', serif;
-  background-image: url('img/ep_naturalwhite.png');
+  font-family: 'Lato', sans-serif;
+  background-image: url('img/concrete-texture.png');
 }
 
 label{
@@ -30,31 +25,40 @@ label{
   margin-top: 5px;
 }
 
-.red {
-  background-color: crimson;
+.color1 {
+  background-color: #DBB165;
 }
 
-.blue {
-  background-color: dodgerblue;
-}
-
-.thistle {
-  background-color: thistle;
+.color2 {
+  background-color: #DEB18B;
 }
 
 .color3 {
-  background-color: lightseagreen;
+  background-color: #61a487;
+}
+
+.color4 {
+  background-color: #D1362F;
+}
+
+.col-md-3 {
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .info-section{
   padding-left: 10px;
+  padding-right: 10px;
   height:300px;
   overflow: scroll;
+}
 
+.btn{
+  margin-top: 5px;
 }
 
 #main-map{
-  width: 75%;
+  width: 72%;
   height: 500px;
   box-shadow: 5px 0 5px 1px #ccc;
 }
@@ -63,20 +67,67 @@ label{
   padding: 10px;
   font-family: 'Barrio', cursive;
   text-align: center;
-  background-image: url('img/green_dust_scratch.png');
+  /*background-image: url('img/green_dust_scratch.png');*/
+  position: fixed;
+  margin-bottom: 10px;
+  top:0;
+  width:25%;
 }
 
-.btn{
-  margin-top: 5px;
+#map-info-row {
+  margin-bottom: 10px;
 }
 
-.main-content {
-  height: auto;
+#left-section {
+  margin-top: 100px;
+  margin-right: 10px;
 }
+
+
+
+
+
+/*light box css */
+
+.lightbox {
+   position:fixed;
+   display: none;
+   top:0;
+   left:0;
+   width:100%;
+   height:100%;
+   background:rgba(0, 0, 0, .8);
+}
+
+.lightbox_table {
+    width:100%;
+    height:100%;
+}
+
+
+.lightbox_table_cell {
+    vertical-align:middle;
+}
+
+#lightbox-content {
+    width:80%;
+    height:auto;
+    background-color:white;
+    border:5px solid black;
+}
+
+
+/*media queries*/
 
 @media only screen and (max-width: 960px) {
     #main-map {
+        margin-top: 10px;
         width:100%;
-        border: 5px white solid;
+        margin-bottom: 5px;
+    }
+
+    #info {
+      width:100%;
+      margin-right: 2px;
     }
 }
