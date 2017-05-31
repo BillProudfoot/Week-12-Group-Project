@@ -5,6 +5,7 @@ var MapWrapper = require('../mapWrapper.js');
 var RestCrimes = require('../models/restCrimes');
 var CrimesHelper = require('../models/crimesHelper');
 var ColumnChart = require('../models/columnChart.js');
+var LightBox = require('./lightbox')
 
 
 
@@ -13,6 +14,7 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
   this.crimesHelper = new CrimesHelper();
+  this.lightBox = new LightBox();
 
 
 
@@ -65,9 +67,9 @@ UI.prototype = {
           name: locationName,
           latlng: newLatLng
         }
-        
-        this.locations.add(locationToAdd, function(locations){
 
+        this.locations.add(locationToAdd, function(locations){
+          this.populateDropDown(locations);
         }.bind(this))
       }.bind(this))
 
@@ -170,7 +172,10 @@ UI.prototype = {
     crimeStats.innerText = "Crime Stats";
     div.appendChild(crimeStats);
     crimeStats.addEventListener('click', function(){
+      console.log("crime stats button click")
       this.populateColumnChart();
+      var lightBox = document.querySelector(".lightbox");
+      lightBox.style.display = "block";
     }.bind(this))
 
 

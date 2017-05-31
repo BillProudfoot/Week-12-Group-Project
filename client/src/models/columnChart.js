@@ -1,9 +1,9 @@
 var ColumnChart = function(catKeys, catValues){
-  var container = document.querySelector("#column-chart");
+  var container = document.querySelector("#lightbox-content");
 
   var chart = new Highcharts.Chart({
     chart: {
-     
+
       type: "column",
       renderTo: container
     },
