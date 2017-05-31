@@ -206,7 +206,7 @@ UI.prototype = {
         //create "show route" button - shows route on map on click
         var showRouteButton = document.createElement("button");
         showRouteButton.classList.add("btn", "showRoute");
-        showRouteButton.innerHTML = "<i class='fa fa-exchange'></i>";
+        showRouteButton.innerHTML = "<i class='fa fa-map-signs'></i>";
 
         //when the show route button is clicked it will show the route on
         //the map
