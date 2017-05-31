@@ -211,6 +211,7 @@ UI.prototype = {
         //which belong in the wishlist and ones for the completed walks div
         if (walk.completed === false){
         //populates wishlist
+        
         var p = document.createElement("p");
 
         var walkTitle = walk.name;
