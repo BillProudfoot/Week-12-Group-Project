@@ -16,8 +16,6 @@ var MapWrapper = function(mapDiv, coords, zoom) {
 
   this.directionsDisplay.setMap(this.googleMap);
   
-  console.log("CRIME ICONS", this.crimeIcons)
-  
 }
 
 
@@ -46,46 +44,66 @@ MapWrapper.prototype = {
     }.bind(this));
   },
 
-  addMarker: function (coords){
+  addMarker: function (coords, crimeImage){
 
-    var drugs = {
-        url: 'http://localhost:3000/img/drugsFinished.png', // url
-        scaledSize: new google.maps.Size(50, 50), // scaled size
-        origin: new google.maps.Point(0,0), // origin
-        anchor: new google.maps.Point(0, 0) // anchor
-    };
-
-    var mapImg = {
-        url: 'http://localhost:3000/img/crimeSceneFinished.png', // url
-        scaledSize: new google.maps.Size(60, 60), // scaled size
-        origin: new google.maps.Point(0,0), // origin
-        anchor: new google.maps.Point(0, 0) // anchor
-    };
+    // var crimeImg = {
+    //     url: imgSrc, 
+    //     scaledSize: new google.maps.Size(60, 60),
+    //     origin: new google.maps.Point(0,0),
+    //     anchor: new google.maps.Point(0, 0)
+    // };
 
 
     var marker = new google.maps.Marker({
       position: coords,
       map: this.googleMap,
       animation: google.maps.Animation.DROP,
-      icon: mapImg
+      icon: crimeImage
     });
     return marker;
   },
 
-  filterCrimeIcons: function(){
+  filterCrimeIcons: function(crime, coords){
 
+    var crimeIconObj = this.crimeIcons.crimePics
+    // console.log("crimeIconObj",crimeIconObj)
+    var imgKeys = Object.keys(crimeIconObj)
+    // console.log("imgKeys",imgKeys)
+    var imgSrc = Object.values(crimeIconObj)
+    // console.log("imgSrc", imgSrc)
+    // console.log("crime !!", crime.category)
+
+
+
+    for(var key of imgKeys){
+      if(key === crime.category){
+
+          var crimeImage = {
+          url: crimeIconObj[key], 
+          scaledSize: new google.maps.Size(60, 60),
+          origin: new google.maps.Point(0,0),
+          anchor: new google.maps.Point(0, 0)
+        }
+        console.log("Crime",crime)
+        this.addCrimeMarker(crime, crimeImage)
+      }
+    }
   },
 
-  addCrimeMarker(crime){
+
+  // var lat = parseFloat(crime.lat)
+  // var lng = parseFloat(crime.lng)
+
+  addCrimeMarker: function(crime, crimeImage){
     var category = crime[category];
-    var coords= {
-      lat: crime.lat,
-      lng: crime.lng
-    }
-    var marker = new google.Maps.Marker({
+      var lat = parseFloat(crime.lat)
+      var lng = parseFloat(crime.lng)
+    var coords = {lat: lat, lng: lng}
+    
+    var marker = new google.maps.Marker({
       position: coords,
-      map: this.map,
-      icon: crimePics[category]
+      map: this.googleMap,
+      icon: crimeImage
 
     })
   },

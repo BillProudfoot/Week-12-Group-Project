@@ -159,10 +159,11 @@ UI.prototype = {
       // console.log("this crimes array", this.crimesHelper.crimesArray[0].lat)
       // this.crimesHelper.countCategories();
       this.crimesHelper.crimesArray.forEach(function(crime){
+        var category = crime.category;
         var lat = parseFloat(crime.lat)
         var lng = parseFloat(crime.lng)
       var coords = {lat: lat, lng: lng}
-      this.mainMap.addMarker(coords);
+      this.mainMap.filterCrimeIcons(crime);
       }.bind(this))
     }.bind(this))
 
@@ -175,9 +176,6 @@ UI.prototype = {
 
 
   },
-
-
-
 
   populateWishListAndCompleted: function(){
     var wishlistDiv = document.querySelector("#wishlist");
