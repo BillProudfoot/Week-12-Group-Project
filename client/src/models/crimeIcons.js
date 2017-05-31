@@ -9,7 +9,7 @@ var CrimeIcons = function(){
       'possession-of-weapons': '../img/weaponFinished.png',
       'public-order': '../img/publicOrderFinished.png',
       'shoplifting': '../img/shopliftingFinished.png',
-      // 'vehicle-crime': '',
+      'vehicle-crime': '../img/vehicleTheftFinished.png',
       'violent-crime': '../img/crimeSceneFinished.png',
     }
   
