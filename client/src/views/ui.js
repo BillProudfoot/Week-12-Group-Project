@@ -67,11 +67,21 @@ UI.prototype = {
         }
 
         this.locations.add(locationToAdd, function(locations){
-          this.populateDropDown(locations);
+          this.populateDropDown();
+          // var startSelect = document.querySelector('#start');
+          // var finishSelect = document.querySelector('#finish');
+          // var index = locationToAdd.index;
+          // console.log(index);
+          // var option = this.createDropDownOption(locationToAdd, index);
+          // console.log(option);
+          // startSelect.appendChild(option);
+          // var option = this.createDropDownOption(locationToAdd, index);
+          // finishSelect.appendChild(option);
         }.bind(this))
       }.bind(this))
 
     }.bind(this))
+    this.populateDropDown();
   },
 
 
@@ -212,7 +222,7 @@ UI.prototype = {
         //which belong in the wishlist and ones for the completed walks div
         if (walk.completed === false){
         //populates wishlist
-        
+
         var p = document.createElement("p");
 
         var walkTitle = walk.name;
