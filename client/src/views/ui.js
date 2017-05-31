@@ -172,7 +172,10 @@ UI.prototype = {
     crimeStats.innerText = "Crime Stats";
     div.appendChild(crimeStats);
     crimeStats.addEventListener('click', function(){
+      console.log("crime stats button click")
       this.populateColumnChart();
+      var lightBox = document.querySelector(".lightbox");
+      lightBox.style.display = "block";
     }.bind(this))
 
 

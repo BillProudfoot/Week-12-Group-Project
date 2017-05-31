@@ -74,6 +74,7 @@ label{
 
 .lightbox {
    position:fixed;
+   display: none;
    top:0;
    left:0;
    width:100%;
@@ -89,6 +90,13 @@ label{
 
 .lightbox_table_cell {
     vertical-align:middle;
+}
+
+#lightbox-content {
+    width:80%;
+    height:auto;
+    background-color:white;
+    border:5px solid black;
 }
 
 
