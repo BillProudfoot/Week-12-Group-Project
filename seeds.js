@@ -41,7 +41,7 @@ db.walks.insert([
   {
     name: "High Steet Walk",
     start: "Newcastle City Hall",
-    finish: "High Street Gateside",
+    finish: "High Street Gateshead",
     completed: false,
     startlatlng: {lat: 54.977068, lng: -1.610123},
     finishlatlng: {lat: 54.962064, lng: -1.600266}

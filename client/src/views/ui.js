@@ -198,9 +198,6 @@ UI.prototype = {
         showRouteButton.classList.add("btn", "showRoute");
         showRouteButton.innerText = "show route";
 
-
-        console.log(walk.startlatlng);
-        console.log(walk);
         showRouteButton.addEventListener("click", function() {
           var startlatlng = walk.startlatlng;
           var finishlatlng = walk.finishlatlng;
