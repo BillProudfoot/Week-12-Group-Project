@@ -91,7 +91,6 @@ MapWrapper.prototype = {
   },
 
   onChangeHandler: function() {
-    console.log("OLD ROUTE",document.getElementById("start").options[start.selectedIndex].latlng)
     this.calculateAndDisplayRoute(this.directionsService, this.directionsDisplay);
   },
 
@@ -111,7 +110,6 @@ MapWrapper.prototype = {
   },
 
   onShowRoute: function(startlatlng, finishlatlng) {
-    console.log("NEW ROUTE", startlatlng)
     this.calculateAndDisplayWishlistRoute(this.directionsService, this.directionsDisplay, startlatlng, finishlatlng);
   },
 

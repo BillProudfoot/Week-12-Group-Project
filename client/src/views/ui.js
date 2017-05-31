@@ -49,7 +49,6 @@ UI.prototype = {
     var categories = this.crimesHelper.countCategories();
     var catKeys = Object.keys(categories)
     var catValues = Object.values(categories)
-    console.log(catKeys)
     this.columnChart = new ColumnChart(catKeys, catValues);
   },
 
@@ -59,7 +58,6 @@ UI.prototype = {
     newLocationButton.addEventListener('click', function(){
 
       this.mainMap.geocodeAddress(usersNewLocation.value, function(newLatLng){
-      console.log("USER ENTERED LOCATION LATLNG: ", newLatLng);
       var locationName = usersNewLocation.value;
       usersNewLocation.value = "";
 
@@ -161,13 +159,9 @@ UI.prototype = {
           var lat = parseFloat(crime.lat)
           var lng = parseFloat(crime.lng)
         var coords = {lat: lat, lng: lng}
-        console.log(crime)
         this.mainMap.filterCrimeIcons(crime, coords);
         }.bind(this))
       }.bind(this))
-      // console.log("this crimes array", this.crimesHelper.crimesArray)
-      // console.log("this crimes array", this.crimesHelper.crimesArray[0].lat)
-      // this.crimesHelper.countCategories();
 
     }.bind(this));
 
@@ -176,7 +170,6 @@ UI.prototype = {
     crimeStats.innerHTML = "<i class='fa fa-bar-chart' aria-hidden='true'></i>";
     div.appendChild(crimeStats);
     crimeStats.addEventListener('click', function(){
-      console.log("crime stats button click")
       this.populateColumnChart();
       var lightBox = document.querySelector(".lightbox");
       lightBox.style.display = "block";
@@ -192,9 +185,8 @@ UI.prototype = {
     completedDiv.innerText = "";
     this.walks.all(function(walks){
       walks.forEach(function(walk){
-        console.log(walk);
 
-        //creates delete button - deletes walk on click
+        //creates delete button - "deletes" walk on click
         var deleteButton = document.createElement("button");
         deleteButton.classList.add("btn", "delete");
         deleteButton.innerHTML = "<i class='fa fa-times'></i>";

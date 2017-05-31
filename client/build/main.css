@@ -14,7 +14,7 @@ label{
 
 .content-block {
   padding-bottom: 10px;
-  padding-left: 3px;
+  padding-left: 6px;
   padding-top: 3px;
   margin-top: 10px;
   box-shadow: 5px 0 5px 1px #ccc;
@@ -60,6 +60,7 @@ label{
 #main-map{
   width: 72%;
   height: 500px;
+  margin-left: 15px;
   box-shadow: 5px 0 5px 1px #ccc;
 }
 
@@ -71,7 +72,9 @@ label{
   position: fixed;
   margin-bottom: 10px;
   top:0;
+  z-index:100;
   width:25%;
+  box-shadow: 5px 0 5px 1px #ccc;
 }
 
 #map-info-row {
@@ -80,7 +83,6 @@ label{
 
 #left-section {
   margin-top: 100px;
-  margin-right: 10px;
 }
 
 
