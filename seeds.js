@@ -40,15 +40,11 @@ db.locations.insert([
 db.walks.insert([
   {
     name: "High Steet Walk",
-    start: "High Street",
+    start: "Newcastle City Hall",
     finish: "High Street Gateside",
-    completed: false
-  },
-  {
-    name: "Bridge to Banks",
-    start: "Barras Bridge",
-    finish: "Forth Banks",
-    completed: true
+    completed: false,
+    startlatlng: {lat: 54.977068, lng: -1.610123},
+    finishlatlng: {lat: 54.962064, lng: -1.600266}
   }
 //trying to seed with this code didn't work until
 //i added in the comma after the curly bracket
