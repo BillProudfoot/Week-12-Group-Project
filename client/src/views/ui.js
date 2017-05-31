@@ -192,6 +192,11 @@ UI.prototype = {
     this.walks.all(function(walks){
       walks.forEach(function(walk){
 
+        //creates delete button
+        var deleteButton = document.createElement("button");
+        deleteButton.classList.add("btn", "delete");
+        deleteButton.innerText = "delete";
+
         //create "show route" button outside if statement so it can be
         //appended to both wishlist and completed walks
         var showRouteButton = document.createElement("button");
@@ -231,6 +236,7 @@ UI.prototype = {
         }.bind(this))
         p.appendChild(completedButton);
         p.appendChild(showRouteButton);
+        p.appendChild(deleteButton);
         wishlistDiv.appendChild(p);
       }
 
