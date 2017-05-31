@@ -195,7 +195,7 @@ UI.prototype = {
         //creates delete button
         var deleteButton = document.createElement("button");
         deleteButton.classList.add("btn", "delete");
-        deleteButton.innerText = "delete";
+        deleteButton.innerHTML = "<i class='fa fa-times'></i>";
 
         //create "show route" button outside if statement so it can be
         //appended to both wishlist and completed walks
