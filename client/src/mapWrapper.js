@@ -1,21 +1,29 @@
+var CrimeIcons = require('./models/crimeIcons')
+
 var MapWrapper = function(mapDiv, coords, zoom) {
 
   this.directionsService = new google.maps.DirectionsService;
   this.directionsDisplay = new google.maps.DirectionsRenderer;
   this.geocoder = new google.maps.Geocoder();
   this.marker = new google.maps.Marker();
+  this.crimeIcons = new CrimeIcons();
 
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
     zoom: zoom,
     scrollwheel: false
   });
+
   this.directionsDisplay.setMap(this.googleMap);
-     
+  
+  console.log("CRIME ICONS", this.crimeIcons)
+  
 }
 
 
 MapWrapper.prototype = {
+
+
 
   geocodeAddress: function(address, callback) {
     var ukAddress = address + " United Kingdom"
@@ -62,6 +70,24 @@ MapWrapper.prototype = {
       icon: mapImg
     });
     return marker;
+  },
+
+  filterCrimeIcons: function(){
+
+  },
+
+  addCrimeMarker(crime){
+    var category = crime[category];
+    var coords= {
+      lat: crime.lat,
+      lng: crime.lng
+    }
+    var marker = new google.Maps.Marker({
+      position: coords,
+      map: this.map,
+      icon: crimePics[category]
+
+    })
   },
 
   addClickEvent: function (){

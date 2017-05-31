@@ -70,6 +70,10 @@ label{
   margin-top: 5px;
 }
 
+.main-content {
+  height: auto;
+}
+
 @media only screen and (max-width: 960px) {
     #main-map {
         width:100%;
