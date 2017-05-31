@@ -197,12 +197,19 @@ UI.prototype = {
         deleteButton.classList.add("btn", "delete");
         deleteButton.innerHTML = "<i class='fa fa-times'></i>";
 
+        deleteButton.addEventListener("click", function() {
+          console.log("delete button is being clicked");
+          p.innerText = "";
+        });
+
         //create "show route" button outside if statement so it can be
         //appended to both wishlist and completed walks
         var showRouteButton = document.createElement("button");
         showRouteButton.classList.add("btn", "showRoute");
         showRouteButton.innerHTML = "<i class='fa fa-exchange'></i>";
 
+        //when the show route button is clicked it will show the route on
+        //the map
         showRouteButton.addEventListener("click", function() {
           var startlatlng = walk.startlatlng;
           var finishlatlng = walk.finishlatlng;
