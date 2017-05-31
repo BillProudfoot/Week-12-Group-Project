@@ -69,7 +69,7 @@ UI.prototype = {
         }
 
         this.locations.add(locationToAdd, function(locations){
-          this.populateDropDown(locations);
+          // this.populateDropDown(locations);
         }.bind(this))
       }.bind(this))
 
@@ -211,7 +211,7 @@ UI.prototype = {
         //which belong in the wishlist and ones for the completed walks div
         if (walk.completed === false){
         //populates wishlist
-        
+
         var p = document.createElement("p");
 
         var walkTitle = walk.name;
