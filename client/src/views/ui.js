@@ -47,7 +47,7 @@ UI.prototype = {
     var categories = this.crimesHelper.countCategories();
     var catKeys = Object.keys(categories)
     var catValues = Object.values(categories)
-
+    console.log(catKeys)
     this.columnChart = new ColumnChart(catKeys, catValues);
   },
 

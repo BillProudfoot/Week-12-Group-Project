@@ -39,13 +39,27 @@ MapWrapper.prototype = {
   },
 
   addMarker: function (coords){
-    
-    // var drugs = 'http://localhost:3000/img/baseball-bat.png'
+
+    var drugs = {
+        url: 'http://localhost:3000/img/drugsFinished.png', // url
+        scaledSize: new google.maps.Size(50, 50), // scaled size
+        origin: new google.maps.Point(0,0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
+    };
+
+    var mapImg = {
+        url: 'http://localhost:3000/img/weaponFinished.png', // url
+        scaledSize: new google.maps.Size(50, 50), // scaled size
+        origin: new google.maps.Point(0,0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
+    };
+
+
     var marker = new google.maps.Marker({
       position: coords,
       map: this.googleMap,
       animation: google.maps.Animation.DROP,
-      // icon: drugs
+      icon: mapImg
     });
     return marker;
   },
