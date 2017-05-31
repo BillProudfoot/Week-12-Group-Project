@@ -6,7 +6,8 @@
 
 body{
   font-family: 'Lato', sans-serif;
-  background-image: url('img/ep_naturalwhite.png');
+  /*background-image: url('img/ep_naturalwhite.png');*/
+  background-color: #ffffff;
 }
 
 label{
@@ -30,30 +31,37 @@ label{
   margin-top: 5px;
 }
 
-.red {
-  background-color: crimson;
+.color1 {
+  background-color: #DBB165;
 }
 
-.blue {
-  background-color: dodgerblue;
-}
-
-.thistle {
-  background-color: thistle;
+.color2 {
+  background-color: #DEB18B;
 }
 
 .color3 {
-  background-color: lightseagreen;
+  background-color: #2E604A;
+}
+
+.color4 {
+  background-color: #D1362F;
+}
+
+.col-md-3 {
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .info-section{
   padding-left: 10px;
-  margin-right:10px;
+  padding-right: 10px;
   height:300px;
   overflow: scroll;
 }
 
-
+.btn{
+  margin-top: 5px;
+}
 
 #main-map{
   width: 75%;
@@ -63,23 +71,20 @@ label{
 
 #info{
   padding: 10px;
-  width: 100%;
   font-family: 'Barrio', cursive;
   text-align: center;
-  background-image: url('img/green_dust_scratch.png');
+  /*background-image: url('img/green_dust_scratch.png');*/
+  position: fixed;
+  margin-bottom: 10px;
+  top:0;
+  width:25%;
 }
 
-#map-info-row {
-  /*margin-bottom:2px;*/
+#left-section {
+  margin-top: 100px;
 }
 
-#wishlist-completed-row {
-  margin-top:10px;
-}
 
-.btn{
-  margin-top: 5px;
-}
 
 /*light box css */
 
@@ -93,13 +98,13 @@ label{
    background:rgba(0, 0, 0, .8);
 }
 
-.lightbox-table {
+.lightbox_table {
     width:100%;
     height:100%;
 }
 
 
-.lightbox-table-cell {
+.lightbox_table_cell {
     vertical-align:middle;
 }
 
@@ -115,8 +120,13 @@ label{
 
 @media only screen and (max-width: 960px) {
     #main-map {
-        padding: inherit;
+        margin-top: 10px;
         width:100%;
-        height: 350px;
+        margin-bottom: 5px;
+    }
+
+    #info {
+      width:100%;
+      margin-right: 2px;
     }
 }
