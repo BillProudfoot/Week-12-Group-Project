@@ -33,7 +33,11 @@
           <div class="row" id="left-section">
             <div class="color2 content-block" id="start-finish-section">
               <label for="new-location">Enter a Location</label>
-              <input type="text" name="NewLocation" id="new-location">
+              <div class="form-group col-sm-12">
+
+
+                <input type="text" name="NewLocation" id="new-location" class="form-control" size="20">
+              </div>
               <button class='btn' id=submit-new-location>Submit Location</button>
               <button class="btn" id="geolocate"><i class="fa fa-location-arrow"></i></button>
               <p><select id="start">
@@ -59,8 +63,9 @@
             <div class="color3 content-block" id="add-to-wish-list">
 
                 <label for="walk-name">name your walk</label>
-                <input type="text" name="walk-name" id="walk-name" size="30">
-
+                <div class="form-group col-sm-12">
+                  <input type="text" name="walk-name" class="form-control" id="walk-name" size="20">
+                </div>
                 <div class="" id="start-point-wish-list">
                   Start point:
                 </div>
