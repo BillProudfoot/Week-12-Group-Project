@@ -70,6 +70,30 @@ label{
   margin-top: 5px;
 }
 
+/*light box css */
+
+.lightbox {
+   position:fixed;
+   top:0;
+   left:0;
+   width:100%;
+   height:100%;
+   background:rgba(0, 0, 0, .8);
+}
+
+.lightbox_table {
+    width:100%;
+    height:100%;
+}
+
+
+.lightbox_table_cell {
+    vertical-align:middle;
+}
+
+
+/*media queries*/
+
 @media only screen and (max-width: 960px) {
     #main-map {
         width:100%;

@@ -5,6 +5,7 @@ var MapWrapper = require('../mapWrapper.js');
 var RestCrimes = require('../models/restCrimes');
 var CrimesHelper = require('../models/crimesHelper');
 var ColumnChart = require('../models/columnChart.js');
+var LightBox = require('./lightbox')
 
 
 
@@ -13,6 +14,7 @@ var UI = function() {
   this.walks = new Walks();
   this.restCrimes = new RestCrimes();
   this.crimesHelper = new CrimesHelper();
+  this.lightBox = new LightBox();
 
 
 
