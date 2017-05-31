@@ -66,6 +66,7 @@ MapWrapper.prototype = {
   },
 
   onChangeHandler: function() {
+    console.log("OLD ROUTE",document.getElementById("start").options[start.selectedIndex].latlng)
     this.calculateAndDisplayRoute(this.directionsService, this.directionsDisplay);
   },
 
@@ -73,6 +74,26 @@ MapWrapper.prototype = {
     directionsService.route({
       origin: document.getElementById("start").options[start.selectedIndex].latlng,
       destination: document.getElementById("finish").options[finish.selectedIndex].latlng,
+      travelMode: "WALKING",
+      region: "UK"
+    }, function(response, status) {
+      if (status === "OK") {
+        directionsDisplay.setDirections(response);
+      } else {
+        console.log("Failed to get directions " + status);
+      }
+    });
+  },
+
+  onShowRoute: function(startlatlng, finishlatlng) {
+    console.log("NEW ROUTE", startlatlng)
+    this.calculateAndDisplayWishlistRoute(this.directionsService, this.directionsDisplay, startlatlng, finishlatlng);
+  },
+
+  calculateAndDisplayWishlistRoute: function(directionsService, directionsDisplay, startlatlng, finishlatlng) {
+    directionsService.route({
+      origin: startlatlng,
+      destination: finishlatlng,
       travelMode: "WALKING",
       region: "UK"
     }, function(response, status) {

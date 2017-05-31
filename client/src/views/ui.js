@@ -193,10 +193,13 @@ UI.prototype = {
         showRouteButton.classList.add("btn", "showRoute");
         showRouteButton.innerText = "show route";
 
+
+        console.log(walk.startlatlng);
+        console.log(walk);
         showRouteButton.addEventListener("click", function() {
-          var start = document.querySelector("#start");
-          var finish = document.querySelector("#finish");
-          this.mainMap.onChangeHandler();
+          var startlatlng = walk.startlatlng;
+          var finishlatlng = walk.finishlatlng;
+          this.mainMap.onShowRoute(startlatlng, finishlatlng);
         }.bind(this));
 
         //this handles going through all walks and separates them into ones
