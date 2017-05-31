@@ -34,7 +34,7 @@ label{
 }
 
 .color3 {
-  background-color: #2E604A;
+  background-color: #61a487;
 }
 
 .color4 {
@@ -58,7 +58,7 @@ label{
 }
 
 #main-map{
-  width: 75%;
+  width: 72%;
   height: 500px;
   box-shadow: 5px 0 5px 1px #ccc;
 }
@@ -74,9 +74,16 @@ label{
   width:25%;
 }
 
+#map-info-row {
+  margin-bottom: 10px;
+}
+
 #left-section {
   margin-top: 100px;
+  margin-right: 10px;
 }
+
+
 
 
 
