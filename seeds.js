@@ -8,7 +8,7 @@ db.locations.insert([
   },
   {
   name: "Horsham Library",
-  latlng: { lat: 51.0621, lng: 0.3328 }
+  latlng: { lat: 51.0607901, lng: -0.3322183999999879 }
   },
   {
     name: "Barras Bridge",
