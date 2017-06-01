@@ -67,21 +67,20 @@ UI.prototype = {
         }
 
         this.locations.add(locationToAdd, function(locations){
-          
-          // var startSelect = document.querySelector('#start');
-          // var finishSelect = document.querySelector('#finish');
-          // var index = locationToAdd.index;
-          // console.log(index);
-          // var option = this.createDropDownOption(locationToAdd, index);
-          // console.log(option);
-          // startSelect.appendChild(option);
-          // var option = this.createDropDownOption(locationToAdd, index);
-          // finishSelect.appendChild(option);
+
+          var startSelect = document.querySelector('#start');
+          var finishSelect = document.querySelector('#finish');
+          var index = locations.length -1
+          var option = this.createDropDownOption(locationToAdd, index);
+          startSelect.appendChild(option);
+          var option = this.createDropDownOption(locationToAdd, index);
+          finishSelect.appendChild(option);
+          this.populateDropDown(locations)
+          this.locationsArray = locations
         }.bind(this))
       }.bind(this))
-      
     }.bind(this))
-    
+
   },
 
 
@@ -108,6 +107,9 @@ UI.prototype = {
     var startSelect = document.querySelector('#start');
     var finishSelect = document.querySelector('#finish');
 
+    startSelect.innerHTML = ""
+    finishSelect.innerHTML = ""
+
     locations.forEach(function(location, index){
       var option = this.createDropDownOption(location, index);
       startSelect.appendChild(option);
@@ -126,14 +128,10 @@ UI.prototype = {
     var startPointText = document.querySelector("#start-point-wish-list");
     var finishPointText = document.querySelector("#finish-point-wish-list");
     var walkNameText = document.querySelector("#walk-name");
-    // this.mainMap.onChangeHandler = this.mainMap.onChangeHandler.bind(this.mainMap);
-
 
     getRouteButton.addEventListener('click', function(){
 
       if(start.value === 'Choose your starting Location' || finish.value === 'Choose your finishing Location') return;
-
-
 
       var startName = start.options[start.selectedIndex].text;
       var finishName = finish.options[finish.selectedIndex].text;
@@ -153,7 +151,7 @@ UI.prototype = {
     div.innerHTML = ""
     var crimeButton = document.createElement("button");
     crimeButton.classList.add("btn")
-    crimeButton.innerText = "crimes!!!!!!!!!!!";
+    crimeButton.innerHTML = "<i class='fa fa-eye' aria-hidden='true'></i>";
     var getRouteButton = document.querySelector("#get-route");
     var start = document.querySelector("#start");
     var finish = document.querySelector("#finish");
@@ -196,7 +194,7 @@ UI.prototype = {
     this.walks.all(function(walks){
       walks.forEach(function(walk){
 
-        //creates delete button - "deletes" walk on click
+        //creates delete button - deletes walk on click
         var deleteButton = document.createElement("button");
         deleteButton.classList.add("btn", "delete");
         deleteButton.innerHTML = "<i class='fa fa-times'></i>";

@@ -46,6 +46,10 @@ select {
   background-color: #D1362F;
 }
 
+.color5 {
+  background-color: #598ec4;
+}
+
 .col-md-3 {
   padding-left: 2px;
   padding-right: 2px;
@@ -119,7 +123,8 @@ select {
 
 #lightbox-content {
     width:80%;
-    height:auto;
+    /*margin: 0 auto;
+    height:auto;*/
     background-color:white;
     border:5px solid black;
 }
