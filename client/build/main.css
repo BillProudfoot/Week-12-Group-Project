@@ -119,12 +119,12 @@ select {
 
 .lightbox_table_cell {
     vertical-align:middle;
+    align-items: center;
 }
 
 #lightbox-content {
     width:80%;
-    /*margin: 0 auto;
-    height:auto;*/
+    height:auto;
     background-color:white;
     border:5px solid black;
 }
