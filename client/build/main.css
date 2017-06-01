@@ -41,6 +41,10 @@ label{
   background-color: #D1362F;
 }
 
+.color5 {
+  background-color: #598ec4;
+}
+
 .col-md-3 {
   padding-left: 2px;
   padding-right: 2px;
@@ -109,6 +113,7 @@ label{
 
 .lightbox_table_cell {
     vertical-align:middle;
+    align-items: center;
 }
 
 #lightbox-content {
