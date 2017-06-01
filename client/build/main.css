@@ -1,4 +1,6 @@
-
+* {
+  border: solid red 2px;
+}
 body {
   font-family: 'Lato', sans-serif;
   background-image: url('img/concrete-texture.png');
@@ -119,12 +121,12 @@ select {
 
 .lightbox_table_cell {
     vertical-align:middle;
-    align-items: center;
 }
 
 #lightbox-content {
     width:80%;
-    height:auto;
+    /*margin: 0 auto;
+    height:auto;*/
     background-color:white;
     border:5px solid black;
 }
