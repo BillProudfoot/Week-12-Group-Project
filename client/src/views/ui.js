@@ -67,7 +67,7 @@ UI.prototype = {
         }
 
         this.locations.add(locationToAdd, function(locations){
-          
+
           var startSelect = document.querySelector('#start');
           var finishSelect = document.querySelector('#finish');
           var index = locations.length -1
@@ -88,7 +88,7 @@ UI.prototype = {
 
       }.bind(this))
     }.bind(this))
-    
+
   },
 
 
@@ -296,6 +296,8 @@ UI.prototype = {
       //gets details of walk and saves them to database, with completed
       //value as false so they are added to the wish list
       var walkName = walkNameField.value;
+      console.log(walkNameField.value);
+      walkNameField.value = "";
       var startName = start.options[start.selectedIndex].text;
       var finishName = finish.options[finish.selectedIndex].text;
       var startlatlng = start.options[start.selectedIndex].latlng;
