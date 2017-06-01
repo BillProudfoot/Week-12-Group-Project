@@ -153,7 +153,7 @@ UI.prototype = {
     div.innerHTML = ""
     var crimeButton = document.createElement("button");
     crimeButton.classList.add("btn")
-    crimeButton.innerText = "crimes!!!!!!!!!!!";
+    crimeButton.innerHTML = "<i class='fa fa-eye' aria-hidden='true'></i>";
     var getRouteButton = document.querySelector("#get-route");
     var start = document.querySelector("#start");
     var finish = document.querySelector("#finish");
