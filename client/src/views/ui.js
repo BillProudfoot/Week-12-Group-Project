@@ -79,7 +79,7 @@ UI.prototype = {
           // finishSelect.appendChild(option);
         }.bind(this))
       }.bind(this))
-
+      
     }.bind(this))
     
   },
