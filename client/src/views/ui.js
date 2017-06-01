@@ -67,21 +67,28 @@ UI.prototype = {
         }
 
         this.locations.add(locationToAdd, function(locations){
-          this.populateDropDown();
-          // var startSelect = document.querySelector('#start');
-          // var finishSelect = document.querySelector('#finish');
-          // var index = locationToAdd.index;
-          // console.log(index);
-          // var option = this.createDropDownOption(locationToAdd, index);
-          // console.log(option);
-          // startSelect.appendChild(option);
-          // var option = this.createDropDownOption(locationToAdd, index);
-          // finishSelect.appendChild(option);
-        }.bind(this))
-      }.bind(this))
+          
+          var startSelect = document.querySelector('#start');
+          var finishSelect = document.querySelector('#finish');
+          var index = locations.length -1
+          console.log("INDEX ", index);
+          var option = this.createDropDownOption(locationToAdd, index);
+          console.log("Option",option);
+          startSelect.appendChild(option);
+          var option = this.createDropDownOption(locationToAdd, index);
+          finishSelect.appendChild(option);
+          console.log(this)
+          this.populateDropDown(locations)
+          console.log("locations LEN", locations.length)
 
+          this.locationsArray = locations
+
+
+        }.bind(this))
+
+      }.bind(this))
     }.bind(this))
-    this.populateDropDown();
+    
   },
 
 
@@ -107,6 +114,13 @@ UI.prototype = {
   populateDropDown: function(locations){
     var startSelect = document.querySelector('#start');
     var finishSelect = document.querySelector('#finish');
+
+    console.log("startSelect", startSelect)
+
+    startSelect.innerHTML = ""
+    finishSelect.innerHTML = ""
+
+    console.log("startSelect", startSelect)
 
     locations.forEach(function(location, index){
       var option = this.createDropDownOption(location, index);
@@ -161,6 +175,9 @@ UI.prototype = {
     div.appendChild(crimeButton);
 
     crimeButton.addEventListener('click', function(){
+
+      console.log("start.value", start.value)
+      console.log("this.locationsArray", this.locationsArray)
 
       var startLocation = this.locationsArray[start.value].latlng;
       var finishLocation = this.locationsArray[finish.value].latlng;

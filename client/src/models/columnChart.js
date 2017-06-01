@@ -16,6 +16,7 @@ var ColumnChart = function(catKeys, catValues){
             },
     series: [
         {
+          name: "Crime",
         data: catValues
         },
       ],
