@@ -3,12 +3,12 @@ db.dropDatabase();
 
 db.locations.insert([
   {
-  name: "TEST LOCATION 1",
-  latlng: { lat: 55.051556, lng: -1.627601000000027 }
+  name: "Caroline's Parents' House",
+  latlng: { lat: 51.0681597, lng: -0.32122030000005 }
   },
   {
-  name: "TEST LOCATION 2",
-  latlng: { lat: 55.05944599999999, lng: -1.6299360000000434 }
+  name: "Horsham Library",
+  latlng: { lat: 51.0607901, lng: -0.3322183999999879 }
   },
   {
     name: "Barras Bridge",
