@@ -224,7 +224,7 @@ UI.prototype = {
         var p = document.createElement("p");
 
         var walkTitle = walk.name;
-        p.innerText = walkTitle + "  " ;
+        p.innerText = walkTitle + "\xa0\xa0\xa0\xa0\xa0\xa0" ;
 
         //creates "completed" button
         var completedButton = document.createElement("button");
@@ -253,7 +253,7 @@ UI.prototype = {
         var p = document.createElement("p");
 
         var walkTitle = walk.name;
-        p.innerText = walkTitle;
+        p.innerText = walkTitle + "\xa0\xa0\xa0\xa0\xa0\xa0";
         p.appendChild(showRouteButton);
         p.appendChild(deleteButton);
         completedDiv.appendChild(p);
