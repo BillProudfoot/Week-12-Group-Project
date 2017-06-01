@@ -277,6 +277,7 @@ UI.prototype = {
       //gets details of walk and saves them to database, with completed
       //value as false so they are added to the wish list
       var walkName = walkNameField.value;
+      walkNameField.value = "";
       var startName = start.options[start.selectedIndex].text;
       var finishName = finish.options[finish.selectedIndex].text;
       var startlatlng = start.options[start.selectedIndex].latlng;
