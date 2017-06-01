@@ -40,11 +40,16 @@
               </div>
               <button class='btn' id=submit-new-location>Submit Location</button>
               <button class="btn" id="geolocate"><i class="fa fa-location-arrow"></i></button>
+              <br>
+              <p class="label">start:</p>
               <p><select id="start">
 
-                <option disabled selected hidden>choose start:</option>
 
               </select></p>
+              <p class = "label">
+
+              finish:
+              </p>
               <p><select id="finish">
               <option disabled selected hidden>choose finish: </option>
               </select></p>
@@ -112,18 +117,26 @@
 
 <!-- section for graph to appear in lightbox -->
       <div id="chart-lightbox" class="lightbox">
+        <center>
         <table class="lightbox-table">
             <tr>
-                <td class="lightbox-table-cell" align="center">
+
+                <td class="lightbox-table-cell">
+
+
 
 
 
                   <div id="lightbox-content"></div>
 
 
+
+
                 </td>
+
             </tr>
         </table>
+        </center>
       </div>
 
     </div>
