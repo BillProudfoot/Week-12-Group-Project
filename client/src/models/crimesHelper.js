@@ -15,13 +15,11 @@ CrimesHelper.prototype = {
       lat: avgLat,
       lng: avgLng
     }
-    // console.log(midpoint);
     return midpoint;
   },
 
   urlGenerator: function(coords){
     var baseUrl = 'https://data.police.uk/api/crimes-street/all-crime?lat=' + coords.lat + '&lng=' + coords.lng + '&date=2017-03';
-    // console.log(baseUrl);
     return baseUrl;
   },
 
@@ -50,17 +48,9 @@ CrimesHelper.prototype = {
         counterObject[category] +=1
       }
     }.bind(this))
-    console.log(counterObject)
     return counterObject;
   }
 
 }
 
 module.exports = CrimesHelper;
-
-// this.locations.all(function (locations) {
-
-// this.locationsArray = locations.map(function(location){
-//   return location;
-// }.bind(this))
-// }.bind(this));

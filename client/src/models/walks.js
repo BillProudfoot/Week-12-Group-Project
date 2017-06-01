@@ -40,7 +40,6 @@ Walks.prototype = {
       var resultsObject = JSON.parse(jsonString);
       callback(resultsObject);
     })
-    console.log(payload)
     request.send(payload);
   },
 
@@ -65,7 +64,6 @@ Walks.prototype = {
 
   update: function(walkToUpdate, callback) {
     var walkData = JSON.stringify(walkToUpdate);
-    console.log(walkData);
     this.makePutRequest('http://localhost:3000/api/walks', callback, walkData);
   }
 
