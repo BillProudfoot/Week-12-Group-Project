@@ -118,23 +118,6 @@ UI.prototype = {
 
   },
 
-  getRouteButtonHandler: function() {
-
-    var getRouteButton = document.querySelector("#get-route");
-    var start = document.querySelector("#start");
-    var finish = document.querySelector("#finish");
-    var startPointText = document.querySelector("#start-point-wish-list");
-    var finishPointText = document.querySelector("#finish-point-wish-list");
-    var walkNameText = document.querySelector("#walk-name");
-
-    getRouteButton.addEventListener('click', function(){
-
-      if(start.value === 'Choose your starting Location' || finish.value === 'Choose your finishing Location') return;
-
-      this.mainMap.onChangeHandler();
-      this.crimesOnRoute();
-    }.bind(this))
-  },
 
   crimesOnRoute: function(){
     var div = document.querySelector("#crime-button");
