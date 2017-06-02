@@ -1,16 +1,16 @@
 var DateHelper = function(){
-  this.months = { "Jan": 01,
-                  "Feb": 02,
-                  "Mar": 03,
-                  "Apr": 04,
-                  "May": 05,
-                  "Jun": 06,
-                  "Jul": 07,
-                  "Aug": 08,
-                  "Sep": 09,
-                  "Oct": 10,
-                  "Nov": 11,
-                  "Dec": 12
+  this.months = { "Jan": "01",
+                  "Feb": "02",
+                  "Mar": "03",
+                  "Apr": "04",
+                  "May": "05",
+                  "Jun": "06",
+                  "Jul": "07",
+                  "Aug": "08",
+                  "Sep": "09",
+                  "Oct": "10",
+                  "Nov": "11",
+                  "Dec": "12"
                 }
 
   this.years = [2011, 2012, 2013, 2014, 2015, 2016, 2017]
@@ -18,10 +18,11 @@ var DateHelper = function(){
 
 DateHelper.prototype = {
   populateMonthDropDown: function(select){
-    this.months.keys.forEach(function(month){
+    Object.keys(this.months).forEach(function(month){
+      console.log(month)
       var option = document.createElement("option")
       option.innerText = month;
-      option.value = months['month'];
+      option.value = this.months[month];
       select.appendChild(option);
     }.bind(this))
 

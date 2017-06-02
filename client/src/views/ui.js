@@ -17,8 +17,7 @@ var UI = function() {
   this.restCrimes = new RestCrimes();
   this.crimesHelper = new CrimesHelper();
   this.lightBox = new LightBox();
-
-
+  this.dateHelper = new DateHelper();
 
   var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;
@@ -33,10 +32,9 @@ var UI = function() {
   }.bind(this))
   }.bind(this));
 
-
-
-  this.getRouteButtonHandler();
   this.newLocationButtonHandler();
+  this.renderDateSelecters();
+  this.crimesOnRoute();
   this.loadMap();
 
 }
@@ -81,7 +79,6 @@ UI.prototype = {
 
   },
 
-
   loadMap: function(){
   this.mainMap.addClickEvent();
 
@@ -118,24 +115,27 @@ UI.prototype = {
 
   },
 
+  renderDateSelecters: function(){
+    var monthDropDown = document.querySelector("#month")
+    var yearDropDown = document.querySelector("#year")
+    this.dateHelper.populateMonthDropDown(monthDropDown);
+    this.dateHelper.populateYearDropDown(yearDropDown);
+  },
+
+
 
   crimesOnRoute: function(){
-    var div = document.querySelector("#crime-button");
-    div.innerHTML = ""
-    var crimeButton = document.createElement("button");
-    crimeButton.classList.add("btn")
-    crimeButton.innerHTML = "<i class='fa fa-eye' aria-hidden='true'></i>";
-    var getRouteButton = document.querySelector("#get-route");
     var start = document.querySelector("#start");
     var finish = document.querySelector("#finish");
-    div.innerText = "";
-    div.appendChild(crimeButton);
-
+    var monthSelect = document.querySelector("#month")
+    console.log(monthSelect);
+    var yearSelect = document.querySelector("#year")
+    var crimeButton = document.querySelector("#crime-button")
     crimeButton.addEventListener('click', function(){
-
+      console.log("crime button clicked")
       var startLocation = this.locationsArray[start.value].latlng;
       var finishLocation = this.locationsArray[finish.value].latlng;
-      this.crimesHelper.getCrimes(startLocation, finishLocation, function(){
+      this.crimesHelper.getCrimes("street-crime", startLocation, yearSelect.value, monthSelect.value, function(){
         this.crimesHelper.crimesArray.forEach(function(crime){
           var lat = parseFloat(crime.lat)
           var lng = parseFloat(crime.lng)
@@ -147,6 +147,7 @@ UI.prototype = {
     }.bind(this));
 
     var crimeStats = document.createElement("button");
+    var div = document.querySelector("#crime-button-div")
     crimeStats.classList.add("btn")
     crimeStats.innerHTML = "<i class='fa fa-bar-chart' aria-hidden='true'></i>";
     div.appendChild(crimeStats);
