@@ -65,12 +65,9 @@ UI.prototype = {
         this.locations.add(locationToAdd, function(locations){
 
           var startSelect = document.querySelector('#start');
-          var finishSelect = document.querySelector('#finish');
           var index = locations.length -1
           var option = this.createDropDownOption(locationToAdd, index);
           startSelect.appendChild(option);
-          var option = this.createDropDownOption(locationToAdd, index);
-          finishSelect.appendChild(option);
           this.populateDropDown(locations)
           this.locationsArray = locations
         }.bind(this))
@@ -100,16 +97,12 @@ UI.prototype = {
 
   populateDropDown: function(locations){
     var startSelect = document.querySelector('#start');
-    var finishSelect = document.querySelector('#finish');
 
     startSelect.innerHTML = ""
-    finishSelect.innerHTML = ""
 
     locations.forEach(function(location, index){
       var option = this.createDropDownOption(location, index);
       startSelect.appendChild(option);
-      var option = this.createDropDownOption(location, index);
-      finishSelect.appendChild(option);
     }.bind(this))
 
 
@@ -126,7 +119,6 @@ UI.prototype = {
 
   crimesOnRoute: function(){
     var start = document.querySelector("#start");
-    var finish = document.querySelector("#finish");
     var monthSelect = document.querySelector("#month")
     console.log(monthSelect);
     var yearSelect = document.querySelector("#year")
@@ -134,7 +126,6 @@ UI.prototype = {
     crimeButton.addEventListener('click', function(){
       console.log("crime button clicked")
       var startLocation = this.locationsArray[start.value].latlng;
-      var finishLocation = this.locationsArray[finish.value].latlng;
       this.crimesHelper.getCrimes("street-crime", startLocation, yearSelect.value, monthSelect.value, function(){
         this.crimesHelper.crimesArray.forEach(function(crime){
           var lat = parseFloat(crime.lat)
