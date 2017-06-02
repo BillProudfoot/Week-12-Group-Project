@@ -5,7 +5,9 @@ var MapWrapper = require('../mapWrapper.js');
 var RestCrimes = require('../models/restCrimes');
 var CrimesHelper = require('../models/crimesHelper');
 var ColumnChart = require('../models/columnChart.js');
-var LightBox = require('./lightbox')
+var DateHelper = require('../models/dateHelper.js');
+var LightBox = require('./lightbox');
+
 
 
 
