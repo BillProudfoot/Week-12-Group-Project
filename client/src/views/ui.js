@@ -23,10 +23,6 @@ var UI = function() {
   var mapDiv = document.getElementById("main-map");
 
   this.mainMap = new MapWrapper(mapDiv, center, zoom);
-  this.walks.all(function(walks){
-    this.populateWishListAndCompleted(walks);
-
-  }.bind(this))
 
   this.locations.all(function (locations) {
   this.populateDropDown(locations)
@@ -36,7 +32,7 @@ var UI = function() {
   }.bind(this));
 
 
-  this.saveToWishListHandler();
+
   this.getRouteButtonHandler();
   this.newLocationButtonHandler();
   this.loadMap();
@@ -133,14 +129,6 @@ UI.prototype = {
 
       if(start.value === 'Choose your starting Location' || finish.value === 'Choose your finishing Location') return;
 
-      var startName = start.options[start.selectedIndex].text;
-      var finishName = finish.options[finish.selectedIndex].text;
-
-      startPointText.innerText = "Start point: " + startName;
-      finishPointText.innerText = "Finish point: " + finishName;
-
-      var walkName = startName + " to " + finishName;
-      walkNameText.value = walkName;
       this.mainMap.onChangeHandler();
       this.crimesOnRoute();
     }.bind(this))
@@ -184,119 +172,8 @@ UI.prototype = {
     }.bind(this))
 
 
-  },
-
-  populateWishListAndCompleted: function(){
-    var wishlistDiv = document.querySelector("#wishlist");
-    var completedDiv = document.querySelector("#completed-walks")
-    wishlistDiv.innerText = "";
-    completedDiv.innerText = "";
-    this.walks.all(function(walks){
-      walks.forEach(function(walk){
-
-        //creates delete button - deletes walk on click
-        var deleteButton = document.createElement("button");
-        deleteButton.classList.add("btn", "delete");
-        deleteButton.innerHTML = "<i class='fa fa-times'></i>";
-
-        deleteButton.addEventListener("click", function() {
-          p.innerText = "";
-        });
-
-        //create "show route" button - shows route on map on click
-        var showRouteButton = document.createElement("button");
-        showRouteButton.classList.add("btn", "showRoute");
-        showRouteButton.innerHTML = "<i class='fa fa-map-signs'></i>";
-
-        //when the show route button is clicked it will show the route on
-        //the map
-        showRouteButton.addEventListener("click", function() {
-          var startlatlng = walk.startlatlng;
-          var finishlatlng = walk.finishlatlng;
-          this.mainMap.onShowRoute(startlatlng, finishlatlng);
-        }.bind(this));
-
-        //this handles going through all walks and separates them into ones
-        //which belong in the wishlist and ones for the completed walks div
-        if (walk.completed === false){
-        //populates wishlist
-
-        var p = document.createElement("p");
-
-        var walkTitle = walk.name;
-        p.innerText = walkTitle + "\xa0\xa0\xa0\xa0\xa0\xa0" ;
-
-        //creates "completed" button
-        var completedButton = document.createElement("button");
-        completedButton.value = JSON.stringify(walk);
-        completedButton.classList.add("btn", "completed");
-        completedButton.innerHTML = "<i class='fa fa-check  '></i>";
-
-        //adds functionality to button where when it is clicked the walk
-        // is marked as completed
-        completedButton.addEventListener('click', function(){
-          var walkToUpdate = walk;
-          walkToUpdate.completed = true;
-          this.walks.update(walkToUpdate, function(){
-          }.bind(this))
-          completedDiv.appendChild(p);
-          completedButton.style.display = "none";
-        }.bind(this))
-        p.appendChild(completedButton);
-        p.appendChild(showRouteButton);
-        p.appendChild(deleteButton);
-        wishlistDiv.appendChild(p);
-      }
-
-      //if a walk is completed sends it to the correct div
-      else if (walk.completed === true) {
-        var p = document.createElement("p");
-
-        var walkTitle = walk.name;
-        p.innerText = walkTitle + "\xa0\xa0\xa0\xa0\xa0\xa0";
-        p.appendChild(showRouteButton);
-        p.appendChild(deleteButton);
-        completedDiv.appendChild(p);
-      }
-    }.bind(this))
-
-    }.bind(this))
-  },
-
-  saveToWishListHandler: function(){
-    var start = document.querySelector("#start");
-    var finish = document.querySelector("#finish");
-    var saveButton = document.querySelector("#save-to-wishlist");
-    var walkNameField = document.querySelector("#walk-name");
-
-    var startName = start.options[start.selectedIndex].text;
-    var finishName = finish.options[finish.selectedIndex].text;
-
-    saveButton.addEventListener('click', function(){
-
-      //gets details of walk and saves them to database, with completed
-      //value as false so they are added to the wish list
-      var walkName = walkNameField.value;
-      walkNameField.value = "";
-      var startName = start.options[start.selectedIndex].text;
-      var finishName = finish.options[finish.selectedIndex].text;
-      var startlatlng = start.options[start.selectedIndex].latlng;
-      var finishlatlng = finish.options[finish.selectedIndex].latlng;
-
-        var walkToAdd = {
-          name: walkName,
-          start: startName,
-          finish: finishName,
-          completed: false,
-          startlatlng: startlatlng,
-          finishlatlng: finishlatlng,
-        }
-        this.walks.add(walkToAdd, function(){
-          this.populateWishListAndCompleted();
-        }.bind(this))
-    }.bind(this))
-
   }
+
 
 }
 
