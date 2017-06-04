@@ -24,13 +24,11 @@ CrimesHelper.prototype = {
   },
 
   urlGenerator: function(datatype, coords, year, month){
-    console.log("year", year)
-    console.log("month", month)
     var url = this.urls[datatype] + coords.lat + '&lng=' + coords.lng + '&date=' + year + "-" + month;
     return url;
   },
 
-  getCrimes: function(datatype, coords, year, month, callback,){
+  getResults: function(datatype, coords, year, month, callback,){
     // var midpoint = this.coordinateFinder(coords1, coords2);
     var url = this.urlGenerator(datatype, coords, year, month);
 

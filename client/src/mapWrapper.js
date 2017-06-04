@@ -23,13 +23,13 @@ MapWrapper.prototype = {
   geocodeAddress: function(address, callback) {
     var ukAddress = address + " United Kingdom"
     this.geocoder.geocode({'address': ukAddress}, function(results, status) {
-      
+
       if (status === 'OK') {
 
         var latlng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
 
         callback(latlng)
-        
+
         this.googleMap.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
           map: this.googleMap,
@@ -65,7 +65,7 @@ MapWrapper.prototype = {
     for(var key of imgKeys){
       if(key === crime.category){
         var crimeImage = {
-        url: crimeIconObj[key], 
+        url: crimeIconObj[key],
         scaledSize: new google.maps.Size(60, 60),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(0, 0)
@@ -78,7 +78,7 @@ MapWrapper.prototype = {
   addClickEvent: function (){
     google.maps.event.addListener(this.googleMap, 'click', function(event){
       var position = { lat: event.latLng.lat(), lng: event.latLng.lng() }
-      
+
     }.bind(this));
   },
 
@@ -127,6 +127,7 @@ MapWrapper.prototype = {
       }
     });
   }
+
 
 }
 
