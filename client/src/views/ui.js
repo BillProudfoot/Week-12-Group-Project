@@ -22,6 +22,7 @@ var UI = function() {
   var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;
   var mapDiv = document.getElementById("main-map");
+  var locationsSelect = document.querySelector('#locations');
 
   this.mainMap = new MapWrapper(mapDiv, center, zoom);
 
@@ -64,10 +65,9 @@ UI.prototype = {
 
         this.locations.add(locationToAdd, function(locations){
 
-          var startSelect = document.querySelector('#start');
           var index = locations.length -1
           var option = this.createDropDownOption(locationToAdd, index);
-          startSelect.appendChild(option);
+          this.locationsSelect.appendChild(option);
           this.populateDropDown(locations)
           this.locationsArray = locations
         }.bind(this))
@@ -96,13 +96,12 @@ UI.prototype = {
   },
 
   populateDropDown: function(locations){
-    var startSelect = document.querySelector('#start');
 
-    startSelect.innerHTML = ""
+    this.locationsSelect.innerHTML = ""
 
     locations.forEach(function(location, index){
       var option = this.createDropDownOption(location, index);
-      startSelect.appendChild(option);
+      this.locationsSelect.appendChild(option);
     }.bind(this))
 
 
@@ -118,7 +117,7 @@ UI.prototype = {
 
 
   resultsOnRoute: function(){
-    var start = document.querySelector("#start");
+
     var monthSelect = document.querySelector("#month")
     console.log(monthSelect);
     var yearSelect = document.querySelector("#year")
@@ -126,8 +125,8 @@ UI.prototype = {
     var stopSearchButton = document.querySelector("#stop-search-button")
     crimeButton.addEventListener('click', function(){
       console.log("crime button clicked")
-      var startLocation = this.locationsArray[start.value].latlng;
-      this.crimesHelper.getResults("street-crime", startLocation, yearSelect.value, monthSelect.value, function(){
+      var location = this.locationsArray[locationsSelect.value].latlng;
+      this.crimesHelper.getResults("street-crime", location, yearSelect.value, monthSelect.value, function(){
         this.crimesHelper.crimesArray.forEach(function(crime){
           var lat = parseFloat(crime.lat)
           var lng = parseFloat(crime.lng)
