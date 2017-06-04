@@ -1,10 +1,10 @@
 var Crime = require('./crime.js');
 
-var RestCrimes = function() {
+var ApiHelper = function() {
 
 };
 
-RestCrimes.prototype = {
+ApiHelper.prototype = {
   makeRequest: function(url, callback) {
     var request = new XMLHttpRequest();
     request.open('GET', url);
@@ -19,17 +19,17 @@ RestCrimes.prototype = {
 
   all: function (url, callback) {
     this.makeRequest(url, function (results) {
-      var crimes = this.populateCrimes(results)
-      callback(crimes);
+      var myResults = this.populate(results)
+      callback(myResults);
     }.bind(this));
   },
 
-  populateCrimes: function (results) {
-      var crimes = results.map(function (resultObject) {
-        return new Crime(resultObject)
+  populate: function (datatype, results) {
+      var resultsArray = results.map(function (resultObject) {
+        return (datatype === "street-crime") ? new Crime(resultObject) : new StopSearch(resultObject)
       });
-      return crimes;
+      return resultsArray;
     }
 }
 
-module.exports = RestCrimes;
+module.exports = ApiHelper;

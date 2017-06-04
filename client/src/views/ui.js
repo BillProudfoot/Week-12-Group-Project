@@ -2,7 +2,7 @@ var Locations = require('../models/locations');
 var Walk = require('../models/walk');
 var Walks = require('../models/walks')
 var MapWrapper = require('../mapWrapper.js');
-var RestCrimes = require('../models/restCrimes');
+var ApiHelper = require('../models/apiHelper');
 var CrimesHelper = require('../models/crimesHelper');
 var ColumnChart = require('../models/columnChart.js');
 var DateHelper = require('../models/dateHelper.js');
@@ -14,7 +14,7 @@ var LightBox = require('./lightbox');
 var UI = function() {
   this.locations = new Locations();
   this.walks = new Walks();
-  this.restCrimes = new RestCrimes();
+  this.apiHelper = new ApiHelper();
   this.crimesHelper = new CrimesHelper();
   this.lightBox = new LightBox();
   this.dateHelper = new DateHelper();
@@ -117,16 +117,17 @@ UI.prototype = {
 
 
 
-  crimesOnRoute: function(){
+  resultsOnRoute: function(){
     var start = document.querySelector("#start");
     var monthSelect = document.querySelector("#month")
     console.log(monthSelect);
     var yearSelect = document.querySelector("#year")
     var crimeButton = document.querySelector("#crime-button")
+    var stopSearchButton = document.querySelector("#stop-search-button")
     crimeButton.addEventListener('click', function(){
       console.log("crime button clicked")
       var startLocation = this.locationsArray[start.value].latlng;
-      this.crimesHelper.getCrimes("street-crime", startLocation, yearSelect.value, monthSelect.value, function(){
+      this.crimesHelper.getResults("street-crime", startLocation, yearSelect.value, monthSelect.value, function(){
         this.crimesHelper.crimesArray.forEach(function(crime){
           var lat = parseFloat(crime.lat)
           var lng = parseFloat(crime.lng)

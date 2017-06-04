@@ -1,8 +1,8 @@
 var Crime = require ('./crime.js');
-var RestCrimes = require('./restCrimes.js');
+var ApiHelper = require('./apiHelper.js');
 
 var CrimesHelper = function() {
-  this.restCrimes = new RestCrimes();
+  this.apiHelper = new ApiHelper();
 
   this.urls = {
     'street-crime': 'https://data.police.uk/api/crimes-street/all-crime?lat=',
@@ -32,7 +32,7 @@ CrimesHelper.prototype = {
     // var midpoint = this.coordinateFinder(coords1, coords2);
     var url = this.urlGenerator(datatype, coords, year, month);
 
-    this.restCrimes.all(url, function(crimes){
+    this.apiHelper.all(url, function(crimes){
 
        this.crimesArray = crimes;
        callback();
