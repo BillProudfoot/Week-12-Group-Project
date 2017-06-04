@@ -12,16 +12,6 @@ var CrimesHelper = function() {
 }
 
 CrimesHelper.prototype = {
-  coordinateFinder: function(coord1, coord2){
-    var avgLat = (coord1.lat + coord2.lat)/2;
-    var avgLng = (coord1.lng + coord2.lng)/2;
-
-    var midpoint = {
-      lat: avgLat,
-      lng: avgLng
-    }
-    return midpoint;
-  },
 
   urlGenerator: function(datatype, coords, year, month){
     var url = this.urls[datatype] + coords.lat + '&lng=' + coords.lng + '&date=' + year + "-" + month;
@@ -32,12 +22,11 @@ CrimesHelper.prototype = {
     // var midpoint = this.coordinateFinder(coords1, coords2);
     var url = this.urlGenerator(datatype, coords, year, month);
 
-    this.apiHelper.all(url, function(crimes){
+    this.apiHelper.all(url, function(events){
 
-       this.crimesArray = crimes;
+       this.resultsArray = events;
        callback();
     }.bind(this))
-
 
   },
 
