@@ -1,4 +1,4 @@
-var StopSearch = function(options){
+  var StopSearch = function(options){
   this.type = options.type,
   this.self_defined_ethnicity = options.self_defined_ethnicity,
   this.datetime = options.datetime,
@@ -7,7 +7,8 @@ var StopSearch = function(options){
   this.operation_name = options.operation_name,
   this.age_range = options.age_range,
   this.legislation = options.legislation,
-  this.location = options.location,
+  this.lat = options.location.latitude,
+  this.lng = options.location.longitude,
   this.officer_defined_ethnicity = options.officer_defined_ethnicity
 }
 

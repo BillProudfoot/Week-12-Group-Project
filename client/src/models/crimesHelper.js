@@ -13,16 +13,27 @@ var CrimesHelper = function() {
 
 CrimesHelper.prototype = {
 
-  urlGenerator: function(datatype, coords, year, month){
-    var url = this.urls[datatype] + coords.lat + '&lng=' + coords.lng + '&date=' + year + "-" + month;
+  urlGenerator: function(dataset, coords, year, month){
+    var url = this.urls[dataset] + coords.lat + '&lng=' + coords.lng + '&date=' + year + "-" + month;
     return url;
   },
 
-  getResults: function(datatype, coords, year, month, callback,){
+  getCrimeResults: function(dataset, coords, year, month, callback,){
     // var midpoint = this.coordinateFinder(coords1, coords2);
-    var url = this.urlGenerator(datatype, coords, year, month);
+    var url = this.urlGenerator(dataset, coords, year, month);
 
-    this.apiHelper.all(url, function(events){
+    this.apiHelper.allCrimes(url, function(events){
+       this.resultsArray = events;
+       callback();
+    }.bind(this))
+
+  },
+
+  getSearchResults: function(dataset, coords, year, month, callback,){
+    // var midpoint = this.coordinateFinder(coords1, coords2);
+    var url = this.urlGenerator(dataset, coords, year, month);
+
+    this.apiHelper.allSearches(url, function(events){
        this.resultsArray = events;
        callback();
     }.bind(this))

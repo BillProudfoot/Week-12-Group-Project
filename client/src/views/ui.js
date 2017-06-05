@@ -20,6 +20,8 @@ var UI = function() {
   var zoom = 12;
   var mapDiv = document.getElementById("main-map");
   this.locationsSelect = document.querySelector('#locations');
+  this.monthSelect = document.querySelector("#month")
+  this.yearSelect = document.querySelector("#year")
 
   this.mainMap = new MapWrapper(mapDiv, center, zoom);
 
@@ -32,7 +34,8 @@ var UI = function() {
 
   this.renderDateSelecters();
   this.newLocationButtonHandler();
-  this.resultsOnRoute();
+  this.crimesOnRoute();
+  this.searchesOnRoute();
   this.loadMap();
 
 }
@@ -112,16 +115,13 @@ UI.prototype = {
 
 
 
-  resultsOnRoute: function(){
+  crimesOnRoute: function(){
 
-    var monthSelect = document.querySelector("#month")
-    var yearSelect = document.querySelector("#year")
     var crimeButton = document.querySelector("#crime-button")
-    var stopSearchButton = document.querySelector("#stop-search-button")
     crimeButton.addEventListener('click', function(){
       var location = this.locationsArray[this.locationsSelect.value].latlng;
       this.mainMap.setCenter(location);
-      this.crimesHelper.getResults("street-crime", location, yearSelect.value, monthSelect.value, function(){
+      this.crimesHelper.getCrimeResults("street-crime", location, this.yearSelect.value, this.monthSelect.value, function(){
         this.crimesHelper.resultsArray.forEach(function(crime){
           var lat = parseFloat(crime.lat)
           var lng = parseFloat(crime.lng)
@@ -144,7 +144,26 @@ UI.prototype = {
     }.bind(this))
 
 
+  },
+
+  searchesOnRoute: function(){
+      var stopSearchButton = document.querySelector("#stop-search-button")
+      stopSearchButton.addEventListener('click', function(){
+      console.log("the search button was clicked");
+      var location = this.locationsArray[this.locationsSelect.value].latlng;
+      this.mainMap.setCenter(location);
+      this.crimesHelper.getSearchResults("stop-search", location, this.yearSelect.value, this.monthSelect.value, function(){
+        this.crimesHelper.resultsArray.forEach(function(search){
+          var lat = parseFloat(search.lat);
+          var lng = parseFloat(search.lng)
+        var coords = {lat: lat, lng: lng}
+        this.mainMap.addMarker(coords);
+        }.bind(this))
+      }.bind(this))
+
+    }.bind(this));
   }
+
 
 
 }
