@@ -1,6 +1,4 @@
 var Locations = require('../models/locations');
-var Walk = require('../models/walk');
-var Walks = require('../models/walks')
 var MapWrapper = require('../mapWrapper.js');
 var ApiHelper = require('../models/apiHelper');
 var CrimesHelper = require('../models/crimesHelper');
@@ -13,7 +11,6 @@ var LightBox = require('./lightbox');
 
 var UI = function() {
   this.locations = new Locations();
-  this.walks = new Walks();
   this.apiHelper = new ApiHelper();
   this.crimesHelper = new CrimesHelper();
   this.lightBox = new LightBox();
@@ -22,7 +19,7 @@ var UI = function() {
   var center = {lat: 54.9783, lng: -1.6178};
   var zoom = 12;
   var mapDiv = document.getElementById("main-map");
-  var locationsSelect = document.querySelector('#locations');
+  this.locationsSelect = document.querySelector('#locations');
 
   this.mainMap = new MapWrapper(mapDiv, center, zoom);
 
@@ -33,9 +30,9 @@ var UI = function() {
   }.bind(this))
   }.bind(this));
 
-  this.newLocationButtonHandler();
   this.renderDateSelecters();
-  this.crimesOnRoute();
+  this.newLocationButtonHandler();
+  this.resultsOnRoute();
   this.loadMap();
 
 }
@@ -96,8 +93,7 @@ UI.prototype = {
   },
 
   populateDropDown: function(locations){
-
-    this.locationsSelect.innerHTML = ""
+    this.locationsSelect.innerHTML = "";
 
     locations.forEach(function(location, index){
       var option = this.createDropDownOption(location, index);
@@ -119,13 +115,12 @@ UI.prototype = {
   resultsOnRoute: function(){
 
     var monthSelect = document.querySelector("#month")
-    console.log(monthSelect);
     var yearSelect = document.querySelector("#year")
     var crimeButton = document.querySelector("#crime-button")
     var stopSearchButton = document.querySelector("#stop-search-button")
     crimeButton.addEventListener('click', function(){
       console.log("crime button clicked")
-      var location = this.locationsArray[locationsSelect.value].latlng;
+      var location = this.locationsArray[this.locationsSelect.value].latlng;
       this.crimesHelper.getResults("street-crime", location, yearSelect.value, monthSelect.value, function(){
         this.crimesHelper.crimesArray.forEach(function(crime){
           var lat = parseFloat(crime.lat)

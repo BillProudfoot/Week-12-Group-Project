@@ -40,4 +40,4 @@ StopSearch.prototype = {
          //
 }
 
-module.exports = Search;
+module.exports = StopSearch;

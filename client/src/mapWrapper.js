@@ -90,44 +90,6 @@ MapWrapper.prototype = {
     }.bind(this));
   },
 
-  onChangeHandler: function() {
-    this.calculateAndDisplayRoute(this.directionsService, this.directionsDisplay);
-  },
-
-  calculateAndDisplayRoute: function(directionsService, directionsDisplay) {
-    directionsService.route({
-      origin: document.getElementById("start").options[start.selectedIndex].latlng,
-      destination: document.getElementById("finish").options[finish.selectedIndex].latlng,
-      travelMode: "WALKING",
-      region: "UK"
-    }, function(response, status) {
-      if (status === "OK") {
-        directionsDisplay.setDirections(response);
-      } else {
-        console.log("Failed to get directions " + status);
-      }
-    });
-  },
-
-  onShowRoute: function(startlatlng, finishlatlng) {
-    this.calculateAndDisplayWishlistRoute(this.directionsService, this.directionsDisplay, startlatlng, finishlatlng);
-  },
-
-  calculateAndDisplayWishlistRoute: function(directionsService, directionsDisplay, startlatlng, finishlatlng) {
-    directionsService.route({
-      origin: startlatlng,
-      destination: finishlatlng,
-      travelMode: "WALKING",
-      region: "UK"
-    }, function(response, status) {
-      if (status === "OK") {
-        directionsDisplay.setDirections(response);
-      } else {
-        console.log("Failed to get directions " + status);
-      }
-    });
-  }
-
 
 }
 

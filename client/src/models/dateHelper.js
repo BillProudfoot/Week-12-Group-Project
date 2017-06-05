@@ -19,7 +19,6 @@ var DateHelper = function(){
 DateHelper.prototype = {
   populateMonthDropDown: function(select){
     Object.keys(this.months).forEach(function(month){
-      console.log(month)
       var option = document.createElement("option")
       option.innerText = month;
       option.value = this.months[month];
