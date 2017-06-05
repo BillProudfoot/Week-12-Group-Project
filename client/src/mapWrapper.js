@@ -90,6 +90,10 @@ MapWrapper.prototype = {
     }.bind(this));
   },
 
+  setCenter: function(position){
+    this.googleMap.setCenter(position);
+  }
+
 
 }
 

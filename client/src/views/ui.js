@@ -119,10 +119,10 @@ UI.prototype = {
     var crimeButton = document.querySelector("#crime-button")
     var stopSearchButton = document.querySelector("#stop-search-button")
     crimeButton.addEventListener('click', function(){
-      console.log("crime button clicked")
       var location = this.locationsArray[this.locationsSelect.value].latlng;
+      this.mainMap.setCenter(location);
       this.crimesHelper.getResults("street-crime", location, yearSelect.value, monthSelect.value, function(){
-        this.crimesHelper.crimesArray.forEach(function(crime){
+        this.crimesHelper.resultsArray.forEach(function(crime){
           var lat = parseFloat(crime.lat)
           var lng = parseFloat(crime.lng)
         var coords = {lat: lat, lng: lng}

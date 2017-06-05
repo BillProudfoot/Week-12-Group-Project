@@ -23,7 +23,6 @@ CrimesHelper.prototype = {
     var url = this.urlGenerator(datatype, coords, year, month);
 
     this.apiHelper.all(url, function(events){
-
        this.resultsArray = events;
        callback();
     }.bind(this))

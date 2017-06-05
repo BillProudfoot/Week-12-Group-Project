@@ -1,10 +1,10 @@
 var CrimeIcons = function(){
 
   this.crimePics = {
-      'anti-social-behaviour': '../crimes/img/antiSocialFinished.png',
+      'anti-social-behaviour': '../img/crimes/antiSocialFinished.png',
       'burglary': '../img/crimes/burglaryFinished.png',
       'criminal-damage-arson': '../img/crimes/arsonFinished.png',
-      'drugs': '../img/dcrimes/rugsFinished.png',
+      'drugs': '../img/crimes/drugsFinished.png',
       'other-theft': '../img/crimes/otherTheftFinished.png',
       'possession-of-weapons': '../img/crimes/weaponFinished.png',
       'public-order': '../img/crimes/publicOrderFinished.png',
