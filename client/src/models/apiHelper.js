@@ -1,5 +1,5 @@
 var Crime = require('./crime.js');
-bar StopSearch = require('./stopSearch.js')
+var StopSearch = require('./stopSearch.js')
 
 var ApiHelper = function() {
 
