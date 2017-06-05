@@ -119,6 +119,7 @@ UI.prototype = {
 
     var crimeButton = document.querySelector("#crime-button")
     crimeButton.addEventListener('click', function(){
+      this.mainMap.removeMarkers();
       var location = this.locationsArray[this.locationsSelect.value].latlng;
       this.mainMap.setCenter(location);
       this.crimesHelper.getCrimeResults("street-crime", location, this.yearSelect.value, this.monthSelect.value, function(){
@@ -149,6 +150,7 @@ UI.prototype = {
   searchesOnRoute: function(){
       var stopSearchButton = document.querySelector("#stop-search-button")
       stopSearchButton.addEventListener('click', function(){
+      this.mainMap.removeMarkers();
       console.log("the search button was clicked");
       var location = this.locationsArray[this.locationsSelect.value].latlng;
       this.mainMap.setCenter(location);

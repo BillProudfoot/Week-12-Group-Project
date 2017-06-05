@@ -7,6 +7,8 @@ var MapWrapper = function(mapDiv, coords, zoom) {
   this.geocoder = new google.maps.Geocoder();
   this.marker = new google.maps.Marker();
   this.crimeIcons = new CrimeIcons();
+  this.gmarkers = [];
+  console.log(this.gmarkers);
 
   this.googleMap = new google.maps.Map(mapDiv, {
     center: coords,
@@ -47,6 +49,8 @@ MapWrapper.prototype = {
       map: this.googleMap,
       animation: google.maps.Animation.DROP,
     });
+    this.gmarkers.push(marker);
+
   },
 
   addCrimeMarker: function(crimeImage, coords){
@@ -55,6 +59,8 @@ MapWrapper.prototype = {
       map: this.googleMap,
       icon: crimeImage
     })
+    this.gmarkers.push(marker);
+
   },
 
   filterCrimeIcons: function(crime, coords){
@@ -92,6 +98,12 @@ MapWrapper.prototype = {
 
   setCenter: function(position){
     this.googleMap.setCenter(position);
+  },
+
+  removeMarkers: function(){
+    for (marker of this.gmarkers){
+      marker.setMap(null);
+    }
   }
 
 
